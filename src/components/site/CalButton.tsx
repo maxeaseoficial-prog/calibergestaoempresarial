@@ -37,9 +37,9 @@ export function CalLink({
   className,
   children,
   ...rest
-}: { to: string; variant?: Variant; arrow?: boolean } & Omit<
+}: { to: string; variant?: Variant; arrow?: boolean; children: ReactNode } & Omit<
   ComponentProps<typeof Link>,
-  "to"
+  "to" | "children"
 >) {
   return (
     <Link to={to} className={cn(base, variants[variant], className)} {...rest}>
