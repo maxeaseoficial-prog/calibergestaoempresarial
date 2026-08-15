@@ -6,7 +6,7 @@ import { LogoWatermark } from "./Logo";
 export function NationalPresence() {
   return (
     <section className="relative overflow-hidden bg-lavender/60 py-24 lg:py-32">
-      <LogoWatermark className="-top-24 -left-32 h-[30rem] w-[30rem] text-purple/[0.05]" />
+
       <div className="container-cal relative">
         <div className="grid gap-14 lg:grid-cols-2 lg:gap-24">
           <div>
