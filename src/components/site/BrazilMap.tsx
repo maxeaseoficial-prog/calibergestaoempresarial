@@ -101,20 +101,22 @@ export function BrazilMap({ onHoverState, activeId }: BrazilMapProps) {
                   }
                 }}
                 onBlur={handleMouseLeave}
-
                 style={{
                   transformOrigin: "center center",
                   transformBox: "fill-box",
                 }}
               />
-              {/* State Labels for active ones */}
-              {isActive && STATE_CENTROIDS[id] && (
+              {/* State Labels for ALL states if a centroid exists */}
+              {STATE_CENTROIDS[id] && (
                 <text
                   x={STATE_CENTROIDS[id].x}
                   y={STATE_CENTROIDS[id].y}
                   className={cn(
-                    "pointer-events-none fill-white text-[11px] font-black transition-all duration-300 drop-shadow-[0_1px_1px_rgba(0,0,0,0.5)]",
-                    isHighlighted ? "opacity-100 scale-110" : "opacity-80"
+                    "pointer-events-none font-black transition-all duration-300",
+                    isActive 
+                      ? "fill-white text-[11px] drop-shadow-[0_1px_1px_rgba(0,0,0,0.5)]" 
+                      : "fill-purple/20 text-[9px]",
+                    isHighlighted && isActive ? "opacity-100 scale-110" : isActive ? "opacity-80" : "opacity-40"
                   )}
                   dominantBaseline="middle"
                   textAnchor="middle"
