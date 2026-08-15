@@ -4,6 +4,7 @@ import { CalAnchor, CalLink } from "./CalButton";
 import { CONTACT } from "@/lib/site-data";
 import { LogoWatermark } from "./Logo";
 import { cn } from "@/lib/utils";
+import heroVideoAsset from "@/assets/hero-video.mp4.asset.json";
 
 const heroMessages = [
   {
@@ -48,63 +49,65 @@ export function Hero() {
   const active = heroMessages[index]!;
 
   return (
-    <section className="relative overflow-hidden pt-32 pb-20 lg:pt-48 lg:pb-32">
+    <section className="relative overflow-hidden pt-32 pb-20 lg:pt-48 lg:pb-32 min-h-[90vh] flex items-center">
+      {/* Background Video */}
+      <div className="absolute inset-0 -z-20 overflow-hidden">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="h-full w-full object-cover"
+        >
+          <source src={heroVideoAsset.url} type="video/mp4" />
+        </video>
+        {/* Overlay for readability */}
+        <div className="absolute inset-0 bg-white/70 backdrop-blur-[2px] dark:bg-black/40" />
+      </div>
+
       {/* Background elements */}
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_70%_20%,var(--caliber-purple-light)_0%,transparent_50%)] opacity-[0.03]" />
       <LogoWatermark className="top-[-10%] right-[-5%] h-[80%] w-[80%] opacity-[0.02] text-purple rotate-12" />
 
       <div className="container-cal">
-        <div className="grid items-center gap-16 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="relative z-10">
-            {/* Texto com área de conteúdo para evitar layout shift */}
-            <div className="relative grid items-start">
-              {heroMessages.map((msg, i) => (
-                <div
-                  key={i}
-                  className={cn(
-                    "col-start-1 row-start-1 transition-all duration-700 ease-in-out motion-safe:translate-y-0",
-                    index === i && !isTransitioning 
-                      ? "opacity-100 motion-safe:translate-y-0 pointer-events-auto" 
-                      : "opacity-0 motion-safe:translate-y-2 pointer-events-none"
-                  )}
-                  aria-hidden={index !== i}
-                >
-                  <span className="eyebrow block">
-                    {msg.eyebrow}
-                  </span>
+        <div className="max-w-4xl relative z-10">
+          {/* Texto com área de conteúdo para evitar layout shift */}
+          <div className="relative grid items-start">
+            {heroMessages.map((msg, i) => (
+              <div
+                key={i}
+                className={cn(
+                  "col-start-1 row-start-1 transition-all duration-700 ease-in-out motion-safe:translate-y-0",
+                  index === i && !isTransitioning 
+                    ? "opacity-100 motion-safe:translate-y-0 pointer-events-auto" 
+                    : "opacity-0 motion-safe:translate-y-2 pointer-events-none"
+                )}
+                aria-hidden={index !== i}
+              >
+                <span className="eyebrow block">
+                  {msg.eyebrow}
+                </span>
 
-                  <h1 className="mt-8 text-[clamp(2.8rem,5.5vw,5.2rem)] leading-[0.95] font-extrabold tracking-tight text-ink">
-                    {msg.title}
-                  </h1>
+                <h1 className="mt-8 text-[clamp(2.8rem,6.5vw,6rem)] leading-[0.9] font-extrabold tracking-tight text-ink">
+                  {msg.title}
+                </h1>
 
-                  <p className="mt-8 text-lg leading-relaxed text-muted-foreground md:text-xl max-w-xl">
-                    {msg.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            {/* Botões fixos */}
-            <div className="mt-10 flex flex-wrap items-center gap-5">
-              <CalAnchor href={CONTACT.whatsapp} target="_blank" rel="noreferrer">
-                Evolua Conosco
-              </CalAnchor>
-              <CalLink to="/sobre" variant="outline" arrow={false}>
-                Conheça a Cáliber
-              </CalLink>
-            </div>
+                <p className="mt-8 text-lg leading-relaxed text-muted-foreground md:text-xl max-w-2xl">
+                  {msg.description}
+                </p>
+              </div>
+            ))}
           </div>
 
-          <Reveal variant="image" delay={200} className="relative aspect-[4/5] w-full lg:aspect-square">
-            <div className="absolute inset-0 rounded-[40px] bg-purple-deep/5" />
-            <img
-              src="https://images.unsplash.com/photo-1600880212340-02d956ea3b85?q=80&w=2070&auto=format&fit=crop"
-              alt="Consultoria estratégica e gestão empresarial"
-              className="h-full w-full rounded-[40px] object-cover shadow-lift"
-              loading="eager"
-            />
-            
-          </Reveal>
+          {/* Botões fixos */}
+          <div className="mt-12 flex flex-wrap items-center gap-5">
+            <CalAnchor href={CONTACT.whatsapp} target="_blank" rel="noreferrer" className="px-10 py-5 text-lg">
+              Evolua Conosco
+            </CalAnchor>
+            <CalLink to="/sobre" variant="outline" arrow={false} className="px-10 py-5 text-lg">
+              Conheça a Cáliber
+            </CalLink>
+          </div>
         </div>
       </div>
     </section>
