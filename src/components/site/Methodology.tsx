@@ -111,7 +111,7 @@ export function Methodology() {
 
 
           {/* Cards Stage */}
-          <div className="flex justify-center items-center h-[500px] md:h-[600px] relative perspective-3d">
+          <div className="flex justify-center items-center h-[450px] sm:h-[500px] md:h-[600px] relative perspective-3d touch-pan-y">
             <AnimatePresence mode="popLayout">
               {CARDS.map((card, index) => {
                 const relativeIndex = (index - activeIndex + CARDS.length) % CARDS.length;
