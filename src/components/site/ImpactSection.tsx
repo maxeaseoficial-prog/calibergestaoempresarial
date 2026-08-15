@@ -7,7 +7,7 @@ export function ImpactSection() {
   return (
     <section className="relative overflow-hidden bg-purple-dark py-24 text-center text-white lg:py-40">
       <div className="absolute inset-0 bg-gradient-to-br from-purple-dark via-purple-deep to-purple opacity-40" />
-      <LogoWatermark className="bottom-[-20%] left-[-10%] h-[80%] w-[80%] opacity-[0.04] text-white" />
+
 
       <div className="container-cal relative z-10">
         <Reveal>
