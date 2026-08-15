@@ -86,8 +86,8 @@ export function BrazilMap({ onHoverState, activeId }: BrazilMapProps) {
                   "transition-all duration-300 ease-out stroke-[0.5] stroke-white/50",
                   isActive
                     ? "fill-purple hover:fill-purple-deep cursor-pointer"
-                    : "fill-lavender/40 hover:fill-lavender/60",
-                  isHighlighted && "fill-purple-deep -translate-y-[2px] drop-shadow-lg scale-[1.01]"
+                    : "fill-purple/5 hover:fill-purple/10",
+                  isHighlighted && isActive && "fill-purple-deep -translate-y-[2px] drop-shadow-lg scale-[1.01]"
                 )}
                 onMouseEnter={() => handleMouseEnter(id)}
                 onMouseLeave={handleMouseLeave}
