@@ -1,76 +1,191 @@
 import { cn } from "@/lib/utils";
-import { STEPS } from "@/lib/site-data";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
-import * as LucideIcons from "lucide-react";
+import { Logo } from "./Logo";
+import { motion, AnimatePresence } from "motion/react";
+import { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+import service1 from "@/assets/service-1.png.asset.json";
+import service2 from "@/assets/service-2.png.asset.json";
+import service3 from "@/assets/service-3.png.asset.json";
+import service4 from "@/assets/service-4.png.asset.json";
+
+const CARDS = [
+  { id: 1, img: service1.url, title: "Controladoria Estratégica Comercial" },
+  { id: 2, img: service2.url, title: "Controladoria Estratégica Financeira" },
+  { id: 3, img: service3.url, title: "Conselho de Gestão Estratégica" },
+  { id: 4, img: service4.url, title: "Cáliber COR" },
+];
 
 export function Methodology() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+    const timer = setInterval(() => {
+      setActiveIndex((current) => (current + 1) % CARDS.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [isAutoPlaying]);
+
+  const next = () => {
+    setIsAutoPlaying(false);
+    setActiveIndex((current) => (current + 1) % CARDS.length);
+  };
+
+  const prev = () => {
+    setIsAutoPlaying(false);
+    setActiveIndex((current) => (current - 1 + CARDS.length) % CARDS.length);
+  };
+
   return (
     <section id="metodologia" className="py-20 lg:py-32 overflow-hidden bg-white">
       <div className="container-cal">
-        <SectionHeading
-          title={<>Como tornamos sua empresa <br className="hidden lg:block" /> mais eficiente?</>}
-          align="center"
-          className="mb-16 lg:mb-24 max-w-4xl"
-          titleClassName="text-purple"
-        />
-
-        <div className="relative group/section">
-          {/* Desktop Connecting Line */}
-          <div 
-            className="absolute top-[4.5rem] left-[15%] right-[15%] hidden h-[2px] bg-purple/5 md:block overflow-hidden" 
-            aria-hidden="true" 
-          >
-            <div className="h-full w-full bg-purple origin-left scale-x-0 transition-transform duration-700 ease-out group-hover/section:scale-x-100 opacity-20" />
-          </div>
-          
-          <div className="grid gap-16 md:grid-cols-3 md:gap-8">
-            {STEPS.map((step, idx) => {
-              const Icon = (LucideIcons as any)[step.icon];
-              
-              return (
-                <Reveal key={step.number} delay={idx * 150} className="relative group">
-                  <div className="flex flex-col items-center text-center px-4 transition-all duration-300 rounded-3xl py-6 hover:bg-purple/[0.02]">
-                    {/* Number and Icon Header */}
-                    <div className="relative mb-8 flex flex-col items-center">
-                      <span className="mb-4 text-sm font-black tracking-[0.25em] text-purple/30 transition-colors duration-300 group-hover:text-purple/60">
-                        {step.number}
-                      </span>
-                      
-                      <div className="relative z-10 flex size-20 items-center justify-center rounded-[1.5rem] bg-white text-purple shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-purple/5 transition-all duration-500 group-hover:-translate-y-1.5 group-hover:shadow-[0_15px_35px_rgba(95,85,135,0.12)] group-hover:border-purple/20 group-hover:bg-purple/[0.01]">
-                        {Icon && (
-                          <Icon className="size-8 stroke-[1.5] transition-transform duration-500 group-hover:scale-110" />
-                        )}
-                      </div>
-                      
-                      {/* Mobile vertical line connector */}
-                      {idx !== STEPS.length - 1 && (
-                        <div className="absolute top-full left-1/2 h-16 w-[2px] bg-purple/5 md:hidden" />
-                      )}
-                    </div>
-
-                    {/* Step Name */}
-                    <span className="text-[0.7rem] font-black uppercase tracking-[0.25em] text-purple/50 mb-4 transition-colors duration-300 group-hover:text-purple">
-                      {step.step}
-                    </span>
-
-                    {/* Solution Title */}
-                    <h3 className="text-xl font-extrabold text-ink mb-5 md:text-2xl max-w-[240px] mx-auto transition-colors duration-300 group-hover:text-purple-deep">
-                      {step.solution}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-[1.05rem] leading-relaxed text-ink/60 max-w-[280px] mx-auto transition-colors duration-300 group-hover:text-ink/80">
-                      {step.description}
-                    </p>
-                  </div>
-                </Reveal>
-              );
-            })}
+        <div className="flex flex-col items-center mb-12 lg:mb-16">
+          <SectionHeading
+            title={<>Como tornamos sua empresa <br className="hidden lg:block" /> mais eficiente?</>}
+            align="center"
+            className="mb-6 max-w-4xl"
+            titleClassName="text-purple"
+          />
+          <div className="flex items-center gap-4 w-full max-w-xs md:max-w-md">
+            <div className="h-[1px] flex-1 bg-purple/20" />
+            <Logo className="size-6 text-purple/40" />
+            <div className="h-[1px] flex-1 bg-purple/20" />
           </div>
         </div>
+
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-12">
+          <div className="flex justify-center items-center h-[400px] md:h-[550px] relative perspective-1000">
+            <AnimatePresence mode="popLayout">
+              {CARDS.map((card, index) => {
+                const position = (index - activeIndex + CARDS.length) % CARDS.length;
+                
+                let x: string | number = 0;
+                let scale = 1;
+                let zIndex = 0;
+                let opacity = 0;
+                let rotateY = 0;
+
+                if (position === 0) {
+                  x = 0;
+                  scale = 1;
+                  zIndex = 30;
+                  opacity = 1;
+                  rotateY = 0;
+                } else if (position === 1) {
+                  x = "40%";
+                  scale = 0.85;
+                  zIndex = 20;
+                  opacity = 0.6;
+                  rotateY = -15;
+                } else if (position === CARDS.length - 1) {
+                  x = "-40%";
+                  scale = 0.85;
+                  zIndex = 20;
+                  opacity = 0.6;
+                  rotateY = 15;
+                } else {
+                  x = 0;
+                  scale = 0.7;
+                  zIndex = 10;
+                  opacity = 0;
+                  rotateY = 0;
+                }
+
+                return (
+                  <motion.div
+                    key={card.id}
+                    className="absolute w-[280px] sm:w-[350px] md:w-[450px] lg:w-[500px] aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl cursor-pointer ring-1 ring-white/10"
+                    animate={{
+                      x,
+                      scale,
+                      zIndex,
+                      opacity,
+                      rotateY,
+                    }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 260,
+                      damping: 25,
+                    }}
+                    onClick={() => {
+                      if (position !== 0) {
+                        setIsAutoPlaying(false);
+                        setActiveIndex(index);
+                      }
+                    }}
+                    whileHover={position === 0 ? { scale: 1.02, y: -5 } : {}}
+                  >
+                    <img
+                      src={card.img}
+                      alt={card.title}
+                      className="w-full h-full object-cover select-none pointer-events-none"
+                    />
+                    
+                    {position !== 0 && (
+                      <div className="absolute inset-0 bg-purple/10 backdrop-blur-[1px] transition-opacity duration-500" />
+                    )}
+                    
+                    <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[80%] h-10 bg-black/20 blur-2xl rounded-[100%] pointer-events-none opacity-50" />
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
+          </div>
+
+          <div className="flex items-center justify-center gap-8 mt-12">
+            <button
+              onClick={prev}
+              className="p-3 rounded-full border border-purple/20 text-purple hover:bg-purple hover:text-white transition-all duration-300"
+              aria-label="Anterior"
+            >
+              <ChevronLeft className="size-6" />
+            </button>
+            
+            <div className="flex gap-2">
+              {CARDS.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => {
+                    setIsAutoPlaying(false);
+                    setActiveIndex(i);
+                  }}
+                  className={cn(
+                    "w-2.5 h-2.5 rounded-full transition-all duration-300",
+                    i === activeIndex ? "bg-purple w-8" : "bg-purple/20 hover:bg-purple/40"
+                  )}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={next}
+              className="p-3 rounded-full border border-purple/20 text-purple hover:bg-purple hover:text-white transition-all duration-300"
+              aria-label="Próximo"
+            >
+              <ChevronRight className="size-6" />
+            </button>
+          </div>
+        </div>
+
+        <div className="mt-20 flex items-center justify-center gap-6">
+          <div className="h-[1px] flex-1 bg-purple/10 max-w-[100px] hidden md:block" />
+          <p className="text-ink/60 text-sm md:text-base text-center">
+            Não entregamos teoria. <span className="text-purple font-bold">Entregamos resultado.</span>
+          </p>
+          <div className="h-[1px] flex-1 bg-purple/10 max-w-[100px] hidden md:block" />
+        </div>
       </div>
+
+      <style>{`
+        .perspective-1000 {
+          perspective: 1200px;
+          transform-style: preserve-3d;
+        }
+      `}</style>
     </section>
   );
 }
-
