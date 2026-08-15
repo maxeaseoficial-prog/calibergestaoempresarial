@@ -51,7 +51,7 @@ export function Methodology() {
 
   useEffect(() => {
     if (!isAutoPlaying) return;
-    const timer = setInterval(next, 5000);
+    const timer = setInterval(next, 7000); // Increased from 5000 to 7000 for slower transition
     return () => clearInterval(timer);
   }, [isAutoPlaying, next]);
 
@@ -239,7 +239,7 @@ export function Methodology() {
                             </h3>
                           ))}
                           {card.subtitle && (
-                            <span className="mt-2 text-purple-light/80 text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase">
+                            <span className="mt-2 text-white text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase">
                               {card.subtitle}
                             </span>
                           )}
