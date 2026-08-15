@@ -112,7 +112,7 @@ export function Methodology() {
 
           {/* Cards Stage */}
           <div className="flex justify-center items-center h-[450px] sm:h-[500px] md:h-[600px] relative perspective-3d touch-pan-y">
-            <AnimatePresence mode="popLayout">
+            <AnimatePresence mode="wait">
               {CARDS.map((card, index) => {
                 const relativeIndex = (index - activeIndex + CARDS.length) % CARDS.length;
                 let position = relativeIndex;
@@ -183,8 +183,10 @@ export function Methodology() {
 
 
                     transition={{
-                      duration: 0.65,
-                      ease: [0.22, 1, 0.36, 1],
+                      duration: 0.8,
+                      ease: [0.16, 1, 0.3, 1], // Custom quint-out for smoother deceleration
+                      opacity: { duration: 0.4 },
+                      filter: { duration: 0.4 },
                     }}
                     onClick={() => {
                       if (!isActive) handleIndicatorClick(index);
