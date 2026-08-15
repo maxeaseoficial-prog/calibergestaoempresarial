@@ -33,10 +33,10 @@ export function Differentiators() {
             // 10. Evolução (idx 9) -> "em baixo de todos, ocupando todo o espaço"
 
             let gridClasses = "lg:col-span-1";
-            if (item.title === "Evolução") {
+            if (item.title === "Especialidade no Assunto") {
               gridClasses = "md:col-span-2 lg:col-span-3 xl:col-span-4";
-            } else if (["Resultado na Prática", "Autoridade em Gestão"].includes(item.title)) {
-              gridClasses = "lg:col-span-1"; // Voltando ao normal para acomodar os vizinhos
+            } else if (item.title === "Evolução") {
+              gridClasses = "lg:col-span-1";
             }
             
             return (

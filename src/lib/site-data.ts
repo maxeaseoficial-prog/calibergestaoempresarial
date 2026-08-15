@@ -134,9 +134,9 @@ export const DIFFERENTIATORS = [
     icon: "shield",
   },
   {
-    title: "Especialidade no Assunto",
-    text: "Especialistas para atender cada área e cada etapa do seu crescimento. Sem generalistas e soluções teóricas: na Cáliber, temos especialistas experientes para cada setor e necessidade.",
-    icon: "users",
+    title: "Garantia de Continuidade e Evolução",
+    text: "Análises e estratégias contínuas de especialistas, para sua evolução durante e após as mudanças.",
+    icon: "refresh",
   },
   {
     title: "Suporte Exclusivo",
@@ -144,14 +144,14 @@ export const DIFFERENTIATORS = [
     icon: "headset",
   },
   {
-    title: "Garantia de Continuidade e Evolução",
-    text: "Análises e estratégias contínuas de especialistas, para sua evolução durante e após as mudanças.",
-    icon: "refresh",
-  },
-  {
     title: "Evolução",
     text: "Vasta experiência de mercado, aplicada para sua empresa evoluir muitos anos em poucos meses, sem que você e toda a sua empresa percam tempo (que não se recupera) e dinheiro com testes, tentativas e erros, mas indo direto ao ponto, com processos corretos e validados na prática milhares de vezes pelos nossos especialistas.",
     icon: "trendingUp",
+  },
+  {
+    title: "Especialidade no Assunto",
+    text: "Especialistas para atender cada área e cada etapa do seu crescimento. Sem generalistas e soluções teóricas: na Cáliber, temos especialistas experientes para cada setor e necessidade.",
+    icon: "users",
   },
 ] as const;
 
