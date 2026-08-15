@@ -4,8 +4,24 @@ import { Reveal } from "./Reveal";
 
 export function Testimonials() {
   return (
-    <section className="bg-background py-24 lg:py-32 overflow-hidden">
-      <div className="container-cal">
+    <section className="relative overflow-hidden bg-white">
+      {/* Top Frame */}
+      <div className="relative z-20 h-24 w-full bg-purple lg:h-40">
+        <svg 
+          viewBox="0 0 1440 120" 
+          fill="none" 
+          xmlns="http://www.w3.org/2000/svg" 
+          className="absolute bottom-0 left-0 w-full translate-y-[98%] scale-x-105"
+          preserveAspectRatio="none"
+        >
+          <path 
+            d="M0 0H1440V0C1440 0 1140 120 720 120C300 120 0 0 0 0V0Z" 
+            fill="var(--color-purple)"
+          />
+        </svg>
+      </div>
+
+      <div className="container-cal relative z-10 py-32 lg:py-48">
         <Reveal>
           <div className="mb-20 mx-auto text-center max-w-2xl">
             <span className="eyebrow block">Quem já evoluiu</span>
@@ -63,6 +79,22 @@ export function Testimonials() {
             </Reveal>
           ))}
         </div>
+      </div>
+
+      {/* Bottom Frame */}
+      <div className="relative z-20 h-24 w-full bg-purple lg:h-40">
+        <svg 
+          viewBox="0 0 1440 120" 
+          fill="none" 
+          xmlns="http://www.w3.org/2000/svg" 
+          className="absolute top-0 left-0 w-full -translate-y-[98%] scale-x-105"
+          preserveAspectRatio="none"
+        >
+          <path 
+            d="M0 120H1440V120C1440 120 1140 0 720 0C300 0 0 120 0 120V120Z" 
+            fill="var(--color-purple)"
+          />
+        </svg>
       </div>
     </section>
   );
