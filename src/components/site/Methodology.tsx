@@ -119,47 +119,48 @@ export function Methodology() {
 
                 const isActive = position === 0;
                 
-                let x = 0;
-                let z = 0;
-                let scale = 1;
-                let zIndex = 0;
-                let opacity = 0;
-                let blur = 0;
-                let brightness = 1;
+                let xPos: string | number = 0;
+                let zPos = 0;
+                let scaleVal = 1;
+                let zIdx = 0;
+                let opac = 0;
+                let blurVal = 0;
+                let bright = 1;
 
                 if (isActive) {
-                  x = 0;
-                  z = 0;
-                  scale = 1;
-                  zIndex = 40;
-                  opacity = 1;
-                  blur = 0;
-                  brightness = 1;
+                  xPos = 0;
+                  zPos = 0;
+                  scaleVal = 1;
+                  zIdx = 40;
+                  opac = 1;
+                  blurVal = 0;
+                  bright = 1;
                 } else if (position === 1) { // Right
-                  x = "75%";
-                  z = -220;
-                  scale = 0.84;
-                  zIndex = 30;
-                  opacity = 0.82;
-                  blur = 4;
-                  brightness = 0.75;
+                  xPos = "75%";
+                  zPos = -220;
+                  scaleVal = 0.84;
+                  zIdx = 30;
+                  opac = 0.82;
+                  blurVal = 4;
+                  bright = 0.75;
                 } else if (position === -1) { // Left
-                  x = "-75%";
-                  z = -220;
-                  scale = 0.84;
-                  zIndex = 30;
-                  opacity = 0.82;
-                  blur = 4;
-                  brightness = 0.75;
+                  xPos = "-75%";
+                  zPos = -220;
+                  scaleVal = 0.84;
+                  zIdx = 30;
+                  opac = 0.82;
+                  blurVal = 4;
+                  bright = 0.75;
                 } else { // Far cards
-                  x = position > 0 ? "125%" : "-125%";
-                  z = -400;
-                  scale = 0.70;
-                  zIndex = 20;
-                  opacity = 0.50;
-                  blur = 8;
-                  brightness = 0.60;
+                  xPos = position > 0 ? "125%" : "-125%";
+                  zPos = -400;
+                  scaleVal = 0.70;
+                  zIdx = 20;
+                  opac = 0.50;
+                  blurVal = 8;
+                  bright = 0.60;
                 }
+
 
                 return (
                   <motion.div
