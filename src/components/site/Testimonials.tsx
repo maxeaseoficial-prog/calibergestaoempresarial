@@ -11,17 +11,17 @@ export function Testimonials() {
           viewBox="0 0 1440 120" 
           fill="none" 
           xmlns="http://www.w3.org/2000/svg" 
-          className="absolute bottom-0 left-0 w-full translate-y-[99%] scale-x-105"
+          className="absolute bottom-0 left-0 w-full translate-y-[98%] scale-x-105"
           preserveAspectRatio="none"
         >
           <path 
-            d="M0 0H1440V40C1440 40 1080 120 720 120C360 120 0 40 0 40V0Z" 
+            d="M0 0H1440V0C1440 0 1140 120 720 120C300 120 0 0 0 0V0Z" 
             fill="var(--color-purple)"
           />
         </svg>
       </div>
 
-      <div className="container-cal relative z-10 py-24 lg:py-32">
+      <div className="container-cal relative z-10 py-32 lg:py-48">
         <Reveal>
           <div className="mb-20 mx-auto text-center max-w-2xl">
             <span className="eyebrow block">Quem já evoluiu</span>
