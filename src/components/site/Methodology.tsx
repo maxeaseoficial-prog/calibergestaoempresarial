@@ -6,7 +6,7 @@ import * as LucideIcons from "lucide-react";
 
 export function Methodology() {
   return (
-    <section className="py-20 lg:py-32 overflow-hidden bg-white">
+    <section id="metodologia" className="py-20 lg:py-32 overflow-hidden bg-white">
       <div className="container-cal">
         <SectionHeading
           title={<>Como tornamos sua empresa <br className="hidden lg:block" /> mais eficiente?</>}

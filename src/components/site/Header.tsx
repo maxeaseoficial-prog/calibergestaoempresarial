@@ -9,7 +9,7 @@ import { CalAnchor } from "./CalButton";
 const NAV = [
   { label: "Início", to: "/" },
   { label: "Sobre", to: "/sobre" },
-  { label: "Serviços", to: "/servicos" },
+  { label: "Serviços", to: "/#metodologia" },
   { label: "Clientes", to: "/clientes" },
 ] as const;
 
