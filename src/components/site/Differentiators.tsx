@@ -3,66 +3,121 @@ import { DIFFERENTIATORS } from "@/lib/site-data";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
 import * as LucideIcons from "lucide-react";
+import { Logo } from "./Logo";
 
 export function Differentiators() {
   return (
-    <section className="py-20 lg:py-32 bg-white">
+    <section className="py-20 lg:py-32 bg-white overflow-hidden">
       <div className="container-cal">
-        <SectionHeading
-          eyebrow="Diferenciais Exclusivos"
-          title="O que só a Cáliber faz por você"
-          align="center"
-          className="mb-16 lg:mb-20"
-        />
+        <div className="flex flex-col items-center mb-16 lg:mb-20">
+          <SectionHeading
+            eyebrow="Diferenciais Exclusivos"
+            title="O que só a Cáliber faz por você"
+            align="center"
+            className="mb-6"
+          />
+          <div className="flex items-center gap-4 w-full max-w-xs md:max-w-md">
+            <div className="h-[1px] flex-1 bg-purple/20" />
+            <Logo className="size-6 text-purple/40" />
+            <div className="h-[1px] flex-1 bg-purple/20" />
+          </div>
+        </div>
 
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 auto-rows-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {DIFFERENTIATORS.map((item, idx) => {
+            const number = (idx + 1).toString().padStart(2, '0');
             // @ts-ignore - Dynamic icon component lookup
             const IconComponent = LucideIcons[item.icon.charAt(0).toUpperCase() + item.icon.slice(1)] || LucideIcons.Zap;
             
-            // Lógica de grid baseada no pedido do usuário:
-            // 1. Resultado na Prática (idx 0)
-            // 2. Exclusividade (idx 1)
-            // 3. Experiência (idx 2)
-            // 4. Autoridade em Gestão (idx 3)
-            // 5. Personalizado para Você (idx 4)
-            // 6. Transparência e Pontualidade (idx 5) -> "do lado direito de Personalizado para Você"
-            // 7. Especialidade no Assunto (idx 6)
-            // 8. Suporte Exclusivo (idx 7) -> "do lado direito de Especialidade no Assunto"
-            // 9. Garantia de Continuidade e Evolução (idx 8) -> "no lugar de Evolução"
-            // 10. Evolução (idx 9) -> "em baixo de todos, ocupando todo o espaço"
+            const isHighlighted = item.title === "Resultado na Prática";
+            const isFullWidth = ["Evolução", "Especialidade no Assunto"].includes(item.title);
 
-            let gridClasses = "lg:col-span-1";
-            if (["Especialidade no Assunto", "Evolução"].includes(item.title)) {
-              gridClasses = "md:col-span-2 lg:col-span-3 xl:col-span-4";
+            if (isFullWidth) {
+              return (
+                <Reveal 
+                  key={item.title} 
+                  delay={idx * 50}
+                  className={cn(
+                    "group relative md:col-span-2 lg:col-span-4 rounded-[24px] border border-purple/10 bg-white transition-all duration-300 hover:-translate-y-1.5 hover:border-purple/30 hover:shadow-[0_20px_40px_rgba(95,85,135,0.08)]",
+                  )}
+                >
+                  <div className="p-8 lg:p-10 flex flex-col lg:flex-row items-start lg:items-center gap-8 h-full">
+                    <div className="flex items-center gap-6 shrink-0">
+                      <div className="flex size-16 items-center justify-center rounded-2xl bg-purple/[0.06] text-purple transition-all duration-300 group-hover:bg-purple group-hover:text-white group-hover:shadow-lg group-hover:shadow-purple/20">
+                        <IconComponent className="size-8" strokeWidth={1.5} />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-4xl font-black text-purple/10 group-hover:text-purple/20 transition-colors leading-none">{number}</span>
+                        <h3 className="text-2xl font-black text-ink mt-1 group-hover:text-purple transition-colors">{item.title}</h3>
+                      </div>
+                    </div>
+
+                    <p className="text-base leading-relaxed text-ink/60 flex-1 group-hover:text-ink/80 transition-colors max-w-2xl">
+                      {item.text}
+                    </p>
+
+                    <div className="hidden lg:flex items-center justify-end w-48 opacity-20 group-hover:opacity-40 transition-all duration-500 group-hover:scale-110">
+                      {item.title === "Evolução" ? (
+                        <div className="flex flex-col gap-2">
+                           <div className="w-24 h-2 bg-purple rounded-full translate-x-4" />
+                           <div className="w-32 h-2 bg-purple rounded-full translate-x-2" />
+                           <div className="w-40 h-2 bg-purple rounded-full" />
+                           <div className="w-32 h-2 bg-purple rounded-full translate-x-2" />
+                        </div>
+                      ) : (
+                        <div className="grid grid-cols-2 gap-2">
+                          <div className="size-8 rounded-full border-2 border-purple" />
+                          <div className="size-8 rounded-full border-2 border-purple bg-purple/20" />
+                          <div className="size-8 rounded-full border-2 border-purple bg-purple/20" />
+                          <div className="size-8 rounded-full border-2 border-purple" />
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </Reveal>
+              );
             }
-            
+
             return (
               <Reveal 
                 key={item.title} 
                 delay={idx * 50}
                 className={cn(
-                  "group relative overflow-hidden rounded-[24px] border border-purple/10 bg-white p-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-purple/30 hover:shadow-[0_20px_40px_rgba(95,85,135,0.08)]",
-                  gridClasses
+                  "group relative overflow-hidden rounded-[24px] border border-purple/10 p-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-purple/30 hover:shadow-[0_20px_40px_rgba(95,85,135,0.08)] flex flex-col h-full",
+                  isHighlighted ? "bg-purple/[0.02] border-purple/20" : "bg-white"
                 )}
               >
-                <div className="relative z-10 flex h-full flex-col items-start text-left">
-                  <div className="mb-6 flex size-12 items-center justify-center rounded-xl bg-purple/[0.04] text-purple transition-all duration-300 group-hover:bg-purple group-hover:text-white group-hover:shadow-lg group-hover:shadow-purple/20">
-                    <IconComponent className="size-5.5" />
+                <div className="flex justify-between items-start mb-8">
+                  <div className={cn(
+                    "flex size-12 items-center justify-center rounded-xl transition-all duration-300",
+                    isHighlighted ? "bg-purple text-white shadow-lg shadow-purple/20" : "bg-purple/[0.04] text-purple group-hover:bg-purple group-hover:text-white group-hover:shadow-lg group-hover:shadow-purple/20"
+                  )}>
+                    <IconComponent className="size-5.5" strokeWidth={1.5} />
                   </div>
-                  <h3 className="text-lg font-black text-ink group-hover:text-purple transition-colors duration-300">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 text-[0.92rem] leading-relaxed text-ink/60 transition-colors duration-300 group-hover:text-ink/80">
-                    {item.text}
-                  </p>
+                  <span className="text-3xl font-black text-purple/5 group-hover:text-purple/10 transition-colors leading-none tracking-tighter">
+                    {number}
+                  </span>
                 </div>
+                
+                <h3 className="text-lg font-black text-ink group-hover:text-purple transition-colors mb-3">
+                  {item.title}
+                </h3>
+                <p className="text-[0.92rem] leading-relaxed text-ink/60 transition-colors duration-300 group-hover:text-ink/80 flex-1">
+                  {item.text}
+                </p>
               </Reveal>
             );
           })}
+        </div>
+
+        <div className="mt-20 flex items-center justify-center gap-6">
+          <div className="h-[1px] flex-1 bg-purple/10 max-w-[100px] hidden md:block" />
+          <p className="text-ink/60 text-sm md:text-base">
+            Não entregamos teoria. <span className="text-purple font-bold">Entregamos resultado.</span>
+          </p>
+          <div className="h-[1px] flex-1 bg-purple/10 max-w-[100px] hidden md:block" />
         </div>
       </div>
     </section>
   );
 }
-
