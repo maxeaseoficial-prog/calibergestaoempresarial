@@ -24,7 +24,6 @@ function Index() {
         <Hero />
         <Methodology />
         <WhyCaliber />
-        <CorporateSection />
         <Differentiators />
         <ImpactSection />
         <Testimonials />
