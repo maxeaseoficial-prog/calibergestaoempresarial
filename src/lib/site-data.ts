@@ -37,20 +37,22 @@ export const OFFICES = [
 ] as const;
 
 export const METRICS = [
-  { value: 12, prefix: "+", suffix: "", label: "anos de experiência" },
-  { value: 8, prefix: "", suffix: "", label: "estados com clientes atendidos" },
+  { value: 17, prefix: "", suffix: "", label: "anos de mercado" },
+  { value: 12000, prefix: "+", suffix: "", label: "pessoas impactadas" },
+  { value: 10, prefix: "", suffix: "", label: "estados com clientes atendidos" },
   {
-    value: 12000,
-    prefix: "+",
-    suffix: "",
-    label: "empresários e colaboradores transformados",
+    value: 2,
+    prefix: "> R$ ",
+    suffix: " Bilhões",
+    decimals: 0,
+    label: "faturamento anual dos clientes",
   },
   {
-    value: 1.1,
-    prefix: "R$ ",
-    suffix: " bilhão",
-    decimals: 1,
-    label: "em faturamento dos clientes",
+    value: 100,
+    prefix: "> R$ ",
+    suffix: " MM",
+    decimals: 0,
+    label: "em lucro gerado nos clientes",
   },
 ] as const;
 
@@ -115,12 +117,12 @@ export const DIFFERENTIATORS = [
   },
   {
     title: "Experiência",
-    text: "Mais de 12 anos de experiência no mercado brasileiro, estruturando empresas na prática, sem teorias.",
+    text: "Mais de 17 anos de experiência no mercado brasileiro, estruturando empresas na prática, sem teorias.",
     icon: "clock",
   },
   {
     title: "Autoridade em Gestão",
-    text: "Clientes em 8 estados com faturamento de R$ 1,1 bilhão. Mais de 12.000 pessoas transformadas, entre empresários e colaboradores.",
+    text: "Clientes em 10 estados com faturamento superior a R$ 2 bilhões. Mais de 12.000 pessoas transformadas, entre empresários e colaboradores.",
     icon: "award",
   },
   {
