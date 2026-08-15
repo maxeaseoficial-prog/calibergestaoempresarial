@@ -57,27 +57,31 @@ export function Hero() {
         <div className="grid items-center gap-16 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="relative z-10">
             {/* Texto com área de conteúdo para evitar layout shift */}
-            <div className="relative min-h-[420px] lg:min-h-[480px]">
-              <div
-                className={cn(
-                  "transition-all duration-700 ease-in-out motion-safe:translate-y-0",
-                  isTransitioning 
-                    ? "opacity-0 motion-safe:translate-y-2" 
-                    : "opacity-100 motion-safe:translate-y-0"
-                )}
-              >
-                <span className="eyebrow block">
-                  {active.eyebrow}
-                </span>
+            <div className="relative grid items-start">
+              {heroMessages.map((msg, i) => (
+                <div
+                  key={i}
+                  className={cn(
+                    "col-start-1 row-start-1 transition-all duration-700 ease-in-out motion-safe:translate-y-0",
+                    index === i && !isTransitioning 
+                      ? "opacity-100 motion-safe:translate-y-0 pointer-events-auto" 
+                      : "opacity-0 motion-safe:translate-y-2 pointer-events-none"
+                  )}
+                  aria-hidden={index !== i}
+                >
+                  <span className="eyebrow block">
+                    {msg.eyebrow}
+                  </span>
 
-                <h1 className="mt-8 text-[clamp(2.8rem,5.5vw,5.2rem)] leading-[0.95] font-extrabold tracking-tight text-ink">
-                  {active.title}
-                </h1>
+                  <h1 className="mt-8 text-[clamp(2.8rem,5.5vw,5.2rem)] leading-[0.95] font-extrabold tracking-tight text-ink">
+                    {msg.title}
+                  </h1>
 
-                <p className="mt-8 text-lg leading-relaxed text-muted-foreground md:text-xl max-w-xl">
-                  {active.description}
-                </p>
-              </div>
+                  <p className="mt-8 text-lg leading-relaxed text-muted-foreground md:text-xl max-w-xl">
+                    {msg.description}
+                  </p>
+                </div>
+              ))}
             </div>
 
             {/* Botões fixos */}
