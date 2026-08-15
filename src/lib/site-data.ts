@@ -12,7 +12,7 @@ export const CONTACT = {
     "http://api.whatsapp.com/send?1=pt_BR&phone=5565981598205&text=Ol%C3%A1!%20Gostaria%20de%20Saber%20mais%20sobre%20as%20solu%C3%A7%C3%B5es",
   facebook: "https://www.facebook.com/calibergestao",
   instagram: "https://www.instagram.com/calibergestao/",
-  linkedin: "https://www.linkedin.com/company/15205395/admin/",
+  linkedin: "https://www.linkedin.com/company/calibergestao/",
   areaDoCliente: "https://calibergestao.com.br/area-do-cliente/",
   cadastroIndicacao: "https://calibergestao.com.br/cadastro-de-indicacao/",
 } as const;
