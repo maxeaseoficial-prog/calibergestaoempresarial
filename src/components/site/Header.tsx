@@ -58,9 +58,7 @@ export function Header() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,border-color,backdrop-filter] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
-        scrolled
-          ? "border-b border-purple/10 bg-black/85 backdrop-blur-md"
-          : "border-b border-transparent bg-black/40 backdrop-blur-sm lg:bg-transparent lg:backdrop-blur-none",
+        "border-b border-purple/10 bg-black/85 backdrop-blur-md",
       )}
     >
       <div className="container-cal grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 py-4 lg:grid-cols-[auto_1fr_auto]">
