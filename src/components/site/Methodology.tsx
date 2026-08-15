@@ -218,11 +218,12 @@ export function Methodology() {
       </div>
 
       <style>{`
-        .perspective-1000 {
-          perspective: 1200px;
+        .perspective-3d {
+          perspective: 1400px;
           transform-style: preserve-3d;
         }
       `}</style>
+
     </section>
   );
 }
