@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { ACTIVE_STATES, ALL_STATE_IDS } from "@/lib/map-data";
 import { BRAZIL_PATHS } from "@/lib/brazil-paths";
+import { STATE_CENTROIDS } from "@/lib/map-centroids";
 import { cn } from "@/lib/utils";
 import { Users } from "lucide-react";
 
@@ -107,20 +108,21 @@ export function BrazilMap({ onHoverState, activeId }: BrazilMapProps) {
                 }}
               />
               {/* State Labels for active ones */}
-              {isActive && (
+              {isActive && STATE_CENTROIDS[id] && (
                 <text
+                  x={STATE_CENTROIDS[id].x}
+                  y={STATE_CENTROIDS[id].y}
                   className={cn(
-                    "pointer-events-none fill-white/80 text-[10px] font-bold transition-opacity duration-300",
-                    isHighlighted ? "opacity-100" : "opacity-60"
+                    "pointer-events-none fill-white text-[11px] font-black transition-all duration-300 drop-shadow-[0_1px_1px_rgba(0,0,0,0.5)]",
+                    isHighlighted ? "opacity-100 scale-110" : "opacity-80"
                   )}
                   dominantBaseline="middle"
                   textAnchor="middle"
-                  // Rough centroid logic for labels
                   style={{
-                    transform: "translate(0, 0)",
+                    transformOrigin: `${STATE_CENTROIDS[id].x}px ${STATE_CENTROIDS[id].y}px`,
                   }}
                 >
-                  {/* Ideally we would pre-calculate centroids. For now, labels are omitted or handled via tooltips */}
+                  {id}
                 </text>
               )}
             </g>
