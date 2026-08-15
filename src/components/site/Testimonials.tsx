@@ -20,11 +20,11 @@ export function Testimonials() {
             <Reveal key={testimonial.name} delay={i * 100}>
               <div className="flex flex-col h-full">
                 {/* 5 Stars */}
-                <div className="flex gap-1 mb-6 text-purple">
+                <div className="flex gap-0.5 mb-7 text-purple">
                   {[...Array(5)].map((_, starIndex) => (
                     <Star 
                       key={starIndex} 
-                      className="size-4 fill-purple" 
+                      className="size-[18px] fill-purple stroke-purple" 
                       aria-hidden="true" 
                     />
                   ))}
@@ -32,15 +32,15 @@ export function Testimonials() {
 
                 {/* Quote Text */}
                 <blockquote className="flex-grow">
-                  <p className="text-[clamp(1.1rem,1.5vw,1.3rem)] leading-[1.6] font-medium italic text-ink/90 antialiased">
+                  <p className="text-[clamp(1.05rem,1.2vw,1.2rem)] leading-[1.7] font-medium italic text-ink/90 antialiased">
                     “{testimonial.quote}”
                   </p>
                 </blockquote>
 
                 {/* Identity Block */}
-                <div className="mt-10 flex flex-col items-start space-y-6">
+                <div className="mt-10 pt-8 border-t border-purple/5 flex flex-col items-start space-y-6">
                   {/* Logo Area */}
-                  <div className="h-10 w-full max-w-[140px] flex items-center justify-start">
+                  <div className="h-10 w-full max-w-[140px] flex items-center justify-start overflow-hidden">
                     <img
                       src={testimonial.logo}
                       alt={testimonial.logoAlt}
@@ -50,12 +50,12 @@ export function Testimonials() {
                   </div>
 
                   {/* Info */}
-                  <div>
-                    <span className="block text-base font-bold text-purple tracking-tight leading-none mb-1">
+                  <div className="space-y-1">
+                    <span className="block text-base font-bold text-purple tracking-tight">
                       {testimonial.name}
                     </span>
-                    <span className="block text-sm font-medium text-muted-foreground">
-                      {testimonial.role}, {testimonial.logoAlt}
+                    <span className="block text-sm font-medium text-muted-foreground/80">
+                      {testimonial.role} — {testimonial.logoAlt}
                     </span>
                   </div>
                 </div>
