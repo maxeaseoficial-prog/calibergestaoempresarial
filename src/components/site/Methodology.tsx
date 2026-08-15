@@ -29,7 +29,7 @@ const CARDS = [
   },
   {
     id: 4,
-    number: "04",
+    number: "",
     title: ["CÁLIBER COR"],
     subtitle: "FERRAMENTAS CORPORATIVAS ESPECIAIS",
     description: "Soluções exclusivas que integram tecnologia, pessoas e processos para elevar o nível da sua gestão.",
@@ -220,9 +220,11 @@ export function Methodology() {
 
                       {/* Content */}
                       <div className="relative z-10 flex flex-col items-center w-full">
-                        <span className="text-purple-light font-bold text-sm md:text-base tracking-widest mb-6 md:mb-8 tabular">
-                          {card.number}
-                        </span>
+                        {card.number && (
+                          <span className="text-purple-light font-bold text-sm md:text-base tracking-widest mb-6 md:mb-8 tabular">
+                            {card.number}
+                          </span>
+                        )}
 
                         <div className="mb-6 md:mb-8 p-4 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 group-hover:bg-white/10 transition-colors">
                           <card.icon className="size-8 md:size-12 text-white" />
