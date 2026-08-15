@@ -11,7 +11,7 @@ export function ContactCTA() {
         <div className="max-w-3xl">
           <Reveal>
             <span className="eyebrow text-purple-light">
-              <span className="h-px w-8 bg-purple-light/60" />
+              
               Evolua conosco
             </span>
           </Reveal>

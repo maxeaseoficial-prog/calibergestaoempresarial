@@ -12,7 +12,7 @@ export function ImpactSection() {
       <div className="container-cal relative z-10">
         <Reveal>
           <span className="eyebrow mx-auto justify-center text-purple-light">
-            <span className="h-px w-8 bg-purple-light/40" />
+            
             A Solução Definitiva
           </span>
         </Reveal>

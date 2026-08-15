@@ -15,7 +15,7 @@ export function Hero() {
           <div className="relative z-10 max-w-2xl">
             <Reveal>
               <span className="eyebrow">
-                <span className="h-px w-8 bg-purple/40" />
+                
                 Transforme-se
               </span>
             </Reveal>
