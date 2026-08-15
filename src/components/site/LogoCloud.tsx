@@ -29,7 +29,7 @@ export function LogoCloud() {
               loading="lazy"
               width={140}
               height={64}
-              className="h-14 w-auto max-w-[9rem] object-contain opacity-45 grayscale transition-[opacity,filter] duration-500 hover:opacity-100 hover:grayscale-0"
+              className="h-14 w-auto max-w-[9rem] object-contain transition-opacity duration-500 hover:opacity-100"
             />
           ))}
         </div>
@@ -52,7 +52,7 @@ export function LogoGrid() {
             loading="lazy"
             width={140}
             height={64}
-            className="max-h-12 w-auto max-w-[8rem] object-contain opacity-55 grayscale transition-[opacity,filter] duration-500 hover:opacity-100 hover:grayscale-0"
+            className="max-h-12 w-auto max-w-[8rem] object-contain transition-opacity duration-500 hover:opacity-100"
           />
         </div>
       ))}
