@@ -87,9 +87,9 @@ export function Methodology() {
           </div>
         </div>
 
-        <div className="relative max-w-[1400px] mx-auto">
+        <div className="relative max-w-[1400px] mx-auto group/carousel">
           {/* Navigation Arrows */}
-          <div className="absolute top-1/2 -translate-y-1/2 left-0 z-50 hidden lg:block">
+          <div className="absolute top-1/2 -translate-y-1/2 left-4 md:left-8 z-50 hidden lg:block opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
             <button
               onClick={handleManualPrev}
               className="group p-4 rounded-full bg-white border border-purple/10 text-purple shadow-lift hover:scale-110 transition-all duration-300"
@@ -99,7 +99,7 @@ export function Methodology() {
             </button>
           </div>
           
-          <div className="absolute top-1/2 -translate-y-1/2 right-0 z-50 hidden lg:block">
+          <div className="absolute top-1/2 -translate-y-1/2 right-4 md:right-8 z-50 hidden lg:block opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300">
             <button
               onClick={handleManualNext}
               className="group p-4 rounded-full bg-white border border-purple/10 text-purple shadow-lift hover:scale-110 transition-all duration-300"
@@ -108,6 +108,7 @@ export function Methodology() {
               <ChevronRight className="size-6 group-hover:translate-x-0.5 transition-transform" />
             </button>
           </div>
+
 
           {/* Cards Stage */}
           <div className="flex justify-center items-center h-[500px] md:h-[600px] relative perspective-3d">
