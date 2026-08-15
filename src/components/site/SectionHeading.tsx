@@ -12,7 +12,7 @@ export function SectionHeading({
   titleClassName,
   as = "h2",
 }: {
-  eyebrow?: string;
+  eyebrow?: ReactNode;
   title: ReactNode;
   description?: ReactNode;
   align?: "left" | "center";
@@ -32,9 +32,9 @@ export function SectionHeading({
     >
       {eyebrow ? (
         <Reveal>
-          <span className={cn("eyebrow", tone === "dark" && "text-purple-light")}>
+          <div className={cn("eyebrow", tone === "dark" && "text-purple-light")}>
             {eyebrow}
-          </span>
+          </div>
         </Reveal>
       ) : null}
       <Reveal delay={80}>
