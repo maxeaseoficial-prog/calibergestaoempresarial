@@ -107,61 +107,51 @@ export const DIFFERENTIATORS = [
     title: "Resultado na Prática",
     text: "Somos a única empresa no Brasil que aplica mudanças na prática, resultado de experiência e conhecimento específico de todas as áreas, processos, pessoas e ferramentas. De empresário para empresário: o que importa não é a teoria, e sim os resultados.",
     icon: "target",
-    span: "wide",
   },
   {
     title: "Exclusividade",
     text: "Exclusivo Método CBR de Estruturação de Negócios, com uma dinâmica e abordagem resolutiva e pragmática que você nunca viu.",
     icon: "gem",
-    span: "tall",
   },
   {
     title: "Experiência",
     text: "Mais de 12 anos de experiência no mercado brasileiro, estruturando empresas na prática, sem teorias.",
     icon: "clock",
-    span: "normal",
   },
   {
     title: "Autoridade em Gestão",
     text: "Clientes em 8 estados com faturamento de R$ 1,1 bilhão. Mais de 12.000 pessoas transformadas, entre empresários e colaboradores.",
     icon: "award",
-    span: "wide",
   },
   {
     title: "Personalizado para Você",
     text: "Abordagem exata dos pontos que você precisa, de acordo com a sua realidade.",
     icon: "sliders",
-    span: "normal",
-  },
-  {
-    title: "Evolução",
-    text: "Vasta experiência de mercado, aplicada para sua empresa evoluir muitos anos em poucos meses, sem que você e toda a sua empresa percam tempo (que não se recupera) e dinheiro com testes, tentativas e erros, mas indo direto ao ponto, com processos corretos e validados na prática milhares de vezes pelos nossos especialistas.",
-    icon: "trending",
-    span: "wide",
-  },
-  {
-    title: "Especialidade no Assunto",
-    text: "Especialistas para atender cada área e cada etapa do seu crescimento. Sem generalistas e soluções teóricas: na Cáliber, temos especialistas experientes para cada setor e necessidade.",
-    icon: "users",
-    span: "normal",
   },
   {
     title: "Transparência e Pontualidade",
     text: "Resultados reais e garantidos com prazos transparentes, cumpridos rigorosamente.",
     icon: "shield",
-    span: "normal",
+  },
+  {
+    title: "Especialidade no Assunto",
+    text: "Especialistas para atender cada área e cada etapa do seu crescimento. Sem generalistas e soluções teóricas: na Cáliber, temos especialistas experientes para cada setor e necessidade.",
+    icon: "users",
   },
   {
     title: "Suporte Exclusivo",
     text: "Suporte dedicado da nossa equipe de especialistas durante todo o projeto.",
     icon: "headset",
-    span: "normal",
   },
   {
     title: "Garantia de Continuidade e Evolução",
     text: "Análises e estratégias contínuas de especialistas, para sua evolução durante e após as mudanças.",
     icon: "refresh",
-    span: "normal",
+  },
+  {
+    title: "Evolução",
+    text: "Vasta experiência de mercado, aplicada para sua empresa evoluir muitos anos em poucos meses, sem que você e toda a sua empresa percam tempo (que não se recupera) e dinheiro com testes, tentativas e erros, mas indo direto ao ponto, com processos corretos e validados na prática milhares de vezes pelos nossos especialistas.",
+    icon: "trendingUp",
   },
 ] as const;
 

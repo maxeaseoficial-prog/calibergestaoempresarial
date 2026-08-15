@@ -20,9 +20,24 @@ export function Differentiators() {
             // @ts-ignore - Dynamic icon component lookup
             const IconComponent = LucideIcons[item.icon.charAt(0).toUpperCase() + item.icon.slice(1)] || LucideIcons.Zap;
             
-            // Definição de span baseada na importância e tamanho do texto
-            // Resultado na Prática, Autoridade em Gestão, Evolução ocupam 2 colunas
-            const isWide = ["Resultado na Prática", "Autoridade em Gestão", "Evolução"].includes(item.title);
+            // Lógica de grid baseada no pedido do usuário:
+            // 1. Resultado na Prática (idx 0)
+            // 2. Exclusividade (idx 1)
+            // 3. Experiência (idx 2)
+            // 4. Autoridade em Gestão (idx 3)
+            // 5. Personalizado para Você (idx 4)
+            // 6. Transparência e Pontualidade (idx 5) -> "do lado direito de Personalizado para Você"
+            // 7. Especialidade no Assunto (idx 6)
+            // 8. Suporte Exclusivo (idx 7) -> "do lado direito de Especialidade no Assunto"
+            // 9. Garantia de Continuidade e Evolução (idx 8) -> "no lugar de Evolução"
+            // 10. Evolução (idx 9) -> "em baixo de todos, ocupando todo o espaço"
+
+            let gridClasses = "lg:col-span-1";
+            if (item.title === "Evolução") {
+              gridClasses = "md:col-span-2 lg:col-span-3 xl:col-span-4";
+            } else if (["Resultado na Prática", "Autoridade em Gestão"].includes(item.title)) {
+              gridClasses = "lg:col-span-1"; // Voltando ao normal para acomodar os vizinhos
+            }
             
             return (
               <Reveal 
@@ -30,7 +45,7 @@ export function Differentiators() {
                 delay={idx * 50}
                 className={cn(
                   "group relative overflow-hidden rounded-[24px] border border-purple/10 bg-white p-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-purple/30 hover:shadow-[0_20px_40px_rgba(95,85,135,0.08)]",
-                  isWide && "lg:col-span-2"
+                  gridClasses
                 )}
               >
                 <div className="relative z-10 flex h-full flex-col items-start text-left">
