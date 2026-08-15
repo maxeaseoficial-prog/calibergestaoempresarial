@@ -24,7 +24,6 @@ function Index() {
       <Header />
       <main>
         <Hero />
-        <AuthorityMetrics />
         <Methodology />
         <Solutions />
         <CorporateSection />
