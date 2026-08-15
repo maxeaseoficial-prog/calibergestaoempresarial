@@ -9,7 +9,7 @@ export function Testimonials() {
         <Reveal>
           <div className="mb-20 mx-auto text-center max-w-2xl">
             <span className="eyebrow block">Quem já evoluiu</span>
-            <h2 className="mt-5 text-[clamp(2.2rem,4vw,3.4rem)] leading-[1.05] font-extrabold text-ink">
+            <h2 className="mt-5 text-[clamp(2.2rem,4vw,3.4rem)] leading-[1.05] font-extrabold text-purple">
               Depoimentos
             </h2>
           </div>
