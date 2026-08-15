@@ -31,12 +31,6 @@ export function SectionHeading({
       {eyebrow ? (
         <Reveal>
           <span className={cn("eyebrow", tone === "dark" && "text-purple-light")}>
-            <span
-              className={cn(
-                "h-px w-8",
-                tone === "dark" ? "bg-purple-light/60" : "bg-purple/40",
-              )}
-            />
             {eyebrow}
           </span>
         </Reveal>
