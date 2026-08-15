@@ -12,7 +12,7 @@ export function SectionHeading({
   titleClassName,
   as = "h2",
 }: {
-  eyebrow?: string;
+  eyebrow?: ReactNode;
   title: ReactNode;
   description?: ReactNode;
   align?: "left" | "center";
