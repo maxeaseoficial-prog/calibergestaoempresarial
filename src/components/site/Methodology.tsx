@@ -57,59 +57,86 @@ export function Methodology() {
           </div>
         </div>
 
-        <div className="relative max-w-5xl mx-auto px-4 sm:px-12">
-          <div className="flex justify-center items-center h-[400px] md:h-[550px] relative perspective-1000">
+        <div className="relative max-w-[1400px] mx-auto px-4 sm:px-12">
+          <div className="flex justify-center items-center h-[400px] md:h-[650px] relative perspective-3d">
             <AnimatePresence mode="popLayout">
               {CARDS.map((card, index) => {
-                const position = (index - activeIndex + CARDS.length) % CARDS.length;
+                const relativeIndex = (index - activeIndex + CARDS.length) % CARDS.length;
                 
+                // Map indices to symmetric positions: 0, 1, 2, -2, -1
+                // We want 0 (active), 1 (right), 2 (far right), 3 (far left), 4 (left) if we had 5 cards.
+                // With 4 cards: 0 (active), 1 (right), 2 (far/hidden), 3 (left)
+                
+                let position = relativeIndex;
+                if (position > CARDS.length / 2) position -= CARDS.length;
+
                 let x: string | number = 0;
+                let z = 0;
                 let scale = 1;
                 let zIndex = 0;
                 let opacity = 0;
+                let blur = 0;
+                let brightness = 1;
                 let rotateY = 0;
 
                 if (position === 0) {
                   x = 0;
+                  z = 0;
                   scale = 1;
-                  zIndex = 30;
+                  zIndex = 40;
                   opacity = 1;
+                  blur = 0;
+                  brightness = 1;
                   rotateY = 0;
-                } else if (position === 1) {
-                  x = "40%";
+                } else if (position === 1) { // Right
+                  x = "70%";
+                  z = -220;
                   scale = 0.85;
-                  zIndex = 20;
-                  opacity = 0.6;
-                  rotateY = -15;
-                } else if (position === CARDS.length - 1) {
-                  x = "-40%";
+                  zIndex = 30;
+                  opacity = 0.82;
+                  blur = 4;
+                  brightness = 0.77;
+                  rotateY = -5;
+                } else if (position === -1) { // Left
+                  x = "-70%";
+                  z = -220;
                   scale = 0.85;
+                  zIndex = 30;
+                  opacity = 0.82;
+                  blur = 4;
+                  brightness = 0.77;
+                  rotateY = 5;
+                } else { // Far cards
+                  x = position > 0 ? "120%" : "-120%";
+                  z = -400;
+                  scale = 0.72;
                   zIndex = 20;
-                  opacity = 0.6;
-                  rotateY = 15;
-                } else {
-                  x = 0;
-                  scale = 0.7;
-                  zIndex = 10;
-                  opacity = 0;
-                  rotateY = 0;
+                  opacity = 0.55;
+                  blur = 8;
+                  brightness = 0.6;
+                  rotateY = position > 0 ? -10 : 10;
                 }
 
                 return (
                   <motion.div
                     key={card.id}
-                    className="absolute w-[280px] sm:w-[350px] md:w-[450px] lg:w-[500px] aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl cursor-pointer ring-1 ring-white/10"
+                    className="absolute w-[300px] sm:w-[400px] md:w-[550px] lg:w-[650px] aspect-[16/10] rounded-[32px] overflow-hidden cursor-pointer shadow-none"
+                    style={{
+                      transformStyle: "preserve-3d",
+                      backfaceVisibility: "hidden",
+                    }}
                     animate={{
                       x,
+                      z,
                       scale,
                       zIndex,
                       opacity,
+                      filter: `blur(${blur}px) brightness(${brightness})`,
                       rotateY,
                     }}
                     transition={{
-                      type: "spring",
-                      stiffness: 260,
-                      damping: 25,
+                      duration: 0.65,
+                      ease: [0.22, 1, 0.36, 1],
                     }}
                     onClick={() => {
                       if (position !== 0) {
@@ -117,24 +144,34 @@ export function Methodology() {
                         setActiveIndex(index);
                       }
                     }}
-                    whileHover={position === 0 ? { scale: 1.02, y: -5 } : {}}
+                    whileHover={position === 0 ? { 
+                      scale: 1.02, 
+                      z: 20,
+                      transition: { duration: 0.4 }
+                    } : {}}
                   >
-                    <img
-                      src={card.img}
-                      alt={card.title}
-                      className="w-full h-full object-cover select-none pointer-events-none"
-                    />
-                    
-                    {position !== 0 && (
-                      <div className="absolute inset-0 bg-purple/10 backdrop-blur-[1px] transition-opacity duration-500" />
-                    )}
-                    
-                    <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[80%] h-10 bg-black/20 blur-2xl rounded-[100%] pointer-events-none opacity-50" />
+                    <div className={cn(
+                      "w-full h-full relative transition-shadow duration-500 rounded-[32px] overflow-hidden",
+                      position === 0 
+                        ? "shadow-[0_30px_70px_rgba(25,15,50,0.24),0_12px_35px_rgba(90,50,160,0.18)]" 
+                        : "shadow-[0_15px_35px_rgba(0,0,0,0.1)]"
+                    )}>
+                      <img
+                        src={card.img}
+                        alt={card.title}
+                        className="w-full h-full object-cover select-none pointer-events-none"
+                      />
+                      
+                      {position !== 0 && (
+                        <div className="absolute inset-0 bg-purple/5 pointer-events-none" />
+                      )}
+                    </div>
                   </motion.div>
                 );
               })}
             </AnimatePresence>
           </div>
+
 
           <div className="flex items-center justify-center gap-8 mt-12">
             <button
@@ -181,11 +218,12 @@ export function Methodology() {
       </div>
 
       <style>{`
-        .perspective-1000 {
-          perspective: 1200px;
+        .perspective-3d {
+          perspective: 1400px;
           transform-style: preserve-3d;
         }
       `}</style>
+
     </section>
   );
 }
