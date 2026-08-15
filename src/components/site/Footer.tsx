@@ -44,13 +44,18 @@ export function Footer() {
             <ul className="mt-5 space-y-3 text-sm text-white/65">
               {[
                 { label: "Início", to: "/" },
-                { label: "Sobre", to: "/sobre" },
-                { label: "Serviços", to: "/servicos" },
-                { label: "Clientes", to: "/clientes" },
-                { label: "Contato", to: "/contato" },
+                { label: "Sobre", to: "/", hash: "diferenciais" },
+                { label: "Serviços", to: "/", hash: "metodologia" },
+                { label: "Clientes", to: "/", hash: "clientes" },
+                { label: "Contato", to: "/contato", target: "_blank" },
               ].map((item) => (
-                <li key={item.to}>
-                  <Link to={item.to} className="transition-colors hover:text-white">
+                <li key={item.label}>
+                  <Link
+                    to={item.to as any}
+                    {...("hash" in item ? { hash: item.hash } : {})}
+                    {...(item.target ? { target: item.target } : {})}
+                    className="transition-colors hover:text-white"
+                  >
                     {item.label}
                   </Link>
                 </li>
