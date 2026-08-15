@@ -90,7 +90,7 @@ export function Differentiators() {
                 <div className="flex justify-between items-start mb-8">
                   <div className={cn(
                     "flex size-12 items-center justify-center rounded-xl transition-all duration-300",
-                    isHighlighted ? "bg-purple text-white shadow-lg shadow-purple/20" : "bg-purple/[0.04] text-purple group-hover:bg-purple group-hover:text-white group-hover:shadow-lg group-hover:shadow-purple/20"
+                    "bg-purple/[0.04] text-purple group-hover:bg-purple group-hover:text-white group-hover:shadow-lg group-hover:shadow-purple/20"
                   )}>
                     <IconComponent className="size-5.5" strokeWidth={1.5} />
                   </div>
