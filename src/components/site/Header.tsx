@@ -127,6 +127,7 @@ export function Header() {
             <li>
               <Link
                 to="/contato"
+                target="_blank"
                 className="inline-flex min-h-10 items-center rounded-[10px] px-3.5 text-sm font-semibold text-white/80 transition-colors duration-300 hover:text-purple-light"
                 activeProps={{ className: "text-purple-light" }}
               >
@@ -186,6 +187,7 @@ function MobileNavigation({ open, onClose }: { open: boolean; onClose: () => voi
               <Link
                 to={item.to}
                 {...("hash" in item ? { hash: item.hash } : {})}
+                {...(item.to === "/contato" ? { target: "_blank" } : {})}
                 onClick={onClose}
                 className="block border-b border-white/10 py-4 text-2xl font-bold tracking-tight"
               >
