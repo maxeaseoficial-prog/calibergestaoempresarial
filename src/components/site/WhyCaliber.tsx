@@ -2,7 +2,7 @@ import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
 import { LogoWatermark } from "./Logo";
 import { CONTACT } from "@/lib/site-data";
-import { Phone } from "lucide-react";
+import { Headset } from "lucide-react";
 
 export function WhyCaliber() {
   return (
@@ -18,13 +18,13 @@ export function WhyCaliber() {
             description="Ser cliente Cáliber é ter um parceiro da operação à gestão para a sua empresa crescer cada dia mais."
           />
 
-          <Reveal delay={300} className="mt-16 inline-flex items-center gap-6 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm lg:p-8">
-            <div className="flex size-14 items-center justify-center rounded-xl bg-purple text-white">
-              <Phone className="size-6" />
+          <Reveal delay={300} className="mt-16 inline-flex items-center gap-6 p-2 lg:p-4">
+            <div className="flex size-16 items-center justify-center rounded-2xl bg-purple text-white shadow-lg shadow-purple/20">
+              <Headset className="size-8" />
             </div>
             <div>
               <p className="text-xs font-bold tracking-widest text-white/50 uppercase">Central de Atendimento</p>
-              <a href={CONTACT.phoneMTHref} className="mt-1 block text-2xl font-black transition-colors hover:text-purple-light">
+              <a href={CONTACT.phoneMTHref} className="mt-1 block text-2xl font-black transition-colors hover:text-purple-light lg:text-3xl">
                 {CONTACT.phoneMT}
               </a>
             </div>
