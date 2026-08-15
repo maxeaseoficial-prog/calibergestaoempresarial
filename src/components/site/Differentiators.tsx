@@ -55,24 +55,6 @@ export function Differentiators() {
                     <p className="text-base leading-relaxed text-ink/60 flex-1 group-hover:text-ink/80 transition-colors max-w-2xl">
                       {item.text}
                     </p>
-
-                    <div className="hidden lg:flex items-center justify-end w-48 opacity-20 group-hover:opacity-40 transition-all duration-500 group-hover:scale-110">
-                      {item.title === "Evolução" ? (
-                        <div className="flex flex-col gap-2">
-                           <div className="w-24 h-2 bg-purple rounded-full translate-x-4" />
-                           <div className="w-32 h-2 bg-purple rounded-full translate-x-2" />
-                           <div className="w-40 h-2 bg-purple rounded-full" />
-                           <div className="w-32 h-2 bg-purple rounded-full translate-x-2" />
-                        </div>
-                      ) : (
-                        <div className="grid grid-cols-2 gap-2">
-                          <div className="size-8 rounded-full border-2 border-purple" />
-                          <div className="size-8 rounded-full border-2 border-purple bg-purple/20" />
-                          <div className="size-8 rounded-full border-2 border-purple bg-purple/20" />
-                          <div className="size-8 rounded-full border-2 border-purple" />
-                        </div>
-                      )}
-                    </div>
                   </div>
                 </Reveal>
               );
