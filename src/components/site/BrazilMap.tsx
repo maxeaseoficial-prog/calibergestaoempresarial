@@ -85,9 +85,9 @@ export function BrazilMap({ onHoverState, activeId }: BrazilMapProps) {
                 className={cn(
                   "transition-all duration-300 ease-out stroke-[0.5]",
                   isActive
-                    ? "fill-purple hover:fill-purple-deep cursor-pointer stroke-white/50"
-                    : "fill-transparent hover:fill-purple/5 stroke-purple/30",
-                  isHighlighted && isActive && "fill-purple-deep -translate-y-[2px] drop-shadow-lg scale-[1.01] stroke-white/50"
+                    ? "fill-purple/80 hover:fill-purple cursor-pointer stroke-white/40"
+                    : "fill-slate-50/50 hover:fill-slate-100/50 stroke-slate-200",
+                  isHighlighted && isActive && "fill-purple -translate-y-[2px] drop-shadow-lg scale-[1.01] stroke-white/60"
                 )}
                 onMouseEnter={() => handleMouseEnter(id)}
                 onMouseLeave={handleMouseLeave}
@@ -106,17 +106,14 @@ export function BrazilMap({ onHoverState, activeId }: BrazilMapProps) {
                   transformBox: "fill-box",
                 }}
               />
-              {/* State Labels for ALL states if a centroid exists */}
-              {STATE_CENTROIDS[id] && (
+              {/* State Labels for ONLY active states */}
+              {isActive && STATE_CENTROIDS[id] && (
                 <text
                   x={STATE_CENTROIDS[id].x}
                   y={STATE_CENTROIDS[id].y}
                   className={cn(
-                    "pointer-events-none font-black transition-all duration-300",
-                    isActive 
-                      ? "fill-white text-[11px] drop-shadow-[0_1px_1px_rgba(0,0,0,0.5)]" 
-                      : "fill-purple/20 text-[9px]",
-                    isHighlighted && isActive ? "opacity-100 scale-110" : isActive ? "opacity-80" : "opacity-40"
+                    "pointer-events-none fill-white text-[11px] font-bold transition-all duration-300 drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]",
+                    isHighlighted ? "opacity-100 scale-110" : "opacity-90"
                   )}
                   dominantBaseline="middle"
                   textAnchor="middle"
