@@ -170,15 +170,16 @@ export function Methodology() {
                     style={{
                       transformStyle: "preserve-3d",
                       backfaceVisibility: "hidden",
+                      zIndex: zIdx,
                     }}
                     animate={{
                       translateX: xPos,
                       translateZ: zPos,
                       scale: scaleVal,
-                      zIndex: zIdx,
                       opacity: opac,
                       filter: `blur(${blurVal}px) brightness(${bright})`,
                     }}
+
 
 
                     transition={{
