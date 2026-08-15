@@ -42,10 +42,23 @@ export function BrazilMap({ onHoverState, activeId }: BrazilMapProps) {
     onHoverState?.(null);
   };
 
+  const handleStateClick = (id: string) => {
+    if (isTouch && activeStatesSet.has(id)) {
+      if (hoveredState === id) {
+        setHoveredState(null);
+        onHoverState?.(null);
+      } else {
+        setHoveredState(id);
+        onHoverState?.(id);
+      }
+    }
+  };
+
   const currentHoveredInfo = useMemo(
     () => ACTIVE_STATES.find((s) => s.id === (hoveredState || activeId)),
     [hoveredState, activeId]
   );
+
 
   return (
     <div className="group relative w-full" onMouseMove={handleMouseMove}>
