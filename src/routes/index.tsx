@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Hero } from "@/components/site/Hero";
-import { AuthorityMetrics } from "@/components/site/Metrics";
+import { MetricsBand as AuthorityMetrics } from "@/components/site/Metrics";
 import { Methodology } from "@/components/site/Methodology";
 import { Solutions } from "@/components/site/Solutions";
 import { CorporateSection } from "@/components/site/CorporateSection";
