@@ -33,10 +33,8 @@ export function Differentiators() {
             // 10. Evolução (idx 9) -> "em baixo de todos, ocupando todo o espaço"
 
             let gridClasses = "lg:col-span-1";
-            if (item.title === "Especialidade no Assunto") {
+            if (["Especialidade no Assunto", "Evolução"].includes(item.title)) {
               gridClasses = "md:col-span-2 lg:col-span-3 xl:col-span-4";
-            } else if (item.title === "Evolução") {
-              gridClasses = "lg:col-span-1";
             }
             
             return (
