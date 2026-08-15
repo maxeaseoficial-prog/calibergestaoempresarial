@@ -65,7 +65,7 @@ export function Differentiators() {
                 
                 // Deterministic positions for 4 cards
                 // 0: Center, 1: Right, 2: Back/Hidden, 3: Left
-                let x = 0;
+                let x: string | number = 0;
                 let scale = 1;
                 let zIndex = 0;
                 let opacity = 0;
