@@ -73,34 +73,7 @@ export function NationalPresence() {
               />
             </Reveal>
 
-            {/* State Chips */}
-            <Reveal delay={400}>
-              <div className="mt-12">
-                <div className="flex flex-wrap gap-2">
-                  {ACTIVE_STATES.map((state) => (
-                    <button
-                      key={state.id}
-                      onMouseEnter={() => setActiveStateId(state.id)}
-                      onMouseLeave={() => setActiveStateId(null)}
-                      className={cn(
-                        "flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-bold transition-all duration-300",
-                        activeStateId === state.id
-                          ? "border-purple bg-purple text-white shadow-md shadow-purple/20"
-                          : "border-slate-200 bg-white text-slate-500 hover:border-purple/30 hover:bg-slate-50"
-                      )}
-                    >
-                      <span className={cn(
-                        "text-[10px] opacity-70",
-                        activeStateId === state.id ? "text-white" : "text-purple"
-                      )}>
-                        {state.id}
-                      </span>
-                      {state.name}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
+            {/* State Chips removed per user request */}
 
             {/* Closing Detail removed per user request */}
           </div>
