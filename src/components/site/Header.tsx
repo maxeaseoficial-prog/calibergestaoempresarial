@@ -69,15 +69,7 @@ export function Header() {
           className="flex min-w-0 items-center gap-3 text-purple-deep"
           aria-label="Cáliber — página inicial"
         >
-          <Logo className="h-10 w-10 shrink-0" />
-          <span className="flex min-w-0 flex-col leading-none">
-            <span className="text-base font-extrabold tracking-[0.18em] uppercase">
-              Cáliber
-            </span>
-            <span className="mt-1 truncate text-[0.6rem] font-semibold tracking-[0.16em] text-muted-foreground uppercase">
-              Eficiência em gestão
-            </span>
-          </span>
+          <Logo className="h-12 w-12 shrink-0 lg:h-14 lg:w-14" />
         </Link>
 
         <nav aria-label="Principal" className="hidden justify-center lg:flex">
@@ -173,11 +165,8 @@ function MobileNavigation({ open, onClose }: { open: boolean; onClose: () => voi
   return (
     <div className="fixed inset-0 z-50 flex flex-col bg-purple-dark text-white lg:hidden">
       <div className="container-cal flex items-center justify-between py-4">
-        <span className="flex items-center gap-3 text-white">
-          <Logo className="h-9 w-9" />
-          <span className="text-sm font-extrabold tracking-[0.18em] uppercase">
-            Cáliber
-          </span>
+        <span className="flex items-center text-white">
+          <Logo className="h-12 w-12" />
         </span>
         <button
           type="button"
