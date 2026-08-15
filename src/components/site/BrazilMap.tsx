@@ -90,6 +90,17 @@ export function BrazilMap({ onHoverState, activeId }: BrazilMapProps) {
                 )}
                 onMouseEnter={() => handleMouseEnter(id)}
                 onMouseLeave={handleMouseLeave}
+                onClick={() => handleStateClick(id)}
+                tabIndex={isActive ? 0 : -1}
+                role="button"
+                aria-label={isActive ? `${id} - estado onde a Cáliber já atuou` : id}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    handleMouseEnter(id);
+                  }
+                }}
+                onBlur={handleMouseLeave}
+
                 style={{
                   transformOrigin: "center center",
                   transformBox: "fill-box",
