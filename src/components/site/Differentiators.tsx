@@ -102,7 +102,7 @@ export function Differentiators() {
                     key={card.id}
                     className="absolute w-[280px] sm:w-[350px] md:w-[450px] lg:w-[500px] aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl cursor-pointer ring-1 ring-white/10"
                     animate={{
-                      x,
+                      x: typeof x === 'string' ? x : x,
                       scale,
                       zIndex,
                       opacity,
