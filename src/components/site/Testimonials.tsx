@@ -7,8 +7,8 @@ export function Testimonials() {
     <section className="bg-background py-24 lg:py-32 overflow-hidden">
       <div className="container-cal">
         <Reveal>
-          <div className="mb-20 max-w-2xl">
-            <span className="eyebrow">Quem já evoluiu</span>
+          <div className="mb-20 mx-auto text-center max-w-2xl">
+            <span className="eyebrow block">Quem já evoluiu</span>
             <h2 className="mt-5 text-[clamp(2.2rem,4vw,3.4rem)] leading-[1.05] font-extrabold text-ink">
               Depoimentos
             </h2>
