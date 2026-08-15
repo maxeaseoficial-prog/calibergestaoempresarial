@@ -12,6 +12,7 @@ export function Methodology() {
           title={<>Como tornamos sua empresa <br className="hidden lg:block" /> mais eficiente?</>}
           align="center"
           className="mb-12 lg:mb-16 max-w-4xl"
+          titleClassName="text-purple"
         />
 
         <div className="relative">

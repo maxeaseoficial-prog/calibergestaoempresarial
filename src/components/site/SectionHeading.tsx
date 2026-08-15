@@ -9,6 +9,7 @@ export function SectionHeading({
   align = "left",
   tone = "light",
   className,
+  titleClassName,
   as = "h2",
 }: {
   eyebrow?: string;
@@ -17,6 +18,7 @@ export function SectionHeading({
   align?: "left" | "center";
   tone?: "light" | "dark";
   className?: string;
+  titleClassName?: string;
   as?: "h1" | "h2";
 }) {
   const Title = as;
@@ -40,6 +42,7 @@ export function SectionHeading({
           className={cn(
             "mt-5 text-[clamp(2.1rem,4.2vw,3.6rem)] leading-[1.06] font-extrabold",
             tone === "dark" ? "text-white" : "text-ink",
+            titleClassName,
           )}
         >
           {title}
