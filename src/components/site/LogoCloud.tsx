@@ -5,15 +5,14 @@ export function LogoCloud() {
   const loop = [...CLIENTS, ...CLIENTS];
   return (
     <section className="overflow-hidden border-y border-purple/10 bg-card py-20">
-      <div className="container-cal">
+      <div className="container-cal text-center">
         <Reveal>
-          <span className="eyebrow">
-            
+          <span className="eyebrow block">
             Algumas das empresas que confiam no nosso trabalho
           </span>
         </Reveal>
         <Reveal delay={80}>
-          <h2 className="mt-5 text-[clamp(2rem,3.6vw,3rem)] leading-tight font-extrabold text-ink">
+          <h2 className="mt-5 text-[clamp(2rem,3.6vw,3rem)] leading-tight font-extrabold text-ink mx-auto max-w-2xl">
             Parceiros &amp; Clientes
           </h2>
         </Reveal>
