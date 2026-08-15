@@ -92,7 +92,7 @@ export function Hero() {
                   {msg.title}
                 </h1>
 
-                <p className="mt-8 text-lg leading-relaxed text-muted-foreground md:text-xl max-w-2xl">
+                <p className="mt-8 text-lg leading-relaxed text-white/70 md:text-xl max-w-2xl">
                   {msg.description}
                 </p>
               </div>
