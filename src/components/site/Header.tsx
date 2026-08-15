@@ -8,7 +8,7 @@ import { CalAnchor } from "./CalButton";
 
 const NAV = [
   { label: "Início", to: "/" },
-  { label: "Sobre", to: "/sobre" },
+  { label: "Sobre", to: "/", hash: "diferenciais" },
   { label: "Serviços", to: "/", hash: "metodologia" },
   { label: "Clientes", to: "/", hash: "clientes" },
 ] as const;
