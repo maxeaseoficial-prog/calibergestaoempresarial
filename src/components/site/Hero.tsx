@@ -67,7 +67,6 @@ export function Hero() {
 
       {/* Background elements */}
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_70%_20%,rgba(95,85,135,0.15)_0%,transparent_50%)]" />
-      <LogoWatermark className="top-[-10%] right-[-5%] h-[80%] w-[80%] opacity-[0.03] text-white rotate-12" />
 
       <div className="container-cal">
         <div className="max-w-4xl relative z-10">
