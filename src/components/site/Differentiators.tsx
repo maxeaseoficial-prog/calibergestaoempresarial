@@ -1,15 +1,49 @@
 import { cn } from "@/lib/utils";
-import { DIFFERENTIATORS } from "@/lib/site-data";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
-import * as LucideIcons from "lucide-react";
 import { Logo } from "./Logo";
+import { motion, AnimatePresence } from "motion/react";
+import { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+import service1 from "@/assets/service-1.png.asset.json";
+import service2 from "@/assets/service-2.png.asset.json";
+import service3 from "@/assets/service-3.png.asset.json";
+import service4 from "@/assets/service-4.png.asset.json";
+
+const CARDS = [
+  { id: 1, img: service1.url, title: "Controladoria Estratégica Comercial" },
+  { id: 2, img: service2.url, title: "Controladoria Estratégica Financeira" },
+  { id: 3, img: service3.url, title: "Conselho de Gestão Estratégica" },
+  { id: 4, img: service4.url, title: "Cáliber COR" },
+];
 
 export function Differentiators() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+    const timer = setInterval(() => {
+      setActiveIndex((current) => (current + 1) % CARDS.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [isAutoPlaying]);
+
+  const next = () => {
+    setIsAutoPlaying(false);
+    setActiveIndex((current) => (current + 1) % CARDS.length);
+  };
+
+  const prev = () => {
+    setIsAutoPlaying(false);
+    setActiveIndex((current) => (current - 1 + CARDS.length) % CARDS.length);
+  };
+
   return (
     <section id="diferenciais" className="py-20 lg:py-32 bg-white overflow-hidden">
       <div className="container-cal">
-        <div className="flex flex-col items-center mb-16 lg:mb-20">
+        <div className="flex flex-col items-center mb-12 lg:mb-16">
           <SectionHeading
             eyebrow="Diferenciais Exclusivos"
             title="O que só a Cáliber faz por você"
@@ -23,73 +57,123 @@ export function Differentiators() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-          {DIFFERENTIATORS.map((item, idx) => {
-            const number = (idx + 1).toString().padStart(2, '0');
-            // @ts-ignore - Dynamic icon component lookup
-            const IconComponent = LucideIcons[item.icon.charAt(0).toUpperCase() + item.icon.slice(1)] || LucideIcons.Zap;
-            
-            const isHighlighted = item.title === "Resultado na Prática";
-            const isFullWidth = ["Evolução", "Especialidade no Assunto"].includes(item.title);
-
-            if (isFullWidth) {
-              return (
-                <Reveal 
-                  key={item.title} 
-                  delay={idx * 50}
-                  className={cn(
-                    "group relative md:col-span-2 lg:col-span-4 rounded-[24px] border border-purple/10 bg-white transition-all duration-300 hover:-translate-y-1.5 hover:border-purple/30 hover:shadow-[0_20px_40px_rgba(95,85,135,0.08)]",
-                  )}
-                >
-                  <div className="p-8 lg:p-10 flex flex-col lg:flex-row items-start lg:items-center gap-8 h-full">
-                    <div className="flex items-center gap-6 shrink-0">
-                      <div className="flex size-16 items-center justify-center rounded-2xl bg-purple/[0.06] text-purple transition-all duration-300 group-hover:bg-purple group-hover:text-white group-hover:shadow-lg group-hover:shadow-purple/20">
-                        <IconComponent className="size-8" strokeWidth={1.5} />
-                      </div>
-                      <div className="flex flex-col">
-                        <span className="text-4xl font-black text-purple/10 group-hover:text-purple/20 transition-colors leading-none">{number}</span>
-                        <h3 className="text-2xl font-black text-ink mt-1 group-hover:text-purple transition-colors">{item.title}</h3>
-                      </div>
-                    </div>
-
-                    <p className="text-base leading-relaxed text-ink/60 flex-1 group-hover:text-ink/80 transition-colors max-w-2xl">
-                      {item.text}
-                    </p>
-                  </div>
-                </Reveal>
-              );
-            }
-
-            return (
-              <Reveal 
-                key={item.title} 
-                delay={idx * 50}
-                className={cn(
-                  "group relative overflow-hidden rounded-[24px] border border-purple/10 p-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-purple/30 hover:shadow-[0_20px_40px_rgba(95,85,135,0.08)] flex flex-col h-full",
-                  isHighlighted ? "bg-purple/[0.02] border-purple/20" : "bg-white"
-                )}
-              >
-                <div className="flex justify-between items-start mb-8">
-                  <div className={cn(
-                    "flex size-12 items-center justify-center rounded-xl transition-all duration-300",
-                    "bg-purple/[0.04] text-purple group-hover:bg-purple group-hover:text-white group-hover:shadow-lg group-hover:shadow-purple/20"
-                  )}>
-                    <IconComponent className="size-5.5" strokeWidth={1.5} />
-                  </div>
-                  <span className="text-3xl font-black text-purple/5 group-hover:text-purple/10 transition-colors leading-none tracking-tighter">
-                    {number}
-                  </span>
-                </div>
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-12">
+          <div className="flex justify-center items-center h-[400px] md:h-[550px] relative perspective-1000">
+            <AnimatePresence mode="popLayout">
+              {CARDS.map((card, index) => {
+                const position = (index - activeIndex + CARDS.length) % CARDS.length;
                 
-                <h3 className="text-lg font-black text-ink group-hover:text-purple transition-colors mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-[0.92rem] leading-relaxed text-ink/60 transition-colors duration-300 group-hover:text-ink/80 flex-1">
-                  {item.text}
-                </p>
-              </Reveal>
-            );
-          })}
+                // Deterministic positions for 4 cards
+                // 0: Center, 1: Right, 2: Back/Hidden, 3: Left
+                let x = 0;
+                let scale = 1;
+                let zIndex = 0;
+                let opacity = 0;
+                let rotateY = 0;
+
+                if (position === 0) {
+                  x = 0;
+                  scale = 1;
+                  zIndex = 30;
+                  opacity = 1;
+                  rotateY = 0;
+                } else if (position === 1) {
+                  x = "40%";
+                  scale = 0.85;
+                  zIndex = 20;
+                  opacity = 0.6;
+                  rotateY = -15;
+                } else if (position === CARDS.length - 1) {
+                  x = "-40%";
+                  scale = 0.85;
+                  zIndex = 20;
+                  opacity = 0.6;
+                  rotateY = 15;
+                } else {
+                  x = 0;
+                  scale = 0.7;
+                  zIndex = 10;
+                  opacity = 0;
+                  rotateY = 0;
+                }
+
+                return (
+                  <motion.div
+                    key={card.id}
+                    className="absolute w-[280px] sm:w-[350px] md:w-[450px] lg:w-[500px] aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl cursor-pointer ring-1 ring-white/10"
+                    animate={{
+                      x,
+                      scale,
+                      zIndex,
+                      opacity,
+                      rotateY,
+                    }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 260,
+                      damping: 25,
+                    }}
+                    onClick={() => {
+                      if (position !== 0) {
+                        setIsAutoPlaying(false);
+                        setActiveIndex(index);
+                      }
+                    }}
+                    whileHover={position === 0 ? { scale: 1.02, y: -5 } : {}}
+                  >
+                    <img
+                      src={card.img}
+                      alt={card.title}
+                      className="w-full h-full object-cover select-none pointer-events-none"
+                    />
+                    
+                    {/* Glossy Overlay for non-active cards */}
+                    {position !== 0 && (
+                      <div className="absolute inset-0 bg-purple/10 backdrop-blur-[1px] transition-opacity duration-500" />
+                    )}
+                    
+                    {/* Shadow effect */}
+                    <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[80%] h-10 bg-black/20 blur-2xl rounded-[100%] pointer-events-none opacity-50" />
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
+          </div>
+
+          {/* Navigation Controls */}
+          <div className="flex items-center justify-center gap-8 mt-12">
+            <button
+              onClick={prev}
+              className="p-3 rounded-full border border-purple/20 text-purple hover:bg-purple hover:text-white transition-all duration-300"
+              aria-label="Anterior"
+            >
+              <ChevronLeft className="size-6" />
+            </button>
+            
+            <div className="flex gap-2">
+              {CARDS.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => {
+                    setIsAutoPlaying(false);
+                    setActiveIndex(i);
+                  }}
+                  className={cn(
+                    "w-2.5 h-2.5 rounded-full transition-all duration-300",
+                    i === activeIndex ? "bg-purple w-8" : "bg-purple/20 hover:bg-purple/40"
+                  )}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={next}
+              className="p-3 rounded-full border border-purple/20 text-purple hover:bg-purple hover:text-white transition-all duration-300"
+              aria-label="Próximo"
+            >
+              <ChevronRight className="size-6" />
+            </button>
+          </div>
         </div>
 
         <div className="mt-20 flex items-center justify-center gap-6">
@@ -100,6 +184,13 @@ export function Differentiators() {
           <div className="h-[1px] flex-1 bg-purple/10 max-w-[100px] hidden md:block" />
         </div>
       </div>
+
+      <style>{`
+        .perspective-1000 {
+          perspective: 1200px;
+          transform-style: preserve-3d;
+        }
+      `}</style>
     </section>
   );
 }
