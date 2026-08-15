@@ -55,7 +55,7 @@ export function Testimonials() {
                       {testimonial.name}
                     </span>
                     <span className="block text-sm font-medium text-muted-foreground/80">
-                      {testimonial.role} — {testimonial.logoAlt}
+                      {testimonial.role}
                     </span>
                   </div>
                 </div>
