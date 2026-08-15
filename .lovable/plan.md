@@ -1,26 +1,21 @@
----
-title: Brazil Interactive Map Section
-description: Redesign the "National Presence" section to feature an interactive Brazil map with state-level hover effects and synchronized chips.
-type: feature
----
+# Redesign da Seção de Metodologia (Soluções)
 
-## Goals
-- Replace static office cards with a premium interactive map of Brazil.
-- Highlight 10 specific states (MT, MS, PA, AC, AM, SP, PR, RO, BA, PI).
-- Implement synchronized hover between the map and a list of state chips.
-- Maintain premium, clean, and corporate aesthetic using the official purple palette.
+Reconstrução da seção "Como tornamos sua empresa mais eficiente?" como um carrossel 3D premium com cards programáticos (HTML/CSS), removendo a dependência de imagens estáticas.
 
-## Technical Details
-- **Component**: `src/components/site/NationalPresence.tsx` (redesign).
-- **Sub-component**: `src/components/site/BrazilMap.tsx` (new) for SVG logic.
-- **Data**: `src/lib/map-data.ts` (new) for state definitions and descriptions.
-- **Interactions**: Framer Motion / CSS Transitions for tooltips and highlights.
-- **Responsive**: 2-column desktop (42/58 split), stacked mobile.
+## Ações Realizadas
 
-## Implementation Steps
-1. Create `src/lib/map-data.ts` with state IDs, names, and descriptions.
-2. Create `src/components/site/BrazilMap.tsx` with optimized SVG paths and hover logic.
-3. Rewrite `src/components/site/NationalPresence.tsx` with the new layout (Institutional left, Map right).
-4. Implement synchronized state synchronization (shared state or hover events).
-5. Add tooltips and mobile touch support.
-6. Verify against all 10 states and responsive breakpoints.
+- [x] Identificar tokens de design (cores, tipografia) no `src/styles.css`.
+- [x] Redefinir os dados dos serviços em `Methodology.tsx` seguindo o novo briefing.
+- [x] Reconstruir o componente `ServiceCard` usando Tailwind e Lucide Icons.
+- [x] Implementar a lógica de profundidade 3D real com `framer-motion` (perspective, translateZ, scale, blur).
+- [x] Reposicionar as setas de navegação para as laterais do palco dos cards.
+- [x] Refinar indicadores inferiores (bullets).
+- [x] Garantir responsividade e interatividade (hover, swipe mobile).
+
+## Detalhes Técnicos
+
+- **Cores**: Roxo oficial (`#5F5587`) e variações profundas.
+- **Transições**: `cubic-bezier(0.22, 1, 0.36, 1)` com duração de 650ms.
+- **Profundidade**: Perspective de 1400px com deslocamento em Z e desfoque progressivo.
+- **Ícones**: Lucide Icons integrados para cada categoria.
+- **Cards**: Estrutura semântica HTML (Número > Ícone > Título > Descrição).
