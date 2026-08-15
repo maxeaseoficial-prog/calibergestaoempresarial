@@ -147,13 +147,17 @@ export const DIFFERENTIATORS = [
   },
 ] as const;
 
+import leoLogo from "@/assets/leo-madeiras.png.asset.json";
+import maxvinilLogo from "@/assets/tintas-maxvinil.png.asset.json";
+import tabladoLogo from "@/assets/tablado-madeireira.png.asset.json";
+
 export const TESTIMONIALS = [
   {
     name: "Paulo Willemann",
     role: "Proprietário",
     quote:
       "A Cáliber tem nos ajudado a organizar e otimizar nossa gestão de estoque, com definições e aprimoramentos de processos internos ajustando de maneira eficiente nosso MRP, melhorando nosso controle de estoque e automaticamente melhorando o atendimento aos nossos clientes que é o que realmente importa no final.",
-    logo: "https://i0.wp.com/calibergestao.com.br/wp-content/uploads/2022/02/LEO-MADEIRAS.webp?fit=128%2C68&ssl=1",
+    logo: leoLogo.url,
     logoAlt: "Leo Madeiras",
   },
   {
@@ -161,16 +165,16 @@ export const TESTIMONIALS = [
     role: "Gestora Contábil",
     quote:
       "Conhecia o trabalho da Cáliber maneira superficial, então fiquei muito surpresa com o resultado do projeto. Achei tudo de uma competência muito grande, desde o início da negociação à entrega. Todos os colaboradores foram muito organizados, competentes e eficazes.",
-    logo: "https://i0.wp.com/calibergestao.com.br/wp-content/uploads/2022/02/MAXVINIL.webp?fit=104%2C68&ssl=1",
-    logoAlt: "Maxvinil",
+    logo: maxvinilLogo.url,
+    logoAlt: "Tintas Maxvinil",
   },
   {
     name: "Adriano Ghilardi",
     role: "Proprietário",
     quote:
       "A parceria com a Cáliber foi muito promissora para a empresa, pois com as ferramentas e treinamentos que recebemos conseguimos padronizar muitos processos na empresa além de ter maior controle dos custos, fluxo de caixa, estoque, entre outros relatórios. A empresa ficou mais aprimorada para poder crescer sem perder o foco no que realmente faz.",
-    logo: "https://i0.wp.com/calibergestao.com.br/wp-content/uploads/2022/02/tablado-e1645075065755.jpg?fit=200%2C97&ssl=1",
-    logoAlt: "Tablado",
+    logo: tabladoLogo.url,
+    logoAlt: "Tablado Madeireira",
   },
 ] as const;
 
