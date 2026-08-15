@@ -23,8 +23,8 @@ function Index() {
       <main>
         <Hero />
         <Methodology />
-        <CorporateSection />
         <WhyCaliber />
+        <CorporateSection />
         <Differentiators />
         <ImpactSection />
         <Testimonials />
