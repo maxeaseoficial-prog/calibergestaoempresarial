@@ -45,7 +45,7 @@ export function Testimonials() {
                       src={testimonial.logo}
                       alt={testimonial.logoAlt}
                       loading="lazy"
-                      className="h-full w-auto object-contain opacity-80 grayscale transition-all duration-500 hover:grayscale-0 hover:opacity-100"
+                      className="h-full w-auto object-contain transition-all duration-500"
                     />
                   </div>
 
