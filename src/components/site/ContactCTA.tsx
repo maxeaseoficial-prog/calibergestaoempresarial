@@ -6,7 +6,7 @@ import { Reveal } from "./Reveal";
 export function ContactCTA() {
   return (
     <section className="relative overflow-hidden gradient-deep py-24 text-white lg:py-32">
-      <LogoWatermark className="-right-10 top-1/2 h-[32rem] w-[32rem] -translate-y-1/2 opacity-[0.05] text-white lg:-right-20 lg:h-[38rem] lg:w-[38rem]" />
+      <LogoWatermark className="-right-32 top-1/2 h-[28rem] w-[28rem] -translate-y-1/2 opacity-[0.05] text-white lg:-right-4 lg:h-[32rem] lg:w-[32rem]" />
       <div className="container-cal relative">
         <div className="max-w-3xl">
           <Reveal>
