@@ -6,7 +6,7 @@ export const CONTACT = {
     "mailto:contato@calibergestao.com.br?subject=Informa%C3%A7%C3%B5es%20C%C3%81LIBER",
   phoneMT: "+55 (65) 2127-4718",
   phoneMTHref: "tel:+556521274718",
-  phonePR: "(41) 2626-1294",
+  phonePR: "+55 (41) 2626-1294",
   phonePRHref: "tel:+554126261294",
   whatsapp:
     "http://api.whatsapp.com/send?1=pt_BR&phone=5565981598205&text=Ol%C3%A1!%20Gostaria%20de%20Saber%20mais%20sobre%20as%20solu%C3%A7%C3%B5es",
