@@ -9,7 +9,7 @@ import { CalAnchor } from "./CalButton";
 const NAV = [
   { label: "Início", to: "/" },
   { label: "Sobre", to: "/sobre" },
-  { label: "Serviços", to: "/#metodologia" },
+  { label: "Serviços", to: "/", hash: "metodologia" },
   { label: "Clientes", to: "/clientes" },
 ] as const;
 
@@ -75,10 +75,11 @@ export function Header() {
         <nav aria-label="Principal" className="hidden justify-center lg:flex">
           <ul className="flex items-center gap-1">
             {NAV.map((item) => (
-              <li key={item.to}>
+              <li key={item.label}>
                 <Link
                   to={item.to}
-                  activeOptions={{ exact: item.to === "/" }}
+                  hash={"hash" in item ? item.hash : undefined}
+                  activeOptions={{ exact: item.to === "/" && !("hash" in item) }}
                   className="inline-flex min-h-10 items-center rounded-[10px] px-3.5 text-sm font-semibold text-white/80 transition-colors duration-300 hover:text-purple-light"
                   activeProps={{ className: "text-purple-light" }}
                 >
@@ -181,9 +182,10 @@ function MobileNavigation({ open, onClose }: { open: boolean; onClose: () => voi
       <nav aria-label="Mobile" className="container-cal flex-1 overflow-y-auto pt-6 pb-10">
         <ul className="space-y-1">
           {[...NAV, { label: "Contato", to: "/contato" as const }].map((item) => (
-            <li key={item.to}>
+            <li key={item.label}>
               <Link
                 to={item.to}
+                hash={"hash" in item ? item.hash : undefined}
                 onClick={onClose}
                 className="block border-b border-white/10 py-4 text-2xl font-bold tracking-tight"
               >
