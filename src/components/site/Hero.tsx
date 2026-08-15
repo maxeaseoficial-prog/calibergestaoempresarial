@@ -45,7 +45,7 @@ export function Hero() {
     return () => clearInterval(interval);
   }, []);
 
-  const active = heroMessages[index];
+  const active = heroMessages[index]!;
 
   return (
     <section className="relative overflow-hidden pt-32 pb-20 lg:pt-48 lg:pb-32">
