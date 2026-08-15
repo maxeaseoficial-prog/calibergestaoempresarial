@@ -4,7 +4,7 @@ import { Reveal } from "./Reveal";
 export function LogoCloud() {
   const loop = [...CLIENTS, ...CLIENTS];
   return (
-    <section className="overflow-hidden border-y border-purple/10 bg-card py-20">
+    <section id="clientes" className="overflow-hidden border-y border-purple/10 bg-card py-20">
       <div className="container-cal text-center">
         <Reveal>
           <span className="eyebrow block">
