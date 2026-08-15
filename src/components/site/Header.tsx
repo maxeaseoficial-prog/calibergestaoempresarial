@@ -187,7 +187,7 @@ function MobileNavigation({ open, onClose }: { open: boolean; onClose: () => voi
               <Link
                 to={item.to}
                 {...("hash" in item ? { hash: item.hash } : {})}
-                target={item.to === "/contato" ? "_blank" : undefined}
+                {...(item.to === "/contato" ? { target: "_blank" } : {})}
                 onClick={onClose}
                 className="block border-b border-white/10 py-4 text-2xl font-bold tracking-tight"
               >
