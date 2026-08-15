@@ -1,37 +1,26 @@
-# Redesign Premium Cáliber — Eficiência em Gestão Empresarial
+---
+title: Brazil Interactive Map Section
+description: Redesign the "National Presence" section to feature an interactive Brazil map with state-level hover effects and synchronized chips.
+type: feature
+---
 
-Implementação da nova presença digital institucional da Cáliber com design premium, editorial e moderno, focando em autoridade e eficiência.
+## Goals
+- Replace static office cards with a premium interactive map of Brazil.
+- Highlight 10 specific states (MT, MS, PA, AC, AM, SP, PR, RO, BA, PI).
+- Implement synchronized hover between the map and a list of state chips.
+- Maintain premium, clean, and corporate aesthetic using the official purple palette.
 
-## Design e Experiência
-- **Design System:** Utilização do roxo institucional (#5F5587) com paleta derivada (deep, dark, light, lavender). Tipografia Manrope para hierarquia editorial.
-- **Identidade Visual:** Uso sutil do símbolo Cáliber como marca d'água e elemento geométrico.
-- **Animações:** Microinterações refinadas (reveal de texto, fade-in, staggers) usando Tailwind e framer-motion (se disponível) ou classes CSS customizadas.
-- **Responsividade:** Layout adaptável de 360px a 1920px, com navegação mobile dedicada.
+## Technical Details
+- **Component**: `src/components/site/NationalPresence.tsx` (redesign).
+- **Sub-component**: `src/components/site/BrazilMap.tsx` (new) for SVG logic.
+- **Data**: `src/lib/map-data.ts` (new) for state definitions and descriptions.
+- **Interactions**: Framer Motion / CSS Transitions for tooltips and highlights.
+- **Responsive**: 2-column desktop (42/58 split), stacked mobile.
 
-## Estrutura de Páginas
-- **Home (`/`):**
-    - **Hero:** Composição assimétrica editorial com headline impactante e fotografia corporativa.
-    - **Números de Autoridade:** Faixa com métricas reais (+12 anos, 8 estados, +12k empresários).
-    - **Metodologia:** Fluxo visual da abordagem (Identifique, Solucione, Gerencie).
-    - **Diferenciais:** Bento Grid com os 10 diferenciais exclusivos.
-    - **Depoimentos:** Seção editorial com clientes reais.
-    - **Clientes/Parceiros:** Marquee suave com logos monocromáticos.
-    - **Atuação Nacional:** Destaque para escritórios em Cuiabá e Curitiba.
-- **Sobre (`/sobre`):** Posicionamento institucional e história real.
-- **Serviços (`/servicos`):** Detalhamento da Auditoria Estratégica, Estruturação 360° e Análise e Gestão.
-- **Clientes (`/clientes`):** Portfólio completo e prova social.
-- **Contato (`/contato`):** Formulário completo e informações de contato institucional.
-
-## Detalhes Técnicos
-- **Stack:** TanStack Start v1 (React 19, Vite 7).
-- **SEO:** Metadados específicos por rota (title, description, OG tags).
-- **Acessibilidade:** HTML semântico, contraste adequado e navegação por teclado.
-- **Assets:** Reutilização de logos e fotos reais recuperados do site original.
-- **Componentes:** Header (transparente a sólido no scroll), Footer, CalButton, SectionHeading, etc.
-
-## Checklist de Qualidade
-- [ ] Sem conteúdo fictício ou Lorem Ipsum.
-- [ ] Sem emojis ou estética SaaS genérica.
-- [ ] Formulário validado (sem simulação de sucesso falsa).
-- [ ] Performance otimizada (LCP prioritário).
-- [ ] Zero erros de console e build de produção limpo.
+## Implementation Steps
+1. Create `src/lib/map-data.ts` with state IDs, names, and descriptions.
+2. Create `src/components/site/BrazilMap.tsx` with optimized SVG paths and hover logic.
+3. Rewrite `src/components/site/NationalPresence.tsx` with the new layout (Institutional left, Map right).
+4. Implement synchronized state synchronization (shared state or hover events).
+5. Add tooltips and mobile touch support.
+6. Verify against all 10 states and responsive breakpoints.
