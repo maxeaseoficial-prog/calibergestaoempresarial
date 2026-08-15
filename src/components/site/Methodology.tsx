@@ -51,7 +51,7 @@ export function Methodology() {
 
   useEffect(() => {
     if (!isAutoPlaying) return;
-    const timer = setInterval(next, 5000);
+    const timer = setInterval(next, 7000); // Increased from 5000 to 7000 for slower transition
     return () => clearInterval(timer);
   }, [isAutoPlaying, next]);
 
