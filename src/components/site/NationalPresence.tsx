@@ -14,7 +14,7 @@ export function NationalPresence() {
       <div className="absolute top-1/2 left-1/2 -z-10 h-full w-full -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(circle_at_center,rgba(95,85,135,0.03)_0%,transparent_70%)]" />
 
       <div className="container-cal relative">
-        <div className="grid gap-16 lg:grid-cols-[42%_58%] lg:items-center lg:gap-24">
+        <div className="grid gap-16 lg:grid-cols-[40%_60%] lg:items-center lg:gap-12 xl:gap-20">
           
           {/* Left Column: Content */}
           <div className="flex flex-col">
