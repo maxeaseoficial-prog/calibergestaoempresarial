@@ -51,23 +51,23 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden pt-32 pb-20 lg:pt-48 lg:pb-32 min-h-[90vh] flex items-center">
       {/* Background Video */}
-      <div className="absolute inset-0 -z-20 overflow-hidden">
+      <div className="absolute inset-0 -z-20 overflow-hidden bg-black">
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover opacity-50"
         >
           <source src={heroVideoAsset.url} type="video/mp4" />
         </video>
         {/* Overlay for readability */}
-        <div className="absolute inset-0 bg-white/70 backdrop-blur-[2px] dark:bg-black/40" />
+        <div className="absolute inset-0 bg-black/60" />
       </div>
 
       {/* Background elements */}
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_70%_20%,var(--caliber-purple-light)_0%,transparent_50%)] opacity-[0.03]" />
-      <LogoWatermark className="top-[-10%] right-[-5%] h-[80%] w-[80%] opacity-[0.02] text-purple rotate-12" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_70%_20%,rgba(95,85,135,0.15)_0%,transparent_50%)]" />
+      <LogoWatermark className="top-[-10%] right-[-5%] h-[80%] w-[80%] opacity-[0.03] text-white rotate-12" />
 
       <div className="container-cal">
         <div className="max-w-4xl relative z-10">
@@ -84,11 +84,11 @@ export function Hero() {
                 )}
                 aria-hidden={index !== i}
               >
-                <span className="eyebrow block">
+                <span className="eyebrow block text-purple-light">
                   {msg.eyebrow}
                 </span>
 
-                <h1 className="mt-8 text-[clamp(2.8rem,6.5vw,6rem)] leading-[0.9] font-extrabold tracking-tight text-ink">
+                <h1 className="mt-8 text-[clamp(2.8rem,6.5vw,6rem)] leading-[0.9] font-extrabold tracking-tight text-white">
                   {msg.title}
                 </h1>
 
@@ -104,7 +104,7 @@ export function Hero() {
             <CalAnchor href={CONTACT.whatsapp} target="_blank" rel="noreferrer" className="px-10 py-5 text-lg">
               Evolua Conosco
             </CalAnchor>
-            <CalLink to="/sobre" variant="outline" arrow={false} className="px-10 py-5 text-lg">
+            <CalLink to="/sobre" variant="outline" arrow={false} className="px-10 py-5 text-lg border-white text-white hover:bg-white hover:text-black">
               Conheça a Cáliber
             </CalLink>
           </div>
