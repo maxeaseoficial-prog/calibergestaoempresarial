@@ -106,18 +106,18 @@ export function BrazilMap({ onHoverState, activeId }: BrazilMapProps) {
                   transformBox: "fill-box",
                 }}
               />
-              {/* State Labels for ONLY active states */}
               {isActive && STATE_CENTROIDS[id] && (
                 <text
                   x={STATE_CENTROIDS[id].x}
                   y={STATE_CENTROIDS[id].y}
                   className={cn(
-                    "pointer-events-none fill-white text-[11px] font-bold transition-all duration-300 drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]",
+                    "pointer-events-none fill-white text-[12px] font-bold transition-all duration-300",
                     isHighlighted ? "opacity-100 scale-110" : "opacity-90"
                   )}
                   dominantBaseline="middle"
                   textAnchor="middle"
                   style={{
+                    filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.5))",
                     transformOrigin: `${STATE_CENTROIDS[id].x}px ${STATE_CENTROIDS[id].y}px`,
                   }}
                 >
