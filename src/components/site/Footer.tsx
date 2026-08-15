@@ -12,9 +12,6 @@ export function Footer() {
           <div className="max-w-sm">
             <span className="flex items-center gap-3 text-white">
               <Logo className="h-11 w-11" />
-              <span className="text-lg font-extrabold tracking-[0.2em] uppercase">
-                Cáliber
-              </span>
             </span>
             <p className="mt-6 text-sm leading-relaxed text-white/60">
               Da operação à gestão: uma plataforma completa e prática, com uma equipe
