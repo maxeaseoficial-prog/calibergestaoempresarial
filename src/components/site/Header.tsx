@@ -78,7 +78,7 @@ export function Header() {
               <li key={item.label}>
                 <Link
                   to={item.to}
-                  hash={"hash" in item ? item.hash : undefined}
+                  {...("hash" in item ? { hash: item.hash } : {})}
                   activeOptions={{ exact: item.to === "/" && !("hash" in item) }}
                   className="inline-flex min-h-10 items-center rounded-[10px] px-3.5 text-sm font-semibold text-white/80 transition-colors duration-300 hover:text-purple-light"
                   activeProps={{ className: "text-purple-light" }}
@@ -185,7 +185,7 @@ function MobileNavigation({ open, onClose }: { open: boolean; onClose: () => voi
             <li key={item.label}>
               <Link
                 to={item.to}
-                hash={"hash" in item ? item.hash : undefined}
+                {...("hash" in item ? { hash: item.hash } : {})}
                 onClick={onClose}
                 className="block border-b border-white/10 py-4 text-2xl font-bold tracking-tight"
               >
