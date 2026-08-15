@@ -10,7 +10,7 @@ const NAV = [
   { label: "Início", to: "/" },
   { label: "Sobre", to: "/sobre" },
   { label: "Serviços", to: "/", hash: "metodologia" },
-  { label: "Clientes", to: "/clientes" },
+  { label: "Clientes", to: "/", hash: "clientes" },
 ] as const;
 
 const CLIENT_AREA = [
