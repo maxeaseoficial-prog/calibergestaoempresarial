@@ -59,14 +59,14 @@ export function Header() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,border-color,backdrop-filter] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
         scrolled
-          ? "border-b border-purple/10 bg-background/85 backdrop-blur-md"
+          ? "border-b border-purple/10 bg-black/85 backdrop-blur-md"
           : "border-b border-transparent bg-transparent",
       )}
     >
       <div className="container-cal grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 py-4 lg:grid-cols-[auto_1fr_auto]">
         <Link
           to="/"
-          className="flex min-w-0 items-center gap-3 text-purple-deep"
+          className="flex min-w-0 items-center gap-3 text-white"
           aria-label="Cáliber — página inicial"
         >
           <Logo className="h-12 w-12 shrink-0 lg:h-14 lg:w-14" />
@@ -79,8 +79,8 @@ export function Header() {
                 <Link
                   to={item.to}
                   activeOptions={{ exact: item.to === "/" }}
-                  className="inline-flex min-h-10 items-center rounded-[10px] px-3.5 text-sm font-semibold text-ink/80 transition-colors duration-300 hover:text-purple"
-                  activeProps={{ className: "text-purple" }}
+                  className="inline-flex min-h-10 items-center rounded-[10px] px-3.5 text-sm font-semibold text-white/80 transition-colors duration-300 hover:text-purple-light"
+                  activeProps={{ className: "text-purple-light" }}
                 >
                   {item.label}
                 </Link>
@@ -92,7 +92,7 @@ export function Header() {
                 aria-expanded={openDropdown}
                 aria-haspopup="true"
                 onClick={() => setOpenDropdown((v) => !v)}
-                className="inline-flex min-h-10 items-center gap-1.5 rounded-[10px] px-3.5 text-sm font-semibold text-ink/80 transition-colors duration-300 hover:text-purple"
+                className="inline-flex min-h-10 items-center gap-1.5 rounded-[10px] px-3.5 text-sm font-semibold text-white/80 transition-colors duration-300 hover:text-purple-light"
               >
                 Área do Cliente
                 <ChevronDown
@@ -126,8 +126,8 @@ export function Header() {
             <li>
               <Link
                 to="/contato"
-                className="inline-flex min-h-10 items-center rounded-[10px] px-3.5 text-sm font-semibold text-ink/80 transition-colors duration-300 hover:text-purple"
-                activeProps={{ className: "text-purple" }}
+                className="inline-flex min-h-10 items-center rounded-[10px] px-3.5 text-sm font-semibold text-white/80 transition-colors duration-300 hover:text-purple-light"
+                activeProps={{ className: "text-purple-light" }}
               >
                 Contato
               </Link>
@@ -148,7 +148,7 @@ export function Header() {
             type="button"
             onClick={() => setOpenMenu(true)}
             aria-label="Abrir menu"
-            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-[10px] border border-purple/20 text-purple-deep lg:hidden"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-[10px] border border-white/20 text-white lg:hidden"
           >
             <Menu className="size-5" aria-hidden="true" />
           </button>
