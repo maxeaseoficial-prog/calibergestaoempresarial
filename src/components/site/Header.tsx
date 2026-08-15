@@ -106,16 +106,14 @@ export function Header() {
                 <div className="absolute top-full left-0 mt-2 w-64 rounded-2xl border border-purple/12 bg-card p-2 shadow-lift">
                   <ul>
                     {CLIENT_AREA.map((item) => (
-                      <li key={item.href}>
-                        <a
-                          href={item.href}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="block rounded-xl px-3 py-2.5 text-sm font-medium text-ink/85 transition-colors duration-200 hover:bg-lavender hover:text-purple-deep"
+                      <li key={item.label}>
+                        <button
+                          type="button"
+                          className="block w-full text-left rounded-xl px-3 py-2.5 text-sm font-medium text-ink/40 cursor-not-allowed transition-colors duration-200"
                           onClick={() => setOpenDropdown(false)}
                         >
                           {item.label}
-                        </a>
+                        </button>
                       </li>
                     ))}
                   </ul>
@@ -198,15 +196,13 @@ function MobileNavigation({ open, onClose }: { open: boolean; onClose: () => voi
         </p>
         <ul className="mt-3 space-y-2">
           {CLIENT_AREA.map((item) => (
-            <li key={item.href}>
-              <a
-                href={item.href}
-                target="_blank"
-                rel="noreferrer"
-                className="block rounded-xl border border-white/12 px-4 py-3.5 text-sm font-semibold"
+            <li key={item.label}>
+              <button
+                type="button"
+                className="block w-full text-left rounded-xl border border-white/12 px-4 py-3.5 text-sm font-semibold text-white/40 cursor-not-allowed"
               >
                 {item.label}
-              </a>
+              </button>
             </li>
           ))}
         </ul>
