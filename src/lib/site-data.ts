@@ -37,20 +37,22 @@ export const OFFICES = [
 ] as const;
 
 export const METRICS = [
-  { value: 12, prefix: "+", suffix: "", label: "anos de experiência" },
-  { value: 8, prefix: "", suffix: "", label: "estados com clientes atendidos" },
+  { value: 17, prefix: "", suffix: "", label: "anos de mercado" },
+  { value: 12000, prefix: "+", suffix: "", label: "pessoas impactadas" },
+  { value: 10, prefix: "", suffix: "", label: "estados com clientes atendidos" },
   {
-    value: 12000,
-    prefix: "+",
-    suffix: "",
-    label: "empresários e colaboradores transformados",
+    value: 2,
+    prefix: "> R$ ",
+    suffix: " Bilhões",
+    decimals: 0,
+    label: "faturamento anual dos clientes",
   },
   {
-    value: 1.1,
-    prefix: "R$ ",
-    suffix: " bilhão",
-    decimals: 1,
-    label: "em faturamento dos clientes",
+    value: 100,
+    prefix: "> R$ ",
+    suffix: " MM",
+    decimals: 0,
+    label: "em lucro gerado nos clientes",
   },
 ] as const;
 
