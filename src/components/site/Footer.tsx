@@ -61,24 +61,20 @@ export function Footer() {
                 </li>
               ))}
               <li>
-                <a
-                  href={CONTACT.areaDoCliente}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="transition-colors hover:text-white"
+                <button
+                  type="button"
+                  className="text-white/40 cursor-not-allowed transition-colors"
                 >
                   Central de Recursos Cáliber
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  href={CONTACT.cadastroIndicacao}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="transition-colors hover:text-white"
+                <button
+                  type="button"
+                  className="text-white/40 cursor-not-allowed transition-colors"
                 >
                   Cadastro de Indicação
-                </a>
+                </button>
               </li>
             </ul>
           </nav>
