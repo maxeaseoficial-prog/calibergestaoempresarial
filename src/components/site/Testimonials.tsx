@@ -87,11 +87,11 @@ export function Testimonials() {
           viewBox="0 0 1440 120" 
           fill="none" 
           xmlns="http://www.w3.org/2000/svg" 
-          className="absolute top-0 left-0 w-full -translate-y-[99%] scale-x-105"
+          className="absolute top-0 left-0 w-full -translate-y-[98%] scale-x-105"
           preserveAspectRatio="none"
         >
           <path 
-            d="M0 120H1440V80C1440 80 1080 0 720 0C360 0 0 80 0 80V120Z" 
+            d="M0 120H1440V120C1440 120 1140 0 720 0C300 0 0 120 0 120V120Z" 
             fill="var(--color-purple)"
           />
         </svg>
