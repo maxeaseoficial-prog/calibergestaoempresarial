@@ -45,18 +45,9 @@ export function NationalPresence() {
                     CLIENTES EM 10 ESTADOS
                   </h3>
                   
-                  {/* Legend */}
-                  <div className="mt-4 flex flex-wrap gap-4">
-                    <div className="flex items-center gap-2 rounded-full border border-slate-100 bg-white/80 px-4 py-2 text-[13px] font-medium text-slate-600 shadow-sm backdrop-blur-sm">
-                      <div className="size-3 rounded-sm bg-purple" />
-                      <span>Estados onde já atuamos</span>
-                    </div>
-                    <div className="flex items-center gap-2 rounded-full border border-slate-100 bg-white/80 px-4 py-2 text-[13px] font-medium text-slate-600 shadow-sm backdrop-blur-sm">
-                      <div className="size-3 rounded-sm bg-lavender/40" />
-                      <span>Demais estados</span>
-                    </div>
-                  </div>
+                  {/* Legend removed per user request */}
                 </div>
+
 
                 {/* Callout */}
                 <div className="rounded-2xl bg-purple/[0.03] p-5 ring-1 ring-purple/5">
@@ -111,15 +102,7 @@ export function NationalPresence() {
               </div>
             </Reveal>
 
-            {/* Closing Detail */}
-            <Reveal delay={500}>
-              <div className="mt-10 flex items-center gap-3 text-slate-500">
-                <MapPin className="size-4 text-purple" />
-                <p className="text-sm font-medium italic">
-                  Sua empresa pode ser a próxima. <span className="font-bold text-purple not-italic">Vamos juntos.</span>
-                </p>
-              </div>
-            </Reveal>
+            {/* Closing Detail removed per user request */}
           </div>
         </div>
       </div>
