@@ -55,9 +55,27 @@ export const METRICS = [
 ] as const;
 
 export const STEPS = [
-  { number: "01", title: "Identifique os problemas" },
-  { number: "02", title: "Solucione" },
-  { number: "03", title: "Gerencie e evolua" },
+  {
+    number: "01",
+    step: "IDENTIFIQUE OS PROBLEMAS",
+    solution: "AUDITORIA ESTRATÉGICA",
+    description: "Entenda o que está errado ou precisa melhorar nos seus processos, controles, equipes, ferramentas, gestão e estratégias",
+    icon: "Search",
+  },
+  {
+    number: "02",
+    step: "SOLUCIONE",
+    solution: "ESTRUTURAÇÃO 360° NA PRÁTICA",
+    description: "Implemente todas as mudanças na prática e ganhe Eficiência em todos os departamentos e na sua Gestão",
+    icon: "Settings2",
+  },
+  {
+    number: "03",
+    step: "GERENCIE E EVOLUA",
+    solution: "ANÁLISE E GESTÃO",
+    description: "Conheça os seus números, antecipe e evite problemas, alcance seu potencial e Tenha suporte, acompanhamento e orientação em toda a sua operação e Gestão",
+    icon: "TrendingUp",
+  },
 ] as const;
 
 export const SERVICES = [
