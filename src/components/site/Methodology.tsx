@@ -239,7 +239,7 @@ export function Methodology() {
                             </h3>
                           ))}
                           {card.subtitle && (
-                            <span className="mt-2 text-purple-light/80 text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase">
+                            <span className="mt-2 text-white text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase">
                               {card.subtitle}
                             </span>
                           )}
