@@ -1,8 +1,9 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { ACTIVE_STATES, ALL_STATE_IDS } from "@/lib/map-data";
 import { BRAZIL_PATHS } from "@/lib/brazil-paths";
 import { cn } from "@/lib/utils";
-import { Users, MapPin } from "lucide-react";
+import { Users } from "lucide-react";
+
 import { Reveal } from "./Reveal";
 
 interface BrazilMapProps {
