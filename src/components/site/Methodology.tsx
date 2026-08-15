@@ -171,13 +171,14 @@ export function Methodology() {
                       backfaceVisibility: "hidden",
                     }}
                     animate={{
-                      translateX: x,
-                      translateZ: z,
-                      scale,
-                      zIndex,
-                      opacity,
-                      filter: `blur(${blur}px) brightness(${brightness})`,
+                      translateX: xPos,
+                      translateZ: zPos,
+                      scale: scaleVal,
+                      zIndex: zIdx,
+                      opacity: opac,
+                      filter: `blur(${blurVal}px) brightness(${bright})`,
                     }}
+
 
                     transition={{
                       duration: 0.65,
