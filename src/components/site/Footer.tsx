@@ -6,7 +6,7 @@ import { Logo, LogoWatermark } from "./Logo";
 export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-night text-white">
-      <LogoWatermark className="-right-24 -bottom-40 h-[26rem] w-[26rem] text-white/[0.03]" />
+
       <div className="container-cal relative py-20">
         <div className="grid gap-14 lg:grid-cols-[1.3fr_1fr_1fr]">
           <div className="max-w-sm">
