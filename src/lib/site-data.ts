@@ -117,12 +117,12 @@ export const DIFFERENTIATORS = [
   },
   {
     title: "Experiência",
-    text: "Mais de 12 anos de experiência no mercado brasileiro, estruturando empresas na prática, sem teorias.",
+    text: "Mais de 17 anos de experiência no mercado brasileiro, estruturando empresas na prática, sem teorias.",
     icon: "clock",
   },
   {
     title: "Autoridade em Gestão",
-    text: "Clientes em 8 estados com faturamento de R$ 1,1 bilhão. Mais de 12.000 pessoas transformadas, entre empresários e colaboradores.",
+    text: "Clientes em 10 estados com faturamento superior a R$ 2 bilhões. Mais de 12.000 pessoas transformadas, entre empresários e colaboradores.",
     icon: "award",
   },
   {
