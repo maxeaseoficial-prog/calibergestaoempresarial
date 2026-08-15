@@ -93,18 +93,6 @@ export function Hero() {
                 Conheça a Cáliber
               </CalLink>
             </div>
-            
-            <div className="mt-16 flex items-center gap-6 border-l-2 border-purple/10 pl-6">
-              <div className="flex flex-col">
-                <span className="tabular text-3xl font-extrabold text-purple-deep">+12 anos</span>
-                <span className="text-xs font-bold tracking-wider text-muted-foreground uppercase">Experiência no mercado</span>
-              </div>
-              <div className="h-10 w-px bg-purple/10" />
-              <div className="flex flex-col">
-                <span className="tabular text-3xl font-extrabold text-purple-deep">R$ 1,1 bi</span>
-                <span className="text-xs font-bold tracking-wider text-muted-foreground uppercase">Faturamento clientes</span>
-              </div>
-            </div>
           </div>
 
           <Reveal variant="image" delay={200} className="relative aspect-[4/5] w-full lg:aspect-square">
@@ -116,14 +104,6 @@ export function Hero() {
               loading="eager"
             />
             
-            {/* Elemento flutuante decorativo inspirado no símbolo */}
-            <div className="absolute -bottom-6 -left-6 hidden size-32 items-center justify-center rounded-3xl bg-white p-6 shadow-lift lg:flex">
-               <LogoWatermark className="inset-4 opacity-10 text-purple" />
-               <div className="text-center">
-                 <div className="text-2xl font-black text-purple tabular">8</div>
-                 <div className="text-[0.6rem] font-bold tracking-tighter text-muted-foreground uppercase">Estados</div>
-               </div>
-            </div>
           </Reveal>
         </div>
       </div>
