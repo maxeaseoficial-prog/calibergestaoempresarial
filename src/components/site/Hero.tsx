@@ -1,9 +1,52 @@
+import { useEffect, useState } from "react";
 import { Reveal } from "./Reveal";
 import { CalAnchor, CalLink } from "./CalButton";
 import { CONTACT } from "@/lib/site-data";
 import { LogoWatermark } from "./Logo";
+import { cn } from "@/lib/utils";
+
+const heroMessages = [
+  {
+    eyebrow: "EVOLUA",
+    title: (
+      <>
+        Leve a <span className="text-purple">transformação</span> para a sua empresa
+      </>
+    ),
+    description:
+      "Conte com muito mais do que uma consultoria, e sim uma plataforma completa e prática, da Operação à Gestão, com uma equipe dedicada a tornar sua empresa melhor todos os dias.",
+  },
+  {
+    eyebrow: "TRANSFORME-SE",
+    title: (
+      <>
+        É hora de levar sua <br />
+        <span className="text-purple">empresa ao próximo nível</span>
+      </>
+    ),
+    description:
+      "Um trabalho único e completamente prático, com sistema que combina técnicas de gestão, processos, finanças, estoques, produção, compras, logística, comercial, estratégias, pessoas, sistemas e mais de uma década de experiência, para evoluir sua empresa.",
+  },
+];
 
 export function Hero() {
+  const [index, setIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setIndex((current) => (current + 1) % heroMessages.length);
+        setIsTransitioning(false);
+      }, 600); // Duração do fade-out
+    }, 8000); // 8 segundos por estado
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const active = heroMessages[index]!;
+
   return (
     <section className="relative overflow-hidden pt-32 pb-20 lg:pt-48 lg:pb-32">
       {/* Background elements */}
@@ -12,37 +55,42 @@ export function Hero() {
 
       <div className="container-cal">
         <div className="grid items-center gap-16 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="relative z-10 max-w-2xl">
-            <Reveal>
-              <span className="eyebrow">
-                
-                Transforme-se
-              </span>
-            </Reveal>
+          <div className="relative z-10">
+            {/* Texto com área de conteúdo para evitar layout shift */}
+            <div className="relative min-h-[420px] lg:min-h-[480px]">
+              <div
+                className={cn(
+                  "transition-all duration-700 ease-in-out motion-safe:translate-y-0",
+                  isTransitioning 
+                    ? "opacity-0 motion-safe:translate-y-2" 
+                    : "opacity-100 motion-safe:translate-y-0"
+                )}
+              >
+                <span className="eyebrow block">
+                  {active.eyebrow}
+                </span>
 
-            <Reveal delay={100}>
-              <h1 className="mt-8 text-[clamp(2.8rem,6vw,5.8rem)] leading-[0.95] font-extrabold tracking-tight text-ink">
-                É hora de levar sua <br />
-                <span className="text-purple">empresa ao próximo nível</span>
-              </h1>
-            </Reveal>
+                <h1 className="mt-8 text-[clamp(2.8rem,5.5vw,5.2rem)] leading-[0.95] font-extrabold tracking-tight text-ink">
+                  {active.title}
+                </h1>
 
-            <Reveal delay={200}>
-              <p className="mt-8 text-lg leading-relaxed text-muted-foreground md:text-xl">
-                Um trabalho único e completamente prático, com sistema que combina técnicas de gestão, processos, finanças, estoques, produção, compras, logística, comercial, estratégias, pessoas, sistemas e mais de uma década de experiência, para evoluir sua empresa.
-              </p>
-            </Reveal>
+                <p className="mt-8 text-lg leading-relaxed text-muted-foreground md:text-xl max-w-xl">
+                  {active.description}
+                </p>
+              </div>
+            </div>
 
-            <Reveal delay={300} className="mt-10 flex flex-wrap items-center gap-5">
+            {/* Botões fixos */}
+            <div className="mt-10 flex flex-wrap items-center gap-5">
               <CalAnchor href={CONTACT.whatsapp} target="_blank" rel="noreferrer">
                 Evolua Conosco
               </CalAnchor>
               <CalLink to="/sobre" variant="outline" arrow={false}>
                 Conheça a Cáliber
               </CalLink>
-            </Reveal>
+            </div>
             
-            <Reveal delay={450} className="mt-16 flex items-center gap-6 border-l-2 border-purple/10 pl-6">
+            <div className="mt-16 flex items-center gap-6 border-l-2 border-purple/10 pl-6">
               <div className="flex flex-col">
                 <span className="tabular text-3xl font-extrabold text-purple-deep">+12 anos</span>
                 <span className="text-xs font-bold tracking-wider text-muted-foreground uppercase">Experiência no mercado</span>
@@ -52,7 +100,7 @@ export function Hero() {
                 <span className="tabular text-3xl font-extrabold text-purple-deep">R$ 1,1 bi</span>
                 <span className="text-xs font-bold tracking-wider text-muted-foreground uppercase">Faturamento clientes</span>
               </div>
-            </Reveal>
+            </div>
           </div>
 
           <Reveal variant="image" delay={200} className="relative aspect-[4/5] w-full lg:aspect-square">
