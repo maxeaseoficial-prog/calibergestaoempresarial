@@ -86,29 +86,29 @@ export function Footer() {
             <ul className="mt-5 space-y-3 text-sm text-white/65">
               <li>
                 <a
-                  href={CONTACT.emailHref}
+                  href={`mailto:${emailAddress}`}
                   className="inline-flex items-center gap-2 transition-colors hover:text-white"
                 >
                   <Mail className="size-4 shrink-0" aria-hidden="true" />
-                  {CONTACT.emailAddress}
+                  {emailAddress}
                 </a>
               </li>
               <li>
                 <a
-                  href={CONTACT.phoneMTHref}
+                  href={`tel:${phoneMT.replace(/\D/g, '')}`}
                   className="inline-flex items-center gap-2 tabular transition-colors hover:text-white"
                 >
                   <Phone className="size-4 shrink-0" aria-hidden="true" />
-                  {CONTACT.phoneMT}
+                  {phoneMT}
                 </a>
               </li>
               <li>
                 <a
-                  href={CONTACT.phonePRHref}
+                  href={`tel:${phonePR.replace(/\D/g, '')}`}
                   className="inline-flex items-center gap-2 tabular transition-colors hover:text-white"
                 >
                   <Phone className="size-4 shrink-0" aria-hidden="true" />
-                  {CONTACT.phonePR}
+                  {phonePR}
                 </a>
               </li>
             </ul>
