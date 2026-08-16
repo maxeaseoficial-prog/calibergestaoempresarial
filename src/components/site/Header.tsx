@@ -152,21 +152,6 @@ function MobileNavigation({ open, onClose }: { open: boolean; onClose: () => voi
           ))}
         </ul>
 
-        <p className="mt-8 text-[0.68rem] font-bold tracking-[0.22em] text-purple-light uppercase">
-          Área do Cliente
-        </p>
-        <ul className="mt-3 space-y-2">
-          {CLIENT_AREA.map((item) => (
-            <li key={item.label}>
-              <button
-                type="button"
-                className="block w-full text-left rounded-xl border border-white/12 px-4 py-3.5 text-sm font-semibold text-white/40 cursor-not-allowed"
-              >
-                {item.label}
-              </button>
-            </li>
-          ))}
-        </ul>
 
         <CalAnchor
           href={CONTACT.whatsapp}
