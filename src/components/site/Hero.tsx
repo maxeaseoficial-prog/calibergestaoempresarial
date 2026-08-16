@@ -5,6 +5,7 @@ import { CONTACT } from "@/lib/site-data";
 import { LogoWatermark } from "./Logo";
 import { cn } from "@/lib/utils";
 import heroVideoAsset from "@/assets/hero-video.mp4.asset.json";
+import { EvoluaConoscoModal } from "./EvoluaConoscoModal";
 
 const heroMessages = [
   {
@@ -33,6 +34,7 @@ const heroMessages = [
 export function Hero() {
   const [index, setIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -101,15 +103,21 @@ export function Hero() {
 
           {/* Botões fixos */}
           <div className="mt-12 flex flex-wrap items-center gap-5">
-            <CalAnchor href={CONTACT.whatsapp} target="_blank" rel="noreferrer" className="px-10 py-5 text-lg">
+            <button 
+              type="button"
+              onClick={() => setIsModalOpen(true)} 
+              className="inline-flex items-center justify-center rounded-xl bg-purple px-10 py-5 text-lg font-bold text-white transition-all hover:bg-purple-deep hover:shadow-lift"
+            >
               Evolua Conosco
-            </CalAnchor>
+            </button>
             <CalLink to="/" hash="atuacao" variant="outline" arrow={false} className="px-10 py-5 text-lg border-white text-white hover:bg-white hover:text-black">
               Conheça a Cáliber
             </CalLink>
           </div>
         </div>
       </div>
+
+      <EvoluaConoscoModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );
 }
