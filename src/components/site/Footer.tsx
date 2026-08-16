@@ -60,22 +60,6 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
-              <li>
-                <button
-                  type="button"
-                  className="text-white/40 cursor-not-allowed transition-colors"
-                >
-                  Central de Recursos Cáliber
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  className="text-white/40 cursor-not-allowed transition-colors"
-                >
-                  Cadastro de Indicação
-                </button>
-              </li>
             </ul>
           </nav>
 
