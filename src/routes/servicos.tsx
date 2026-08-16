@@ -1,11 +1,17 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Header } from '@/components/site/Header'
 import { Footer } from '@/components/site/Footer'
+import { seoQueryOptions } from '@/hooks/use-seo'
+
 
 export const Route = createFileRoute('/servicos')({
+  loader: ({ context }) => {
+    return context.queryClient.ensureQueryData(seoQueryOptions("/servicos"));
+  },
   head: ({ loaderData }) => {
-    const seo = (loaderData as any)?.seo;
+    const seo = loaderData as any;
     return {
+
       title: seo?.title || "Nossos Serviços — Cáliber",
       meta: [
         { name: "description", content: seo?.description || "Soluções completas para a gestão da sua empresa." },
