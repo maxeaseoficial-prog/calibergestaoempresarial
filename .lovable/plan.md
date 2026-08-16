@@ -1,71 +1,45 @@
-# Implementation Plan - "Evolua Conosco" Flow
+# Planejamento: Área Administrativa Cáliber
 
-Implement the complete lead generation flow for the "Evolua Conosco" button, including a premium modal, validated form, and real server-side email delivery via Resend.
+Criação de um mini CMS premium e seguro para gestão de conteúdo institucional da Cáliber, utilizando a infraestrutura do Lovable Cloud (Supabase).
 
-## User Review Required
+## 1. Arquitetura e Segurança
+- **Autenticação**: Supabase Auth (Email/Senha).
+- **Autorização**: Tabela `user_roles` e função `has_role` para controle de acesso administrativo via RLS.
+- **Segurança**: Políticas RLS estritas em todas as tabelas. GRANTs explícitos para `authenticated` e `service_role`.
+- **Secrets**: Destinatário de leads e chaves de API permanecem exclusivamente no servidor.
 
-> [!IMPORTANT]
-> The `RESEND_API_KEY` and `RESEND_FROM_EMAIL` (if a custom domain is verified) must be configured in the project's environment variables (server-side secrets) for real delivery to work.
+## 2. Estrutura do Banco de Dados (Migrations)
+- `site_settings`: Configurações gerais (nome, contatos, destinatário de e-mail).
+- `social_links`: Gestão de redes sociais (URL, status ativo).
+- `clients`: Logos e dados dos clientes do carrossel.
+- `services`: Conteúdo dos cards de serviços.
+- `testimonials`: Gestão de depoimentos.
+- `served_states`: Estados ativos no mapa do Brasil.
+- `user_roles`: Controle de papéis administrativos.
 
-- **Recipient:** leonardo.froese@gmail.com (Fixed server-side).
-- **Reply-To:** Visitor's email.
-- **Security:** Honeypot, Rate Limiting (server-side), and Form Validation.
+## 3. Rotas Administrativas (`/admin`)
+- `/admin/login`: Login premium minimalista.
+- `/admin`: Dashboard (Visão Geral).
+- `/admin/contatos`: Redes sociais e contatos.
+- `/admin/formulario`: Configuração do formulário de leads.
+- `/admin/clientes`: Gestão das logos (CRUD + Reordenação).
+- `/admin/servicos`: Edição dos cards de serviços.
+- `/admin/depoimentos`: Gestão de depoimentos.
+- `/admin/atuacao`: Mapa de estados atendidos.
+- `/admin/seo`: Meta tags e OG Data.
+- `/admin/configuracoes`: Perfil e senha.
 
-## Proposed Changes
+## 4. Integração Frontend
+- Refatoração dos componentes públicos para consumir dados via Supabase Client (com fallback para os dados atuais em `site-data.ts`).
+- Backend (Server Functions) consultando o banco para definir o destinatário real do Resend.
 
-### Backend (Server Logic)
-- **Email Service:** Create `src/lib/email.server.ts` to handle Resend configuration and email templates.
-- **Server Function:** Create `src/lib/leads.functions.ts` using `createServerFn` to process lead submissions.
-  - Implement validation (Zod).
-  - Implement basic Rate Limiting (using a simple in-memory store or project-specific cache if available).
-  - Implement Honeypot check.
-  - Send email via Resend.
+## Detalhes Técnicos
+- Utilização de `tanstack-start` para rotas e server functions.
+- `framer-motion` para animações no painel.
+- `sonner` para notificações.
+- `lucide-react` para iconografia.
 
-### Frontend (Components)
-- **Modal Component:** Create `src/components/site/EvoluaConoscoModal.tsx`.
-  - Premium design with backdrop blur and smooth animations.
-  - Focus trap and accessibility features (ESC, click outside).
-- **Form Component:** Create `src/components/site/EvoluaConoscoForm.tsx`.
-  - Multi-column layout for desktop.
-  - Comprehensive validation (React Hook Form + Zod).
-  - Brazilian phone mask.
-  - Loading, Success, and Error states.
-
-### Integration
-- **Hero Section:** Update `src/components/site/Hero.tsx` to trigger the modal when "Evolua Conosco" is clicked.
-- **Site Layout:** Mount the modal at the root or main level to ensure availability.
-
-## Technical Details
-
-### Security
-- `RESEND_API_KEY` will NEVER be exposed to the client. It will be read inside the `.handler()` of `createServerFn`.
-- Input sanitization and strict type checking with Zod.
-
-### Form Fields
-1. Name (Text)
-2. Email (Email)
-3. WhatsApp (Tel + Mask)
-4. Role (Select)
-5. Company (Text)
-6. Monthly Revenue (Select)
-7. Employees (Select)
-8. Solution (Visual Selection)
-9. Challenge (Textarea)
-
-### Email Template
-- Professional HTML layout with institutional branding (Purple #5F5587).
-- Clean data presentation for quick scanning.
-
-## Verification Plan
-
-### Automated Tests
-- Run `bunx vitest` (if configured) or manual verification of validation logic.
-- Verify `createServerFn` returns correct error codes (INVALID_FORM, RATE_LIMITED, etc.).
-
-### Manual Verification
-1. Click "Evolua Conosco" -> Modal opens.
-2. Submit empty form -> Validation errors show.
-3. Fill honeypot (hidden) -> Submission rejected.
-4. Fill valid data -> "Enviando..." state shown.
-5. Successful response -> Success screen with "FECHAR" button shown.
-6. Verify console/network -> No sensitive keys leaked.
+## Ações Iniciais
+1. Criar migrações de banco de dados.
+2. Configurar o primeiro usuário administrador via dashboard do Lovable Cloud.
+3. Implementar a rota de login e layout base do admin.
