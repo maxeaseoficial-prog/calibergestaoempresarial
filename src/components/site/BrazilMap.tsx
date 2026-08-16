@@ -18,7 +18,7 @@ export function BrazilMap({ onHoverState, activeId }: BrazilMapProps) {
   
   const activeStatesSet = useMemo(() => {
     if (dbServedStates && dbServedStates.length > 0) {
-      return new Set(dbServedStates.map((s) => s.id.toUpperCase()));
+      return new Set(dbServedStates.map((s: any) => s.id.toUpperCase()));
     }
     return new Set(ACTIVE_STATES.map((s) => s.id));
   }, [dbServedStates]);
