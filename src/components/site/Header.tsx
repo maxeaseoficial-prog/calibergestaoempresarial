@@ -13,10 +13,6 @@ const NAV = [
   { label: "Clientes", to: "/", hash: "clientes" },
 ] as const;
 
-const CLIENT_AREA = [
-  { label: "Central de Recursos Cáliber", href: CONTACT.areaDoCliente },
-  { label: "Cadastro de Indicação", href: CONTACT.cadastroIndicacao },
-] as const;
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
