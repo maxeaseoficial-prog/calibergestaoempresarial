@@ -29,14 +29,11 @@ function SEOAdmin() {
   const updateMutation = useMutation({
     mutationFn: async (updatedSeo: any[]) => {
       for (const item of updatedSeo) {
-        // Cast to any to bypass strict type checking for dynamic schema fields if needed, 
-        // but seo_settings table does have title and description.
-        const { error } = await supabase
-          .from('seo_settings')
+        const { error } = await (supabase.from('seo_settings') as any)
           .update({ 
             title: item.title, 
             description: item.description 
-          } as any)
+          })
           .eq('id', item.id);
         if (error) throw error;
       }
