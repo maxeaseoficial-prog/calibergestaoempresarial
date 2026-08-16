@@ -14,6 +14,15 @@ interface BrazilMapProps {
 }
 
 export function BrazilMap({ onHoverState, activeId }: BrazilMapProps) {
+  const { data: dbServedStates } = useServedStates();
+  
+  const activeStatesSet = useMemo(() => {
+    if (dbServedStates && dbServedStates.length > 0) {
+      return new Set(dbServedStates.map((s) => s.id.toUpperCase()));
+    }
+    return new Set(ACTIVE_STATES.map((s) => s.id));
+  }, [dbServedStates]);
+
   const [hoveredState, setHoveredState] = useState<string | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isTouch, setIsTouch] = useState(false);
