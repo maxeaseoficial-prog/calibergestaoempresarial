@@ -1,4 +1,4 @@
-import { createFileRoute, redirect } from '@tanstack/react-router';
+import { createFileRoute, Link, Outlet, redirect } from '@tanstack/react-router';
 import { LayoutGrid, Users, MessageSquare, Briefcase, MapPin, Settings, LogOut, ExternalLink, Menu, X, Globe, Share2, Mail } from 'lucide-react';
 import { Logo } from '@/components/site/Logo';
 import { supabase } from '@/integrations/supabase/client';
