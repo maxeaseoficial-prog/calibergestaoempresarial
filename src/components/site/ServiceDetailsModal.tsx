@@ -14,7 +14,8 @@ const MODAL_DATA = {
     number: "01",
     icon: TrendingUp,
     title: "Controladoria Estratégica Comercial",
-    intro: "Estruturamos toda a máquina de vendas da sua empresa para que ela não dependa de você.",
+    intro: "Estruturamos toda a máquina de vendas da sua empresa para que ela não dependa de você: processos, pessoas e ferramentas, por especialistas que já estruturaram mais de 450 empresas e geraram mais de R$ 100 milhões em lucro. Assumimos a gestão estratégica e a condução comercial ao lado da diretoria, integrando os setores para escala e margem. Sua empresa vende por sistema e atinge todo o seu potencial.",
+    shortIntro: "Estruturamos toda a máquina de vendas da sua empresa para que ela não dependa de você.",
     pillars: [
       { label: "PROCESSOS", icon: Workflow },
       { label: "PESSOAS", icon: Users2 },
@@ -35,7 +36,8 @@ const MODAL_DATA = {
     number: "02",
     icon: BarChart3,
     title: "Controladoria Estratégica Financeira",
-    intro: "Estruturamos todo o seu negócio na área financeira.",
+    intro: "Estruturamos todo o seu negócio na área financeira: processos, pessoas e ferramentas, com todos os indicadores implantados. Depois assumimos a gestão estratégica financeira, econômica e patrimonial, conduzindo ao lado do dono para ampliar margem, proteger o caixa e gerar crescimento. Sua empresa passa a atingir o potencial de resultado que já existe nela.",
+    shortIntro: "Estruturamos todo o seu negócio na área financeira.",
     pillars: [
       { label: "PROCESSOS", icon: Workflow },
       { label: "PESSOAS", icon: Users2 },
@@ -58,7 +60,8 @@ const MODAL_DATA = {
     number: "03",
     icon: Users,
     title: "Conselho de Gestão Estratégica Mensal",
-    intro: "Decisões estratégicas com visão de quem já esteve dentro de mais de 450 empresas.",
+    intro: "Uma vez por mês ou por trimestre, você decide com quem já esteve dentro de mais de 450 empresas e ajudou a gerar mais de R$ 100 milhões em lucro. Trazemos visão de fora, leitura de mercado e as oportunidades que ninguém enxerga de dentro da operação. Você sai da mesa com prioridade definida, responsável e prazo.",
+    shortIntro: "Decisões estratégicas com visão de quem já esteve dentro de mais de 450 empresas.",
     frequency: "MENSAL OU TRIMESTRAL",
     steps: [
       { id: "01", title: "VISÃO DE FORA", description: "Uma leitura externa sobre o negócio." },
@@ -154,7 +157,10 @@ export function ServiceDetailsModal({ isOpen, onClose, serviceId }: ServiceDetai
                   <h2 id="modal-title" className="text-3xl md:text-4xl font-bold text-ink mb-4 leading-tight">
                     {data.title}
                   </h2>
-                  <p className="text-lg md:text-xl text-ink/70 leading-relaxed max-w-2xl">
+                  <p className="text-lg text-ink/70 leading-relaxed max-w-3xl mb-2">
+                    {data.shortIntro}
+                  </p>
+                  <p className="text-sm text-ink/50 leading-relaxed max-w-3xl italic">
                     {data.intro}
                   </p>
                 </div>

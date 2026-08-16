@@ -205,7 +205,7 @@ export function Methodology() {
                           ? "bg-purple border-purple-light/20 shadow-[0_30px_80px_rgba(95,85,135,0.4)]" 
                           : "bg-purple-deep border-purple/10 shadow-soft"
                       )}
-                      whileHover={isActive ? { 
+                      whileHover={isActive && card.id !== 4 ? { 
                         scale: 1.01,
                         boxShadow: "0 40px 90px rgba(95,85,135,0.5)",
                       } : {}}
