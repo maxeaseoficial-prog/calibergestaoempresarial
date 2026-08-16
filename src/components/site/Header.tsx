@@ -17,7 +17,7 @@ const NAV = [
 
 export function Header() {
   const { data: socialLinks } = useSocialLinks();
-  const whatsappLink = socialLinks?.find(s => s.platform === 'whatsapp')?.url || CONTACT.whatsapp;
+  const whatsappLink = socialLinks?.find(s => s.name.toLowerCase() === 'whatsapp')?.url || CONTACT.whatsapp;
   
   const [scrolled, setScrolled] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
