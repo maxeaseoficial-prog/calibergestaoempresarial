@@ -35,9 +35,9 @@ export function Footer() {
             </p>
             <div className="mt-7 flex gap-2">
               {[
-                { href: CONTACT.instagram, Icon: Instagram, label: "Instagram" },
-                { href: CONTACT.facebook, Icon: Facebook, label: "Facebook" },
-                { href: CONTACT.linkedin, Icon: Linkedin, label: "LinkedIn" },
+                { href: getSocialUrl('instagram', CONTACT.instagram), Icon: Instagram, label: "Instagram" },
+                { href: getSocialUrl('facebook', CONTACT.facebook), Icon: Facebook, label: "Facebook" },
+                { href: getSocialUrl('linkedin', CONTACT.linkedin), Icon: Linkedin, label: "LinkedIn" },
               ].map(({ href, Icon, label }) => (
                 <a
                   key={label}
