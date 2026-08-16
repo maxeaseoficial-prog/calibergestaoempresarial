@@ -3,7 +3,8 @@ import { SectionHeading } from "./SectionHeading";
 import { Logo } from "./Logo";
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect, useCallback } from "react";
-import { ChevronLeft, ChevronRight, TrendingUp, BarChart3, Users, LayoutGrid } from "lucide-react";
+import { ChevronLeft, ChevronRight, TrendingUp, BarChart3, Users, LayoutGrid, ArrowRight } from "lucide-react";
+import { ServiceDetailsModal } from "./ServiceDetailsModal";
 
 const CARDS = [
   {
@@ -40,6 +41,7 @@ const CARDS = [
 export function Methodology() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [selectedServiceId, setSelectedServiceId] = useState<number | null>(null);
 
   const next = useCallback(() => {
     setActiveIndex((current) => (current + 1) % CARDS.length);
@@ -189,7 +191,11 @@ export function Methodology() {
                       filter: { duration: 0.4 },
                     }}
                     onClick={() => {
-                      if (!isActive) handleIndicatorClick(index);
+                      if (!isActive) {
+                        handleIndicatorClick(index);
+                      } else if (card.id !== 4) {
+                        setSelectedServiceId(card.id);
+                      }
                     }}
                   >
                     <motion.div 
@@ -254,6 +260,17 @@ export function Methodology() {
                         <p className="text-white/70 text-sm md:text-base max-w-sm leading-relaxed">
                           {card.description}
                         </p>
+
+                        {isActive && card.id !== 4 && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="mt-8 flex items-center gap-2 text-white/90 text-sm font-bold tracking-widest uppercase group/btn"
+                          >
+                            <span>Ver detalhes</span>
+                            <ArrowRight className="size-4 group-hover/btn:translate-x-1 transition-transform" />
+                          </motion.div>
+                        )}
                       </div>
 
                       {/* Subtle Inner Glow */}
@@ -293,6 +310,12 @@ export function Methodology() {
           <div className="h-[1px] flex-1 bg-purple/10 max-w-[100px] hidden md:block" />
         </div>
       </div>
+
+      <ServiceDetailsModal 
+        isOpen={selectedServiceId !== null} 
+        onClose={() => setSelectedServiceId(null)} 
+        serviceId={selectedServiceId}
+      />
 
       <style>{`
         .perspective-3d {
