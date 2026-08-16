@@ -144,7 +144,7 @@ function MobileNavigation({ open, onClose }: { open: boolean; onClose: () => voi
 
 
         <CalAnchor
-          href={CONTACT.whatsapp}
+          href={whatsappLink}
           target="_blank"
           rel="noreferrer"
           variant="white"
