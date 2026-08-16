@@ -3,8 +3,18 @@ import { Header } from '@/components/site/Header'
 import { Footer } from '@/components/site/Footer'
 
 export const Route = createFileRoute('/sobre')({
+  head: ({ loaderData }) => {
+    const seo = (loaderData as any)?.seo;
+    return {
+      title: seo?.title || "Sobre a Cáliber — Eficiência em Gestão",
+      meta: [
+        { name: "description", content: seo?.description || "Conheça a história e os valores da Cáliber." },
+      ],
+    };
+  },
   component: SobreComponent,
 })
+
 
 function SobreComponent() {
   return (

@@ -6,8 +6,18 @@ import { Reveal } from '@/components/site/Reveal';
 import { Mail, Phone, MapPin, MessageSquare, Instagram, Facebook, Linkedin } from 'lucide-react';
 
 export const Route = createFileRoute('/contato')({
+  head: ({ loaderData }) => {
+    const seo = (loaderData as any)?.seo;
+    return {
+      title: seo?.title || "Contato — Cáliber",
+      meta: [
+        { name: "description", content: seo?.description || "Entre em contato conosco e transforme sua gestão." },
+      ],
+    };
+  },
   component: ContatoComponent,
 });
+
 
 function ContactCard({ 
   icon: Icon, 

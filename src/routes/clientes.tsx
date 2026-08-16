@@ -3,8 +3,18 @@ import { Header } from '@/components/site/Header'
 import { Footer } from '@/components/site/Footer'
 
 export const Route = createFileRoute('/clientes')({
+  head: ({ loaderData }) => {
+    const seo = (loaderData as any)?.seo;
+    return {
+      title: seo?.title || "Clientes — Cáliber",
+      meta: [
+        { name: "description", content: seo?.description || "Empresas que confiam na Cáliber para sua gestão." },
+      ],
+    };
+  },
   component: ClientesComponent,
 })
+
 
 function ClientesComponent() {
   return (
