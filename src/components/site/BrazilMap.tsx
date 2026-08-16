@@ -35,7 +35,7 @@ export function BrazilMap({ onHoverState, activeId }: BrazilMapProps) {
   }, []);
 
 
-  const activeStatesSet = useMemo(() => new Set(ACTIVE_STATES.map((s) => s.id)), []);
+  
 
   const handleMouseMove = (e: React.MouseEvent) => {
     setMousePos({ x: e.clientX, y: e.clientY });
