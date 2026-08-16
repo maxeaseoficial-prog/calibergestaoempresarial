@@ -5,6 +5,21 @@ import { useSocialLinks, useSiteSettings } from "@/hooks/use-site-content";
 import { Logo, LogoWatermark } from "./Logo";
 
 export function Footer() {
+  const { data: socialLinks } = useSocialLinks();
+  const { data: siteSettings } = useSiteSettings();
+
+  const getSocialUrl = (platform: string, fallback: string) => {
+    return socialLinks?.find(s => s.name.toLowerCase() === platform.toLowerCase())?.url || fallback;
+  };
+
+  const getSetting = (key: string, fallback: string) => {
+    return siteSettings?.find(s => s.key === key)?.value || fallback;
+  };
+
+  const emailAddress = getSetting('contact_email', CONTACT.emailAddress);
+  const phoneMT = getSetting('contact_phone_mt', CONTACT.phoneMT);
+  const phonePR = getSetting('contact_phone_pr', CONTACT.phonePR);
+
   return (
     <footer className="relative overflow-hidden bg-night text-white">
 
