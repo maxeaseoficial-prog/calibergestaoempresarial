@@ -1,4 +1,4 @@
-import { createFileRoute, Link, Outlet, useNavigate } from '@tanstack/react-router';
+import { createFileRoute, redirect } from '@tanstack/react-router';
 import { LayoutGrid, Users, MessageSquare, Briefcase, MapPin, Settings, LogOut, ExternalLink, Menu, X, Globe, Share2, Mail } from 'lucide-react';
 import { Logo } from '@/components/site/Logo';
 import { supabase } from '@/integrations/supabase/client';
@@ -6,16 +6,44 @@ import { useState } from 'react';
 import { cn } from '@/lib/utils';
 
 export const Route = createFileRoute('/admin/_admin')({
+  beforeLoad: async ({ location }) => {
+    const { data: { session } } = await supabase.auth.getSession();
+    
+    if (!session) {
+      throw redirect({
+        to: '/admin/login' as any,
+        search: {
+          redirect: location.href,
+        } as any,
+      });
+    }
+
+    const { data: hasAdminRole, error } = await supabase.rpc('has_role', {
+      _user_id: session.user.id,
+      _role: 'admin' as any
+    });
+
+    if (error || !hasAdminRole) {
+      await supabase.auth.signOut();
+      throw redirect({
+        to: '/admin/login' as any,
+        search: {
+          error: 'unauthorized'
+        } as any,
+      });
+    }
+  },
   component: AdminLayout,
 });
 
 function AdminLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const navigate = useNavigate();
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   const handleLogout = async () => {
+    setIsLoggingOut(true);
     await supabase.auth.signOut();
-    navigate({ to: '/admin/login' as any });
+    window.location.href = '/admin/login';
   };
 
   const menuGroups = [
@@ -102,7 +130,8 @@ function AdminLayout() {
         <div className="p-4 border-t border-purple/10">
           <button 
             onClick={handleLogout}
-            className="flex w-full items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-red-500 hover:bg-red-50 transition-all cursor-pointer"
+            disabled={isLoggingOut}
+            className="flex w-full items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-red-500 hover:bg-red-50 transition-all cursor-pointer disabled:opacity-50"
           >
             <LogOut className="size-5" />
             Sair
@@ -120,7 +149,7 @@ function AdminLayout() {
             >
               <Menu className="size-5 text-ink" />
             </button>
-            <h2 className="text-lg font-bold text-ink tracking-tight">Dashboard</h2>
+            <h2 className="text-lg font-bold text-ink tracking-tight">Painel de Controle</h2>
           </div>
           
           <div className="flex items-center gap-4">
