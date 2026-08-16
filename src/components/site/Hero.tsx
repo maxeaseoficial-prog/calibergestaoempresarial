@@ -104,7 +104,7 @@ export function Hero() {
             <CalAnchor href={CONTACT.whatsapp} target="_blank" rel="noreferrer" className="px-10 py-5 text-lg">
               Evolua Conosco
             </CalAnchor>
-            <CalLink to="/sobre" variant="outline" arrow={false} className="px-10 py-5 text-lg border-white text-white hover:bg-white hover:text-black">
+            <CalLink to="/" hash="atuacao" variant="outline" arrow={false} className="px-10 py-5 text-lg border-white text-white hover:bg-white hover:text-black">
               Conheça a Cáliber
             </CalLink>
           </div>
