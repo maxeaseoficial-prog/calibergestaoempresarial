@@ -1,4 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useSeoSettings } from "@/hooks/use-seo";
+
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Hero } from "@/components/site/Hero";
@@ -17,8 +19,11 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const { data: seo } = useSeoSettings('/');
+
   return (
     <div className="flex min-h-screen flex-col">
+
       <Header />
       <main>
         <Hero />
