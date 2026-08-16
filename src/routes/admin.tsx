@@ -3,7 +3,10 @@ import { supabase } from '@/integrations/supabase/client';
 
 export const Route = createFileRoute('/admin')({
   beforeLoad: async ({ location }) => {
+    if (location.pathname === '/admin/login') return;
+
     const { data: { session } } = await supabase.auth.getSession();
+
     
     if (!session) {
       throw redirect({
