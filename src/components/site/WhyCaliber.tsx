@@ -2,9 +2,14 @@ import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
 import { LogoWatermark } from "./Logo";
 import { CONTACT } from "@/lib/site-data";
+import { useSiteSettings } from "@/hooks/use-site-content";
 import { Headset } from "lucide-react";
 
 export function WhyCaliber() {
+  const { data: siteSettings } = useSiteSettings();
+  const phoneMT = siteSettings?.find(s => s.key === 'contact_phone_mt')?.value || CONTACT.phoneMT;
+  const phoneMTHref = `tel:${phoneMT.replace(/\D/g, '')}`;
+
   return (
     <section className="relative overflow-hidden bg-purple-deep py-24 text-white lg:py-32">
       <LogoWatermark className="top-1/2 right-[-10%] h-[70%] w-[70%] -translate-y-1/2 opacity-[0.05] text-white" />
@@ -24,8 +29,8 @@ export function WhyCaliber() {
             </div>
             <div>
               <p className="text-xs font-bold tracking-widest text-white/50 uppercase">Central de Atendimento</p>
-              <a href={CONTACT.phoneMTHref} className="mt-1 block text-2xl font-black transition-colors hover:text-purple-light lg:text-3xl">
-                {CONTACT.phoneMT}
+              <a href={phoneMTHref} className="mt-1 block text-2xl font-black transition-colors hover:text-purple-light lg:text-3xl">
+                {phoneMT}
               </a>
             </div>
           </Reveal>
