@@ -1,4 +1,4 @@
-import { createFileRoute, Link, Outlet } from '@tanstack/react-router';
+import { createFileRoute, Link, Outlet, redirect } from '@tanstack/react-router';
 import { LayoutGrid, Users, MessageSquare, Briefcase, MapPin, Settings, LogOut, ExternalLink, Menu, X, Globe, Share2, Mail } from 'lucide-react';
 import { Logo } from '@/components/site/Logo';
 import { supabase } from '@/integrations/supabase/client';
@@ -6,6 +6,39 @@ import { useState } from 'react';
 import { cn } from '@/lib/utils';
 
 export const Route = createFileRoute('/admin/_admin')({
+  beforeLoad: async ({ location }) => {
+    // Only redirect to login if NOT already on the login page
+    // tanstack router location.pathname might be normalized
+    const isLoginPage = location.pathname.includes('/admin/login');
+    
+    if (isLoginPage) return;
+
+    const { data: { session } } = await supabase.auth.getSession();
+    
+    if (!session) {
+      throw redirect({
+        to: '/admin/login' as any,
+        search: {
+          redirect: location.href,
+        } as any,
+      });
+    }
+
+    const { data: hasAdminRole, error } = await supabase.rpc('has_role', {
+      _user_id: session.user.id,
+      _role: 'admin' as any
+    });
+
+    if (error || !hasAdminRole) {
+      await supabase.auth.signOut();
+      throw redirect({
+        to: '/admin/login' as any,
+        search: {
+          error: 'unauthorized'
+        } as any,
+      });
+    }
+  },
   component: AdminLayout,
 });
 
