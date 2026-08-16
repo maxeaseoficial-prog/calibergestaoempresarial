@@ -15,8 +15,20 @@ import { NationalPresence } from "@/components/site/NationalPresence";
 import { ContactCTA } from "@/components/site/ContactCTA";
 
 export const Route = createFileRoute("/")({
+  head: ({ loaderData }) => {
+    const seo = (loaderData as any)?.seo;
+    return {
+      title: seo?.title || "Cáliber — Eficiência em Gestão Empresarial",
+      meta: [
+        { name: "description", content: seo?.description || "Consultoria estratégica premium para transformar sua gestão e resultados." },
+        { property: "og:title", content: seo?.title || "Cáliber — Eficiência em Gestão Empresarial" },
+        { property: "og:description", content: seo?.description || "Consultoria estratégica premium para transformar sua gestão e resultados." },
+      ],
+    };
+  },
   component: Index,
 });
+
 
 function Index() {
   const { data: seo } = useSeoSettings('/');
