@@ -1,32 +1,71 @@
-# Plano de Implementação - Modal de Detalhes dos Serviços
+# Implementation Plan - "Evolua Conosco" Flow
 
-Adicionar uma experiência de modal premium para detalhamento dos serviços ao clicar no card ativo da seção "Nossas Soluções" (Methodology), mantendo a integridade do carrossel atual.
+Implement the complete lead generation flow for the "Evolua Conosco" button, including a premium modal, validated form, and real server-side email delivery via Resend.
 
-## Alterações Técnicas
+## User Review Required
 
-### 1. Novo Componente de Modal
-- Criar `src/components/site/ServiceDetailsModal.tsx` utilizando `motion/react` para animações.
-- **Estrutura**: Backdrop com desfoque (8px), container centralizado com largura de 850px-1000px (desktop) e responsivo.
-- **Animações**: Opacidade (0 -> 1), escala (0.96 -> 1), e translação vertical (15px -> 0) com easing `cubic-bezier(0.22, 1, 0.36, 1)`.
-- **Funcionalidades**: Botão fechar (X), fechar ao clicar fora, fechar com ESC, bloqueio de scroll do body.
+> [!IMPORTANT]
+> The `RESEND_API_KEY` and `RESEND_FROM_EMAIL` (if a custom domain is verified) must be configured in the project's environment variables (server-side secrets) for real delivery to work.
 
-### 2. Integração no Carrossel (`Methodology.tsx`)
-- Adicionar estado `selectedServiceId` para controlar qual modal está aberto.
-- Modificar o `onClick` do card para que, se `isActive` for verdadeiro, abra o modal em vez de apenas centralizar (o comportamento de centralizar cards laterais será mantido).
-- Adicionar indicação visual "Ver detalhes →" no hover do card ativo (desktop).
-- Inserir o componente `ServiceDetailsModal` no final do JSX da seção.
+- **Recipient:** leonardo.froese@gmail.com (Fixed server-side).
+- **Reply-To:** Visitor's email.
+- **Security:** Honeypot, Rate Limiting (server-side), and Form Validation.
 
-### 3. Conteúdo dos Modais
-- **01 - Comercial**: Introdução, pilares (Processos, Pessoas, Ferramentas), sequência visual de 4 etapas, bloco de autoridade (+450 empresas, +R$ 100M lucro).
-- **02 - Financeira**: Introdução, pilares (Processos, Pessoas, Ferramentas, Indicadores), sequência visual de 4 etapas, destaques de resultados.
-- **03 - Conselho**: Introdução, frequência (Mensal/Trimestral), sequência visual de 4 etapas, bloco de autoridade, e bloco final (Prioridade, Responsável, Prazo).
-- **04 - Cáliber COR**: Sem modal (preparado tecnicamente, mas desativado).
+## Proposed Changes
 
-## Design e Identidade
-- Reutilizar tokens de cor: `--caliber-purple`, `--caliber-purple-deep`, `--caliber-text`.
-- Tipografia: Manrope (padrão do site).
-- Ícones: Lucide (já instalada).
+### Backend (Server Logic)
+- **Email Service:** Create `src/lib/email.server.ts` to handle Resend configuration and email templates.
+- **Server Function:** Create `src/lib/leads.functions.ts` using `createServerFn` to process lead submissions.
+  - Implement validation (Zod).
+  - Implement basic Rate Limiting (using a simple in-memory store or project-specific cache if available).
+  - Implement Honeypot check.
+  - Send email via Resend.
 
-## Arquivos Afetados
-- `src/components/site/Methodology.tsx` (Integração e gatilhos).
-- `src/components/site/ServiceDetailsModal.tsx` (Novo componente).
+### Frontend (Components)
+- **Modal Component:** Create `src/components/site/EvoluaConoscoModal.tsx`.
+  - Premium design with backdrop blur and smooth animations.
+  - Focus trap and accessibility features (ESC, click outside).
+- **Form Component:** Create `src/components/site/EvoluaConoscoForm.tsx`.
+  - Multi-column layout for desktop.
+  - Comprehensive validation (React Hook Form + Zod).
+  - Brazilian phone mask.
+  - Loading, Success, and Error states.
+
+### Integration
+- **Hero Section:** Update `src/components/site/Hero.tsx` to trigger the modal when "Evolua Conosco" is clicked.
+- **Site Layout:** Mount the modal at the root or main level to ensure availability.
+
+## Technical Details
+
+### Security
+- `RESEND_API_KEY` will NEVER be exposed to the client. It will be read inside the `.handler()` of `createServerFn`.
+- Input sanitization and strict type checking with Zod.
+
+### Form Fields
+1. Name (Text)
+2. Email (Email)
+3. WhatsApp (Tel + Mask)
+4. Role (Select)
+5. Company (Text)
+6. Monthly Revenue (Select)
+7. Employees (Select)
+8. Solution (Visual Selection)
+9. Challenge (Textarea)
+
+### Email Template
+- Professional HTML layout with institutional branding (Purple #5F5587).
+- Clean data presentation for quick scanning.
+
+## Verification Plan
+
+### Automated Tests
+- Run `bunx vitest` (if configured) or manual verification of validation logic.
+- Verify `createServerFn` returns correct error codes (INVALID_FORM, RATE_LIMITED, etc.).
+
+### Manual Verification
+1. Click "Evolua Conosco" -> Modal opens.
+2. Submit empty form -> Validation errors show.
+3. Fill honeypot (hidden) -> Submission rejected.
+4. Fill valid data -> "Enviando..." state shown.
+5. Successful response -> Success screen with "FECHAR" button shown.
+6. Verify console/network -> No sensitive keys leaked.
