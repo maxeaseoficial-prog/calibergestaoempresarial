@@ -5,8 +5,8 @@ export function useSeoSettings(path: string) {
   return useQuery({
     queryKey: ['seo', path],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from('seo_settings')
+      // Use any to bypass strict type checking for dynamic schema fields
+      const { data, error } = await (supabase.from('seo_settings') as any)
         .select('*')
         .eq('page_path', path)
         .single();
