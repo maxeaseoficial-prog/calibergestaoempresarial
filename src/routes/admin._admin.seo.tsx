@@ -29,6 +29,9 @@ function SEOAdmin() {
   const updateMutation = useMutation({
     mutationFn: async (updatedSeo: any[]) => {
       for (const item of updatedSeo) {
+        // Correct fields for site_settings table based on schema (key/value)
+        // Note: seo_settings uses title/description but build error suggests it might be treated as site_settings or there's a type mismatch.
+        // Let's verify seo_settings schema: it has title and description.
         const { error } = await supabase
           .from('seo_settings')
           .update({ 
@@ -61,7 +64,7 @@ function SEOAdmin() {
         </div>
         <button 
           onClick={() => updateMutation.mutate(seoData)}
-          className="flex items-center gap-2 bg-purple text-white px-8 py-3 rounded-xl font-bold text-sm hover:shadow-lift transition-all"
+          className="flex items-center gap-2 bg-purple text-white px-8 py-3 rounded-xl font-bold text-sm hover:shadow-lift transition-all cursor-pointer"
         >
           <Save className="size-4" />
           SALVAR SEO
@@ -87,7 +90,7 @@ function SEOAdmin() {
                 <input 
                   type="text" 
                   className="w-full h-12 px-4 rounded-xl border border-purple/10 outline-none focus:ring-2 focus:ring-purple/20"
-                  value={item.title}
+                  value={item.title || ''}
                   onChange={e => updateField(item.id, 'title', e.target.value)}
                 />
               </div>
@@ -95,13 +98,12 @@ function SEOAdmin() {
                 <label className="text-[10px] font-bold text-ink/60 uppercase">Descrição (Meta Description)</label>
                 <textarea 
                   className="w-full p-4 min-h-[100px] rounded-xl border border-purple/10 outline-none focus:ring-2 focus:ring-purple/20 resize-none"
-                  value={item.description}
+                  value={item.description || ''}
                   onChange={e => updateField(item.id, 'description', e.target.value)}
                 />
               </div>
             </div>
 
-            {/* Google Preview Simulation */}
             <div className="mt-8 p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
               <p className="text-[10px] font-bold text-slate-400 uppercase mb-2">Prévia no Google</p>
               <p className="text-xl text-[#1a0dab] font-medium hover:underline cursor-pointer line-clamp-1">{item.title}</p>
