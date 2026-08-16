@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
-import { Plus, Trash2, Loader2, Edit3 } from 'lucide-react';
+import { Plus, Trash2, Loader2 } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
@@ -13,10 +13,10 @@ function TestimonialsAdmin() {
   const queryClient = useQueryClient();
   const [isAdding, setIsAdding] = useState(false);
   const [newTestimonial, setNewTestimonial] = useState({ 
-    author_name: '', 
-    author_role: '', 
-    content: '', 
-    rating: 5 
+    name: '', 
+    role: '', 
+    quote: '', 
+    stars: 5 
   });
 
   const { data: testimonials, isLoading } = useQuery({
@@ -46,7 +46,7 @@ function TestimonialsAdmin() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['admin', 'testimonials'] });
       setIsAdding(false);
-      setNewTestimonial({ author_name: '', author_role: '', content: '', rating: 5 });
+      setNewTestimonial({ name: '', role: '', quote: '', stars: 5 });
       toast.success('Depoimento adicionado!');
     },
     onError: (error: any) => toast.error(error.message)
@@ -89,8 +89,8 @@ function TestimonialsAdmin() {
               <input 
                 type="text" 
                 className="h-12 w-full px-4 rounded-xl border border-purple/10 outline-none focus:ring-2 focus:ring-purple/20"
-                value={newTestimonial.author_name}
-                onChange={e => setNewTestimonial({...newTestimonial, author_name: e.target.value})}
+                value={newTestimonial.name}
+                onChange={e => setNewTestimonial({...newTestimonial, name: e.target.value})}
               />
             </div>
             <div className="space-y-1">
@@ -98,8 +98,8 @@ function TestimonialsAdmin() {
               <input 
                 type="text" 
                 className="h-12 w-full px-4 rounded-xl border border-purple/10 outline-none focus:ring-2 focus:ring-purple/20"
-                value={newTestimonial.author_role}
-                onChange={e => setNewTestimonial({...newTestimonial, author_role: e.target.value})}
+                value={newTestimonial.role}
+                onChange={e => setNewTestimonial({...newTestimonial, role: e.target.value})}
               />
             </div>
           </div>
@@ -107,15 +107,15 @@ function TestimonialsAdmin() {
             <label className="text-[10px] font-bold text-ink/40 uppercase">Conteúdo do Depoimento</label>
             <textarea 
               className="w-full p-4 min-h-[120px] rounded-xl border border-purple/10 outline-none focus:ring-2 focus:ring-purple/20 resize-none"
-              value={newTestimonial.content}
-              onChange={e => setNewTestimonial({...newTestimonial, content: e.target.value})}
+              value={newTestimonial.quote}
+              onChange={e => setNewTestimonial({...newTestimonial, quote: e.target.value})}
             />
           </div>
           <div className="flex justify-end gap-3 pt-4">
             <button onClick={() => setIsAdding(false)} className="px-6 py-2 text-sm font-bold text-ink/40">CANCELAR</button>
             <button 
               onClick={() => addMutation.mutate(newTestimonial)}
-              disabled={!newTestimonial.author_name || !newTestimonial.content || addMutation.isPending}
+              disabled={!newTestimonial.name || !newTestimonial.quote || addMutation.isPending}
               className="bg-purple text-white px-10 py-2 rounded-xl font-bold text-sm disabled:opacity-50"
             >
               {addMutation.isPending ? <Loader2 className="size-4 animate-spin" /> : "PUBLICAR"}
@@ -129,13 +129,13 @@ function TestimonialsAdmin() {
           <div key={t.id} className="bg-white p-8 rounded-[2rem] border border-purple/5 shadow-soft hover:border-purple/20 transition-all relative group">
             <div className="flex gap-1 mb-4">
               {[...Array(5)].map((_, i) => (
-                <span key={i} className={i < t.rating ? "text-amber-400" : "text-slate-200"}>★</span>
+                <span key={i} className={i < (t.stars || 0) ? "text-amber-400" : "text-slate-200"}>★</span>
               ))}
             </div>
-            <p className="text-ink/80 italic leading-relaxed mb-6">"{t.content}"</p>
+            <p className="text-ink/80 italic leading-relaxed mb-6">"{t.quote}"</p>
             <div>
-              <p className="font-bold text-ink">{t.author_name}</p>
-              <p className="text-xs text-ink/40 font-bold uppercase tracking-wider mt-1">{t.author_role}</p>
+              <p className="font-bold text-ink">{t.name}</p>
+              <p className="text-xs text-ink/40 font-bold uppercase tracking-wider mt-1">{t.role}</p>
             </div>
             
             <button 

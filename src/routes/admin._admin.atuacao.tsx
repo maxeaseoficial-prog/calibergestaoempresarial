@@ -36,12 +36,18 @@ function PresenceAdmin() {
 
   const updateMutation = useMutation({
     mutationFn: async (newStates: string[]) => {
-      // Simplistic approach: delete all and re-insert
-      // In a real app, you'd diff or use is_active flag
-      await supabase.from('served_states').delete().neq('id', 'DEBUG');
-      const inserts = newStates.map(st => ({ id: st, is_active: true }));
-      const { error } = await supabase.from('served_states').insert(inserts);
-      if (error) throw error;
+      // First, delete current records (except debug or non-existent)
+      const { error: deleteError } = await supabase.from('served_states').delete().neq('id', 'DEBUG');
+      if (deleteError) throw deleteError;
+      
+      const inserts = newStates.map(st => ({ 
+        id: st, 
+        name: st, // Required field in schema
+        is_active: true 
+      }));
+      
+      const { error: insertError } = await supabase.from('served_states').insert(inserts);
+      if (insertError) throw insertError;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['admin', 'served-states'] });
@@ -68,7 +74,7 @@ function PresenceAdmin() {
         <button 
           onClick={() => updateMutation.mutate(selectedStates)}
           disabled={updateMutation.isPending}
-          className="flex items-center gap-2 bg-purple text-white px-8 py-3 rounded-xl font-bold text-sm hover:shadow-lift transition-all"
+          className="flex items-center gap-2 bg-purple text-white px-8 py-3 rounded-xl font-bold text-sm hover:shadow-lift transition-all cursor-pointer"
         >
           {updateMutation.isPending ? <Loader2 className="size-4 animate-spin" /> : <Save className="size-4" />}
           SALVAR ALTERAÇÕES
