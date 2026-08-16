@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { CONTACT } from "@/lib/site-data";
+import { useSocialLinks } from "@/hooks/use-site-content";
 import { Logo } from "./Logo";
 import { CalAnchor } from "./CalButton";
 
