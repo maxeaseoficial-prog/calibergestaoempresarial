@@ -3,10 +3,12 @@ import { supabase } from '@/integrations/supabase/client';
 
 export const Route = createFileRoute('/admin')({
   beforeLoad: async ({ location }) => {
-    if (location.pathname === '/admin/login') return;
+    // Avoid redirect loop when already on login
+    if (location.pathname === '/admin/login') {
+      return;
+    }
 
     const { data: { session } } = await supabase.auth.getSession();
-
     
     if (!session) {
       throw redirect({
@@ -17,12 +19,14 @@ export const Route = createFileRoute('/admin')({
       });
     }
 
+    // Role check
     const { data: hasAdminRole, error } = await supabase.rpc('has_role', {
       _user_id: session.user.id,
       _role: 'admin' as any
     });
 
     if (error || !hasAdminRole) {
+      // If they are logged in but not admin, sign them out and send to login
       await supabase.auth.signOut();
       throw redirect({
         to: '/admin/login' as any,
