@@ -1,9 +1,25 @@
 import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Linkedin, Mail, Phone } from "lucide-react";
 import { CONTACT, OFFICES } from "@/lib/site-data";
+import { useSocialLinks, useSiteSettings } from "@/hooks/use-site-content";
 import { Logo, LogoWatermark } from "./Logo";
 
 export function Footer() {
+  const { data: socialLinks } = useSocialLinks();
+  const { data: siteSettings } = useSiteSettings();
+
+  const getSocialUrl = (platform: string, fallback: string) => {
+    return socialLinks?.find(s => s.name.toLowerCase() === platform.toLowerCase())?.url || fallback;
+  };
+
+  const getSetting = (key: string, fallback: string) => {
+    return siteSettings?.find(s => s.key === key)?.value || fallback;
+  };
+
+  const emailAddress = getSetting('contact_email', CONTACT.emailAddress);
+  const phoneMT = getSetting('contact_phone_mt', CONTACT.phoneMT);
+  const phonePR = getSetting('contact_phone_pr', CONTACT.phonePR);
+
   return (
     <footer className="relative overflow-hidden bg-night text-white">
 
@@ -19,9 +35,9 @@ export function Footer() {
             </p>
             <div className="mt-7 flex gap-2">
               {[
-                { href: CONTACT.instagram, Icon: Instagram, label: "Instagram" },
-                { href: CONTACT.facebook, Icon: Facebook, label: "Facebook" },
-                { href: CONTACT.linkedin, Icon: Linkedin, label: "LinkedIn" },
+                { href: getSocialUrl('instagram', CONTACT.instagram), Icon: Instagram, label: "Instagram" },
+                { href: getSocialUrl('facebook', CONTACT.facebook), Icon: Facebook, label: "Facebook" },
+                { href: getSocialUrl('linkedin', CONTACT.linkedin), Icon: Linkedin, label: "LinkedIn" },
               ].map(({ href, Icon, label }) => (
                 <a
                   key={label}
@@ -70,29 +86,29 @@ export function Footer() {
             <ul className="mt-5 space-y-3 text-sm text-white/65">
               <li>
                 <a
-                  href={CONTACT.emailHref}
+                  href={`mailto:${emailAddress}`}
                   className="inline-flex items-center gap-2 transition-colors hover:text-white"
                 >
                   <Mail className="size-4 shrink-0" aria-hidden="true" />
-                  {CONTACT.emailAddress}
+                  {emailAddress}
                 </a>
               </li>
               <li>
                 <a
-                  href={CONTACT.phoneMTHref}
+                  href={`tel:${phoneMT.replace(/\D/g, '')}`}
                   className="inline-flex items-center gap-2 tabular transition-colors hover:text-white"
                 >
                   <Phone className="size-4 shrink-0" aria-hidden="true" />
-                  {CONTACT.phoneMT}
+                  {phoneMT}
                 </a>
               </li>
               <li>
                 <a
-                  href={CONTACT.phonePRHref}
+                  href={`tel:${phonePR.replace(/\D/g, '')}`}
                   className="inline-flex items-center gap-2 tabular transition-colors hover:text-white"
                 >
                   <Phone className="size-4 shrink-0" aria-hidden="true" />
-                  {CONTACT.phonePR}
+                  {phonePR}
                 </a>
               </li>
             </ul>

@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { CONTACT } from "@/lib/site-data";
+import { useSocialLinks } from "@/hooks/use-site-content";
 import { Logo } from "./Logo";
 import { CalAnchor } from "./CalButton";
 
@@ -15,6 +16,9 @@ const NAV = [
 
 
 export function Header() {
+  const { data: socialLinks } = useSocialLinks();
+  const whatsappLink = socialLinks?.find(s => s.name.toLowerCase() === 'whatsapp')?.url || CONTACT.whatsapp;
+  
   const [scrolled, setScrolled] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
 
@@ -78,7 +82,7 @@ export function Header() {
 
         <div className="flex items-center justify-end gap-2">
           <CalAnchor
-            href={CONTACT.whatsapp}
+            href={whatsappLink}
             target="_blank"
             rel="noreferrer"
             className="hidden text-xs lg:inline-flex"
@@ -102,6 +106,9 @@ export function Header() {
 }
 
 function MobileNavigation({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const { data: socialLinks } = useSocialLinks();
+  const whatsappLink = socialLinks?.find(s => s.name.toLowerCase() === 'whatsapp')?.url || CONTACT.whatsapp;
+
   if (!open) return null;
   return (
     <div className="fixed inset-0 z-50 flex flex-col bg-purple-dark text-white lg:hidden">
@@ -137,7 +144,7 @@ function MobileNavigation({ open, onClose }: { open: boolean; onClose: () => voi
 
 
         <CalAnchor
-          href={CONTACT.whatsapp}
+          href={whatsappLink}
           target="_blank"
           rel="noreferrer"
           variant="white"
