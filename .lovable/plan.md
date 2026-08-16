@@ -1,21 +1,32 @@
-# Redesign da Seção de Metodologia (Soluções)
+# Plano de Implementação - Modal de Detalhes dos Serviços
 
-Reconstrução da seção "Como tornamos sua empresa mais eficiente?" como um carrossel 3D premium com cards programáticos (HTML/CSS), removendo a dependência de imagens estáticas.
+Adicionar uma experiência de modal premium para detalhamento dos serviços ao clicar no card ativo da seção "Nossas Soluções" (Methodology), mantendo a integridade do carrossel atual.
 
-## Ações Realizadas
+## Alterações Técnicas
 
-- [x] Identificar tokens de design (cores, tipografia) no `src/styles.css`.
-- [x] Redefinir os dados dos serviços em `Methodology.tsx` seguindo o novo briefing.
-- [x] Reconstruir o componente `ServiceCard` usando Tailwind e Lucide Icons.
-- [x] Implementar a lógica de profundidade 3D real com `framer-motion` (perspective, translateZ, scale, blur).
-- [x] Reposicionar as setas de navegação para as laterais do palco dos cards.
-- [x] Refinar indicadores inferiores (bullets).
-- [x] Garantir responsividade e interatividade (hover, swipe mobile).
+### 1. Novo Componente de Modal
+- Criar `src/components/site/ServiceDetailsModal.tsx` utilizando `motion/react` para animações.
+- **Estrutura**: Backdrop com desfoque (8px), container centralizado com largura de 850px-1000px (desktop) e responsivo.
+- **Animações**: Opacidade (0 -> 1), escala (0.96 -> 1), e translação vertical (15px -> 0) com easing `cubic-bezier(0.22, 1, 0.36, 1)`.
+- **Funcionalidades**: Botão fechar (X), fechar ao clicar fora, fechar com ESC, bloqueio de scroll do body.
 
-## Detalhes Técnicos
+### 2. Integração no Carrossel (`Methodology.tsx`)
+- Adicionar estado `selectedServiceId` para controlar qual modal está aberto.
+- Modificar o `onClick` do card para que, se `isActive` for verdadeiro, abra o modal em vez de apenas centralizar (o comportamento de centralizar cards laterais será mantido).
+- Adicionar indicação visual "Ver detalhes →" no hover do card ativo (desktop).
+- Inserir o componente `ServiceDetailsModal` no final do JSX da seção.
 
-- **Cores**: Roxo oficial (`#5F5587`) e variações profundas.
-- **Transições**: `cubic-bezier(0.22, 1, 0.36, 1)` com duração de 650ms.
-- **Profundidade**: Perspective de 1400px com deslocamento em Z e desfoque progressivo.
-- **Ícones**: Lucide Icons integrados para cada categoria.
-- **Cards**: Estrutura semântica HTML (Número > Ícone > Título > Descrição).
+### 3. Conteúdo dos Modais
+- **01 - Comercial**: Introdução, pilares (Processos, Pessoas, Ferramentas), sequência visual de 4 etapas, bloco de autoridade (+450 empresas, +R$ 100M lucro).
+- **02 - Financeira**: Introdução, pilares (Processos, Pessoas, Ferramentas, Indicadores), sequência visual de 4 etapas, destaques de resultados.
+- **03 - Conselho**: Introdução, frequência (Mensal/Trimestral), sequência visual de 4 etapas, bloco de autoridade, e bloco final (Prioridade, Responsável, Prazo).
+- **04 - Cáliber COR**: Sem modal (preparado tecnicamente, mas desativado).
+
+## Design e Identidade
+- Reutilizar tokens de cor: `--caliber-purple`, `--caliber-purple-deep`, `--caliber-text`.
+- Tipografia: Manrope (padrão do site).
+- Ícones: Lucide (já instalada).
+
+## Arquivos Afetados
+- `src/components/site/Methodology.tsx` (Integração e gatilhos).
+- `src/components/site/ServiceDetailsModal.tsx` (Novo componente).
