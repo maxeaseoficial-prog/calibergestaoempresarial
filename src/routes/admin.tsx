@@ -1,4 +1,4 @@
-import { createFileRoute, redirect } from '@tanstack/react-router';
+import { createFileRoute, Outlet, redirect } from '@tanstack/react-router';
 import { supabase } from '@/integrations/supabase/client';
 
 export const Route = createFileRoute('/admin')({
@@ -7,29 +7,27 @@ export const Route = createFileRoute('/admin')({
     
     if (!session) {
       throw redirect({
-        to: '/admin/login',
+        to: '/admin/login' as any,
         search: {
           redirect: location.href,
-        },
+        } as any,
       });
     }
 
-    // Verify if user has 'admin' role
     const { data: hasAdminRole, error } = await supabase.rpc('has_role', {
       _user_id: session.user.id,
-      _role: 'admin'
+      _role: 'admin' as any
     });
 
     if (error || !hasAdminRole) {
-      // If not admin, sign out and redirect to login
       await supabase.auth.signOut();
       throw redirect({
-        to: '/admin/login',
+        to: '/admin/login' as any,
         search: {
-          redirect: location.href,
           error: 'unauthorized'
-        },
+        } as any,
       });
     }
   },
+  component: () => <Outlet />,
 });
