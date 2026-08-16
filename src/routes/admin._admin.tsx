@@ -7,12 +7,6 @@ import { cn } from '@/lib/utils';
 
 export const Route = createFileRoute('/admin/_admin')({
   beforeLoad: async ({ location }) => {
-    // Only redirect to login if NOT already on the login page
-    // tanstack router location.pathname might be normalized
-    const isLoginPage = location.pathname.includes('/admin/login');
-    
-    if (isLoginPage) return;
-
     const { data: { session } } = await supabase.auth.getSession();
     
     if (!session) {
