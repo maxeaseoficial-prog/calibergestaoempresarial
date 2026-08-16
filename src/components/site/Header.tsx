@@ -32,21 +32,6 @@ export function Header() {
     };
   }, [openMenu]);
 
-  useEffect(() => {
-    if (!openDropdown) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpenDropdown(false);
-    };
-    const onClick = (e: MouseEvent) => {
-      if (!dropdownRef.current?.contains(e.target as Node)) setOpenDropdown(false);
-    };
-    document.addEventListener("keydown", onKey);
-    document.addEventListener("mousedown", onClick);
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.removeEventListener("mousedown", onClick);
-    };
-  }, [openDropdown]);
 
   return (
     <header
