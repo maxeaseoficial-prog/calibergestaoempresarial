@@ -2,9 +2,11 @@ import { cn } from "@/lib/utils";
 import { SectionHeading } from "./SectionHeading";
 import { Logo } from "./Logo";
 import { motion, AnimatePresence } from "motion/react";
-import { useState, useEffect, useCallback } from "react";
-import { ChevronLeft, ChevronRight, TrendingUp, BarChart3, Users, LayoutGrid, ArrowRight } from "lucide-react";
+import { useState, useEffect, useCallback, useMemo } from "react";
+import { ChevronLeft, ChevronRight, TrendingUp, BarChart3, Users, LayoutGrid, ArrowRight, Briefcase } from "lucide-react";
 import { ServiceDetailsModal } from "./ServiceDetailsModal";
+import { useServices } from "@/hooks/use-site-content";
+
 
 const CARDS = [
   {
@@ -39,17 +41,36 @@ const CARDS = [
 ];
 
 export function Methodology() {
+  const { data: dbServices } = useServices();
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [selectedServiceId, setSelectedServiceId] = useState<number | null>(null);
 
+  const services = useMemo(() => {
+    if (dbServices && dbServices.length > 0) {
+      return dbServices.map(s => ({
+        id: parseInt(s.id) || Math.random(),
+        number: s.sort_order ? s.sort_order.toString().padStart(2, '0') : '',
+        title: [s.title],
+        description: s.short_description || '',
+        icon: s.icon_name === 'TrendingUp' ? TrendingUp : 
+              s.icon_name === 'BarChart3' ? BarChart3 :
+              s.icon_name === 'Users' ? Users : Briefcase,
+        subtitle: s.subtitle || undefined
+      }));
+    }
+    return CARDS;
+  }, [dbServices]);
+
+
   const next = useCallback(() => {
-    setActiveIndex((current) => (current + 1) % CARDS.length);
-  }, []);
+    setActiveIndex((current) => (current + 1) % services.length);
+  }, [services.length]);
 
   const prev = useCallback(() => {
-    setActiveIndex((current) => (current - 1 + CARDS.length) % CARDS.length);
-  }, []);
+    setActiveIndex((current) => (current - 1 + services.length) % services.length);
+  }, [services.length]);
+
 
   useEffect(() => {
     if (!isAutoPlaying) return;
@@ -115,10 +136,11 @@ export function Methodology() {
           {/* Cards Stage */}
           <div className="flex justify-center items-center h-[450px] sm:h-[500px] md:h-[600px] relative perspective-3d touch-pan-y">
             <AnimatePresence mode="wait">
-              {CARDS.map((card, index) => {
-                const relativeIndex = (index - activeIndex + CARDS.length) % CARDS.length;
+              {services.map((card, index) => {
+                const relativeIndex = (index - activeIndex + services.length) % services.length;
                 let position = relativeIndex;
-                if (position > CARDS.length / 2) position -= CARDS.length;
+                if (position > services.length / 2) position -= services.length;
+
 
                 const isActive = position === 0;
                 
@@ -286,7 +308,7 @@ export function Methodology() {
 
           {/* Indicators */}
           <div className="flex items-center justify-center gap-3 mt-12 md:mt-16">
-            {CARDS.map((_, i) => (
+            {services.map((_, i) => (
               <button
                 key={i}
                 onClick={() => handleIndicatorClick(i)}
