@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { ChevronDown, Menu, X } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { CONTACT } from "@/lib/site-data";
 import { Logo } from "./Logo";
@@ -13,16 +13,10 @@ const NAV = [
   { label: "Clientes", to: "/", hash: "clientes" },
 ] as const;
 
-const CLIENT_AREA = [
-  { label: "Central de Recursos Cáliber", href: CONTACT.areaDoCliente },
-  { label: "Cadastro de Indicação", href: CONTACT.cadastroIndicacao },
-] as const;
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState(false);
-  const dropdownRef = useRef<HTMLLIElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -38,21 +32,6 @@ export function Header() {
     };
   }, [openMenu]);
 
-  useEffect(() => {
-    if (!openDropdown) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpenDropdown(false);
-    };
-    const onClick = (e: MouseEvent) => {
-      if (!dropdownRef.current?.contains(e.target as Node)) setOpenDropdown(false);
-    };
-    document.addEventListener("keydown", onKey);
-    document.addEventListener("mousedown", onClick);
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.removeEventListener("mousedown", onClick);
-    };
-  }, [openDropdown]);
 
   return (
     <header
@@ -85,41 +64,6 @@ export function Header() {
                 </Link>
               </li>
             ))}
-            <li ref={dropdownRef} className="relative">
-              <button
-                type="button"
-                aria-expanded={openDropdown}
-                aria-haspopup="true"
-                onClick={() => setOpenDropdown((v) => !v)}
-                className="inline-flex min-h-10 items-center gap-1.5 rounded-[10px] px-3.5 text-sm font-semibold text-white/80 transition-colors duration-300 hover:text-purple-light"
-              >
-                Área do Cliente
-                <ChevronDown
-                  className={cn(
-                    "size-4 transition-transform duration-300",
-                    openDropdown && "rotate-180",
-                  )}
-                  aria-hidden="true"
-                />
-              </button>
-              {openDropdown ? (
-                <div className="absolute top-full left-0 mt-2 w-64 rounded-2xl border border-purple/12 bg-card p-2 shadow-lift">
-                  <ul>
-                    {CLIENT_AREA.map((item) => (
-                      <li key={item.label}>
-                        <button
-                          type="button"
-                          className="block w-full text-left rounded-xl px-3 py-2.5 text-sm font-medium text-ink/40 cursor-not-allowed transition-colors duration-200"
-                          onClick={() => setOpenDropdown(false)}
-                        >
-                          {item.label}
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ) : null}
-            </li>
             <li>
               <Link
                 to="/contato"
@@ -191,21 +135,6 @@ function MobileNavigation({ open, onClose }: { open: boolean; onClose: () => voi
           ))}
         </ul>
 
-        <p className="mt-8 text-[0.68rem] font-bold tracking-[0.22em] text-purple-light uppercase">
-          Área do Cliente
-        </p>
-        <ul className="mt-3 space-y-2">
-          {CLIENT_AREA.map((item) => (
-            <li key={item.label}>
-              <button
-                type="button"
-                className="block w-full text-left rounded-xl border border-white/12 px-4 py-3.5 text-sm font-semibold text-white/40 cursor-not-allowed"
-              >
-                {item.label}
-              </button>
-            </li>
-          ))}
-        </ul>
 
         <CalAnchor
           href={CONTACT.whatsapp}
