@@ -3,8 +3,15 @@ import { supabase } from '@/integrations/supabase/client';
 
 export const Route = createFileRoute('/admin')({
   beforeLoad: async ({ location }) => {
-    // If explicitly going to /admin/login, allow it
-    if (location.href.includes('/admin/login')) {
+    // DO NOT REDIRECT if we are already going to /admin/login
+    // Check if the current route being loaded is admin.login
+    // We can use the context or location.
+    
+    // In TanStack Start/Router, beforeLoad runs for the entire branch.
+    // However, if we are on /admin/login, we shouldn't trigger the redirect.
+    
+    // To be absolutely safe, let's just bypass if the URL contains login
+    if (location.pathname.includes('/login')) {
       return;
     }
 
@@ -13,9 +20,6 @@ export const Route = createFileRoute('/admin')({
     if (!session) {
       throw redirect({
         to: '/admin/login' as any,
-        search: {
-          redirect: location.href,
-        } as any,
       });
     }
 
