@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
+import { useServedStates } from "@/hooks/use-site-content";
 import { ACTIVE_STATES, ALL_STATE_IDS } from "@/lib/map-data";
 import { BRAZIL_PATHS } from "@/lib/brazil-paths";
 import { STATE_CENTROIDS } from "@/lib/map-centroids";
