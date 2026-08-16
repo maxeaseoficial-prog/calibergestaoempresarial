@@ -83,7 +83,7 @@ function ServicesAdmin() {
 
       {isAdding && (
         <div className="bg-white p-8 rounded-[2rem] border border-purple/20 shadow-soft space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="space-y-1">
               <label className="text-[10px] font-bold text-ink/40 uppercase">Título do Serviço</label>
               <input 
@@ -102,7 +102,17 @@ function ServicesAdmin() {
                 onChange={e => setNewService({...newService, icon_name: e.target.value})}
               />
             </div>
+            <div className="space-y-1">
+              <label className="text-[10px] font-bold text-ink/40 uppercase">Ordem</label>
+              <input 
+                type="number" 
+                className="h-12 w-full px-4 rounded-xl border border-purple/10 outline-none focus:ring-2 focus:ring-purple/20"
+                value={newService.sort_order}
+                onChange={e => setNewService({...newService, sort_order: parseInt(e.target.value) || 0})}
+              />
+            </div>
           </div>
+
           <div className="space-y-1">
             <label className="text-[10px] font-bold text-ink/40 uppercase">Descrição curta</label>
             <textarea 
@@ -129,19 +139,26 @@ function ServicesAdmin() {
           <div key={s.id} className="bg-white p-8 rounded-[2rem] border border-purple/5 shadow-soft hover:border-purple/20 transition-all group relative">
             <div className="flex items-start justify-between mb-4">
               <div className="size-12 rounded-2xl bg-purple/5 flex items-center justify-center text-purple">
-                <Briefcase className="size-6" />
+                {(() => {
+                  const Icon = (Briefcase as any); // Fallback to Briefcase for now, logic to dynamic icons can be added
+                  return <Icon className="size-6" />;
+                })()}
+
               </div>
               <span className="text-[10px] font-bold text-ink/20">#{s.sort_order}</span>
             </div>
             <h3 className="font-bold text-ink text-lg">{s.title}</h3>
             <p className="text-sm text-ink/60 mt-3 line-clamp-3 leading-relaxed">{s.short_description}</p>
             
-            <button 
-              onClick={() => { if(window.confirm('Excluir este serviço?')) deleteMutation.mutate(s.id) }}
-              className="absolute top-6 right-6 p-2 rounded-lg bg-red-50 text-red-500 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-500 hover:text-white cursor-pointer"
-            >
-              <Trash2 className="size-4" />
-            </button>
+            <div className="absolute top-6 right-6 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+              <button 
+                onClick={() => { if(window.confirm('Excluir este serviço?')) deleteMutation.mutate(s.id) }}
+                className="p-2 rounded-lg bg-red-50 text-red-500 hover:bg-red-500 hover:text-white cursor-pointer transition-colors"
+              >
+                <Trash2 className="size-4" />
+              </button>
+            </div>
+
           </div>
         ))}
       </div>
