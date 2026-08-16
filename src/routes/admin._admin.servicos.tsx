@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
-import { Plus, Trash2, Loader2, Save, FileText, Layout, Info } from 'lucide-react';
+import { Plus, Trash2, Loader2, Briefcase } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
@@ -14,9 +14,9 @@ function ServicesAdmin() {
   const [isAdding, setIsAdding] = useState(false);
   const [newService, setNewService] = useState({ 
     title: '', 
-    description: '', 
+    short_description: '', 
     icon_name: 'Briefcase',
-    order_index: 0
+    sort_order: 0
   });
 
   const { data: services, isLoading } = useQuery({
@@ -25,7 +25,7 @@ function ServicesAdmin() {
       const { data, error } = await supabase
         .from('services')
         .select('*')
-        .order('order_index', { ascending: true });
+        .order('sort_order', { ascending: true });
       if (error) throw error;
       return data;
     }
@@ -38,7 +38,7 @@ function ServicesAdmin() {
         .insert([{ 
           ...service, 
           is_active: true, 
-          order_index: (services?.length || 0) + 1 
+          sort_order: (services?.length || 0) + 1 
         }]);
       if (error) throw error;
       return data;
@@ -46,7 +46,7 @@ function ServicesAdmin() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['admin', 'services'] });
       setIsAdding(false);
-      setNewService({ title: '', description: '', icon_name: 'Briefcase', order_index: 0 });
+      setNewService({ title: '', short_description: '', icon_name: 'Briefcase', sort_order: 0 });
       toast.success('Serviço adicionado!');
     },
     onError: (error: any) => toast.error(error.message)
@@ -107,16 +107,16 @@ function ServicesAdmin() {
             <label className="text-[10px] font-bold text-ink/40 uppercase">Descrição curta</label>
             <textarea 
               className="w-full p-4 min-h-[100px] rounded-xl border border-purple/10 outline-none focus:ring-2 focus:ring-purple/20 resize-none"
-              value={newService.description}
-              onChange={e => setNewService({...newService, description: e.target.value})}
+              value={newService.short_description}
+              onChange={e => setNewService({...newService, short_description: e.target.value})}
             />
           </div>
           <div className="flex justify-end gap-3 pt-4">
-            <button onClick={() => setIsAdding(false)} className="px-6 py-2 text-sm font-bold text-ink/40">CANCELAR</button>
+            <button onClick={() => setIsAdding(false)} className="px-6 py-2 text-sm font-bold text-ink/40 cursor-pointer">CANCELAR</button>
             <button 
               onClick={() => addMutation.mutate(newService)}
-              disabled={!newService.title || !newService.description || addMutation.isPending}
-              className="bg-purple text-white px-10 py-2 rounded-xl font-bold text-sm disabled:opacity-50"
+              disabled={!newService.title || !newService.short_description || addMutation.isPending}
+              className="bg-purple text-white px-10 py-2 rounded-xl font-bold text-sm disabled:opacity-50 cursor-pointer"
             >
               {addMutation.isPending ? <Loader2 className="size-4 animate-spin" /> : "ADICIONAR"}
             </button>
@@ -131,10 +131,10 @@ function ServicesAdmin() {
               <div className="size-12 rounded-2xl bg-purple/5 flex items-center justify-center text-purple">
                 <Briefcase className="size-6" />
               </div>
-              <span className="text-[10px] font-bold text-ink/20">#{s.order_index}</span>
+              <span className="text-[10px] font-bold text-ink/20">#{s.sort_order}</span>
             </div>
             <h3 className="font-bold text-ink text-lg">{s.title}</h3>
-            <p className="text-sm text-ink/60 mt-3 line-clamp-3 leading-relaxed">{s.description}</p>
+            <p className="text-sm text-ink/60 mt-3 line-clamp-3 leading-relaxed">{s.short_description}</p>
             
             <button 
               onClick={() => { if(window.confirm('Excluir este serviço?')) deleteMutation.mutate(s.id) }}
