@@ -18,6 +18,14 @@ import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as AdminAdminRouteImport } from './routes/admin/_admin'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as AdminAdminIndexRouteImport } from './routes/admin/_admin/index'
+import { Route as AdminAdminAtuacaoRouteImport } from './routes/admin._admin.atuacao'
+import { Route as AdminAdminClientesRouteImport } from './routes/admin._admin.clientes'
+import { Route as AdminAdminConfiguracoesRouteImport } from './routes/admin._admin.configuracoes'
+import { Route as AdminAdminContatosRouteImport } from './routes/admin._admin.contatos'
+import { Route as AdminAdminDepoimentosRouteImport } from './routes/admin._admin.depoimentos'
+import { Route as AdminAdminFormularioRouteImport } from './routes/admin._admin.formulario'
+import { Route as AdminAdminSeoRouteImport } from './routes/admin._admin.seo'
+import { Route as AdminAdminServicosRouteImport } from './routes/admin._admin.servicos'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -63,6 +71,46 @@ const AdminAdminIndexRoute = AdminAdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AdminAdminRoute,
 } as any)
+const AdminAdminAtuacaoRoute = AdminAdminAtuacaoRouteImport.update({
+  id: '/atuacao',
+  path: '/atuacao',
+  getParentRoute: () => AdminAdminRoute,
+} as any)
+const AdminAdminClientesRoute = AdminAdminClientesRouteImport.update({
+  id: '/clientes',
+  path: '/clientes',
+  getParentRoute: () => AdminAdminRoute,
+} as any)
+const AdminAdminConfiguracoesRoute = AdminAdminConfiguracoesRouteImport.update({
+  id: '/configuracoes',
+  path: '/configuracoes',
+  getParentRoute: () => AdminAdminRoute,
+} as any)
+const AdminAdminContatosRoute = AdminAdminContatosRouteImport.update({
+  id: '/contatos',
+  path: '/contatos',
+  getParentRoute: () => AdminAdminRoute,
+} as any)
+const AdminAdminDepoimentosRoute = AdminAdminDepoimentosRouteImport.update({
+  id: '/depoimentos',
+  path: '/depoimentos',
+  getParentRoute: () => AdminAdminRoute,
+} as any)
+const AdminAdminFormularioRoute = AdminAdminFormularioRouteImport.update({
+  id: '/formulario',
+  path: '/formulario',
+  getParentRoute: () => AdminAdminRoute,
+} as any)
+const AdminAdminSeoRoute = AdminAdminSeoRouteImport.update({
+  id: '/seo',
+  path: '/seo',
+  getParentRoute: () => AdminAdminRoute,
+} as any)
+const AdminAdminServicosRoute = AdminAdminServicosRouteImport.update({
+  id: '/servicos',
+  path: '/servicos',
+  getParentRoute: () => AdminAdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -72,6 +120,14 @@ export interface FileRoutesByFullPath {
   '/servicos': typeof ServicosRoute
   '/sobre': typeof SobreRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/atuacao': typeof AdminAdminAtuacaoRoute
+  '/admin/clientes': typeof AdminAdminClientesRoute
+  '/admin/configuracoes': typeof AdminAdminConfiguracoesRoute
+  '/admin/contatos': typeof AdminAdminContatosRoute
+  '/admin/depoimentos': typeof AdminAdminDepoimentosRoute
+  '/admin/formulario': typeof AdminAdminFormularioRoute
+  '/admin/seo': typeof AdminAdminSeoRoute
+  '/admin/servicos': typeof AdminAdminServicosRoute
   '/admin/': typeof AdminAdminIndexRoute
 }
 export interface FileRoutesByTo {
@@ -82,6 +138,14 @@ export interface FileRoutesByTo {
   '/servicos': typeof ServicosRoute
   '/sobre': typeof SobreRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/atuacao': typeof AdminAdminAtuacaoRoute
+  '/admin/clientes': typeof AdminAdminClientesRoute
+  '/admin/configuracoes': typeof AdminAdminConfiguracoesRoute
+  '/admin/contatos': typeof AdminAdminContatosRoute
+  '/admin/depoimentos': typeof AdminAdminDepoimentosRoute
+  '/admin/formulario': typeof AdminAdminFormularioRoute
+  '/admin/seo': typeof AdminAdminSeoRoute
+  '/admin/servicos': typeof AdminAdminServicosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -93,6 +157,14 @@ export interface FileRoutesById {
   '/sobre': typeof SobreRoute
   '/admin/_admin': typeof AdminAdminRouteWithChildren
   '/admin/login': typeof AdminLoginRoute
+  '/admin/_admin/atuacao': typeof AdminAdminAtuacaoRoute
+  '/admin/_admin/clientes': typeof AdminAdminClientesRoute
+  '/admin/_admin/configuracoes': typeof AdminAdminConfiguracoesRoute
+  '/admin/_admin/contatos': typeof AdminAdminContatosRoute
+  '/admin/_admin/depoimentos': typeof AdminAdminDepoimentosRoute
+  '/admin/_admin/formulario': typeof AdminAdminFormularioRoute
+  '/admin/_admin/seo': typeof AdminAdminSeoRoute
+  '/admin/_admin/servicos': typeof AdminAdminServicosRoute
   '/admin/_admin/': typeof AdminAdminIndexRoute
 }
 export interface FileRouteTypes {
@@ -105,6 +177,14 @@ export interface FileRouteTypes {
     | '/servicos'
     | '/sobre'
     | '/admin/login'
+    | '/admin/atuacao'
+    | '/admin/clientes'
+    | '/admin/configuracoes'
+    | '/admin/contatos'
+    | '/admin/depoimentos'
+    | '/admin/formulario'
+    | '/admin/seo'
+    | '/admin/servicos'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -115,6 +195,14 @@ export interface FileRouteTypes {
     | '/servicos'
     | '/sobre'
     | '/admin/login'
+    | '/admin/atuacao'
+    | '/admin/clientes'
+    | '/admin/configuracoes'
+    | '/admin/contatos'
+    | '/admin/depoimentos'
+    | '/admin/formulario'
+    | '/admin/seo'
+    | '/admin/servicos'
   id:
     | '__root__'
     | '/'
@@ -125,6 +213,14 @@ export interface FileRouteTypes {
     | '/sobre'
     | '/admin/_admin'
     | '/admin/login'
+    | '/admin/_admin/atuacao'
+    | '/admin/_admin/clientes'
+    | '/admin/_admin/configuracoes'
+    | '/admin/_admin/contatos'
+    | '/admin/_admin/depoimentos'
+    | '/admin/_admin/formulario'
+    | '/admin/_admin/seo'
+    | '/admin/_admin/servicos'
     | '/admin/_admin/'
   fileRoutesById: FileRoutesById
 }
@@ -202,14 +298,86 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAdminIndexRouteImport
       parentRoute: typeof AdminAdminRoute
     }
+    '/admin/_admin/atuacao': {
+      id: '/admin/_admin/atuacao'
+      path: '/atuacao'
+      fullPath: '/admin/atuacao'
+      preLoaderRoute: typeof AdminAdminAtuacaoRouteImport
+      parentRoute: typeof AdminAdminRoute
+    }
+    '/admin/_admin/clientes': {
+      id: '/admin/_admin/clientes'
+      path: '/clientes'
+      fullPath: '/admin/clientes'
+      preLoaderRoute: typeof AdminAdminClientesRouteImport
+      parentRoute: typeof AdminAdminRoute
+    }
+    '/admin/_admin/configuracoes': {
+      id: '/admin/_admin/configuracoes'
+      path: '/configuracoes'
+      fullPath: '/admin/configuracoes'
+      preLoaderRoute: typeof AdminAdminConfiguracoesRouteImport
+      parentRoute: typeof AdminAdminRoute
+    }
+    '/admin/_admin/contatos': {
+      id: '/admin/_admin/contatos'
+      path: '/contatos'
+      fullPath: '/admin/contatos'
+      preLoaderRoute: typeof AdminAdminContatosRouteImport
+      parentRoute: typeof AdminAdminRoute
+    }
+    '/admin/_admin/depoimentos': {
+      id: '/admin/_admin/depoimentos'
+      path: '/depoimentos'
+      fullPath: '/admin/depoimentos'
+      preLoaderRoute: typeof AdminAdminDepoimentosRouteImport
+      parentRoute: typeof AdminAdminRoute
+    }
+    '/admin/_admin/formulario': {
+      id: '/admin/_admin/formulario'
+      path: '/formulario'
+      fullPath: '/admin/formulario'
+      preLoaderRoute: typeof AdminAdminFormularioRouteImport
+      parentRoute: typeof AdminAdminRoute
+    }
+    '/admin/_admin/seo': {
+      id: '/admin/_admin/seo'
+      path: '/seo'
+      fullPath: '/admin/seo'
+      preLoaderRoute: typeof AdminAdminSeoRouteImport
+      parentRoute: typeof AdminAdminRoute
+    }
+    '/admin/_admin/servicos': {
+      id: '/admin/_admin/servicos'
+      path: '/servicos'
+      fullPath: '/admin/servicos'
+      preLoaderRoute: typeof AdminAdminServicosRouteImport
+      parentRoute: typeof AdminAdminRoute
+    }
   }
 }
 
 interface AdminAdminRouteChildren {
+  AdminAdminAtuacaoRoute: typeof AdminAdminAtuacaoRoute
+  AdminAdminClientesRoute: typeof AdminAdminClientesRoute
+  AdminAdminConfiguracoesRoute: typeof AdminAdminConfiguracoesRoute
+  AdminAdminContatosRoute: typeof AdminAdminContatosRoute
+  AdminAdminDepoimentosRoute: typeof AdminAdminDepoimentosRoute
+  AdminAdminFormularioRoute: typeof AdminAdminFormularioRoute
+  AdminAdminSeoRoute: typeof AdminAdminSeoRoute
+  AdminAdminServicosRoute: typeof AdminAdminServicosRoute
   AdminAdminIndexRoute: typeof AdminAdminIndexRoute
 }
 
 const AdminAdminRouteChildren: AdminAdminRouteChildren = {
+  AdminAdminAtuacaoRoute: AdminAdminAtuacaoRoute,
+  AdminAdminClientesRoute: AdminAdminClientesRoute,
+  AdminAdminConfiguracoesRoute: AdminAdminConfiguracoesRoute,
+  AdminAdminContatosRoute: AdminAdminContatosRoute,
+  AdminAdminDepoimentosRoute: AdminAdminDepoimentosRoute,
+  AdminAdminFormularioRoute: AdminAdminFormularioRoute,
+  AdminAdminSeoRoute: AdminAdminSeoRoute,
+  AdminAdminServicosRoute: AdminAdminServicosRoute,
   AdminAdminIndexRoute: AdminAdminIndexRoute,
 }
 

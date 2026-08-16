@@ -4,7 +4,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { Users, Briefcase, MessageSquare, MapPin, ArrowUpRight, TrendingUp } from 'lucide-react';
 import { Link } from '@tanstack/react-router';
 
-export const Route = createFileRoute('/admin/_admin/index')({
+export const Route = createFileRoute('/admin/_admin/')({
   component: Dashboard,
 });
 
