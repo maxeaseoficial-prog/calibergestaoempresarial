@@ -26,15 +26,13 @@ export function NationalPresence() {
             
             <Reveal delay={80}>
               <h2 className="mt-5 text-[clamp(2.5rem,5vw,4rem)] font-extrabold leading-[1.05] text-ink">
-                Atendemos<br />todo o Brasil.
+                A Cáliber já chegou a empresas em 10 estados. A próxima pode ser a sua.
               </h2>
             </Reveal>
             
             <Reveal delay={160}>
               <p className="mt-8 text-base leading-relaxed text-muted-foreground md:text-lg">
-                Será um enorme prazer recebê-lo ou visitá-lo para tomar um café e
-                conversarmos sobre novas formas de gerar eficiência e rentabilidade para o
-                seu negócio.
+                Nossa experiência atravessa diferentes regiões e realidades do Brasil, levando estratégia, gestão e execução para empresas que querem alcançar um novo nível de resultado.
               </p>
             </Reveal>
 
@@ -42,22 +40,23 @@ export function NationalPresence() {
               <div className="mt-12 flex flex-col gap-6">
                 <div>
                   <h3 className="text-xs font-bold tracking-[0.2em] text-purple uppercase">
-                    CLIENTES EM 10 ESTADOS
+                    PRESENÇA EM 10 ESTADOS
                   </h3>
-                  
-                  {/* Legend removed per user request */}
                 </div>
 
-
-                {/* Callout */}
-                <div className="rounded-2xl bg-purple/[0.03] p-5 ring-1 ring-purple/5">
-                  <div className="flex gap-4">
-                    <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-purple/10 text-purple">
-                      <Users className="size-5" />
-                    </div>
-                    <p className="text-sm leading-relaxed text-slate-600">
-                      Soluções aplicadas na prática em diferentes regiões do país, sempre com o mesmo padrão de excelência Cáliber.
-                    </p>
+                <div className="flex flex-col gap-6">
+                  <p className="text-lg font-medium text-slate-700">
+                    Onde houver uma empresa pronta para evoluir, queremos estar presentes.
+                  </p>
+                  
+                  <div className="flex">
+                    <a 
+                      href="/contato" 
+                      className="group flex items-center gap-2 text-purple font-bold hover:gap-3 transition-all underline underline-offset-8 decoration-purple/30 hover:decoration-purple"
+                    >
+                      Vamos falar sobre a sua empresa?
+                      <MapPin className="size-4" />
+                    </a>
                   </div>
                 </div>
               </div>
