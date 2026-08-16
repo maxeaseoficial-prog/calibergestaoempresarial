@@ -1,8 +1,21 @@
 import { Star } from "lucide-react";
 import { TESTIMONIALS } from "@/lib/site-data";
 import { Reveal } from "./Reveal";
+import { useTestimonials } from "@/hooks/use-site-content";
+
 
 export function Testimonials() {
+  const { data: dbTestimonials } = useTestimonials();
+  const testimonials = dbTestimonials && dbTestimonials.length > 0
+    ? dbTestimonials.map(t => ({
+        name: t.name,
+        role: t.role || '',
+        quote: t.quote,
+        logo: t.logo_url || '/lovable-uploads/Logo-Leo.png', // Fallback to a valid asset
+        logoAlt: t.company_name || t.name
+      }))
+    : TESTIMONIALS;
+
   return (
     <section className="relative overflow-hidden bg-white">
       {/* Top Frame */}
@@ -32,7 +45,7 @@ export function Testimonials() {
         </Reveal>
 
         <div className="grid grid-cols-1 gap-x-12 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
-          {TESTIMONIALS.map((testimonial, i) => (
+          {testimonials.map((testimonial, i) => (
             <Reveal key={testimonial.name} delay={i * 100}>
               <div className="flex flex-col h-full">
                 {/* 5 Stars */}
