@@ -1,45 +1,48 @@
-# Planejamento: Área Administrativa Cáliber
+# Implementation Plan - Admin Area & CMS Wiring
 
-Criação de um mini CMS premium e seguro para gestão de conteúdo institucional da Cáliber, utilizando a infraestrutura do Lovable Cloud (Supabase).
+Building a complete administrative area with Supabase Auth to manage site content dynamically.
 
-## 1. Arquitetura e Segurança
-- **Autenticação**: Supabase Auth (Email/Senha).
-- **Autorização**: Tabela `user_roles` e função `has_role` para controle de acesso administrativo via RLS.
-- **Segurança**: Políticas RLS estritas em todas as tabelas. GRANTs explícitos para `authenticated` e `service_role`.
-- **Secrets**: Destinatário de leads e chaves de API permanecem exclusivamente no servidor.
+## User Review Required
 
-## 2. Estrutura do Banco de Dados (Migrations)
-- `site_settings`: Configurações gerais (nome, contatos, destinatário de e-mail).
-- `social_links`: Gestão de redes sociais (URL, status ativo).
-- `clients`: Logos e dados dos clientes do carrossel.
-- `services`: Conteúdo dos cards de serviços.
-- `testimonials`: Gestão de depoimentos.
-- `served_states`: Estados ativos no mapa do Brasil.
-- `user_roles`: Controle de papéis administrativos.
+> [!IMPORTANT]
+> - The admin area will be accessible via `/admin`.
+> - Authentication is managed via Lovable Cloud (Supabase).
+> - We will use an "Admin" role check to restrict access.
 
-## 3. Rotas Administrativas (`/admin`)
-- `/admin/login`: Login premium minimalista.
-- `/admin`: Dashboard (Visão Geral).
-- `/admin/contatos`: Redes sociais e contatos.
-- `/admin/formulario`: Configuração do formulário de leads.
-- `/admin/clientes`: Gestão das logos (CRUD + Reordenação).
-- `/admin/servicos`: Edição dos cards de serviços.
-- `/admin/depoimentos`: Gestão de depoimentos.
-- `/admin/atuacao`: Mapa de estados atendidos.
-- `/admin/seo`: Meta tags e OG Data.
-- `/admin/configuracoes`: Perfil e senha.
+## Proposed Changes
 
-## 4. Integração Frontend
-- Refatoração dos componentes públicos para consumir dados via Supabase Client (com fallback para os dados atuais em `site-data.ts`).
-- Backend (Server Functions) consultando o banco para definir o destinatário real do Resend.
+### 1. Database Schema & Security
+- [x] Create tables for all site content: `clients`, `services`, `testimonials`, `served_states`, `social_links`, `site_settings`, `seo_settings`.
+- [x] Enable RLS and setup `authenticated` policies for admins.
+- [x] Implement `has_role` security definer function for safe role checks.
 
-## Detalhes Técnicos
-- Utilização de `tanstack-start` para rotas e server functions.
-- `framer-motion` para animações no painel.
-- `sonner` para notificações.
-- `lucide-react` para iconografia.
+### 2. Admin Infrastructure
+- [x] Create `/admin/login` for secure access.
+- [x] Implement `src/routes/admin._admin.tsx` as the protected layout for the CMS.
+- [x] Setup sidebar navigation for all CMS sections.
 
-## Ações Iniciais
-1. Criar migrações de banco de dados.
-2. Configurar o primeiro usuário administrador via dashboard do Lovable Cloud.
-3. Implementar a rota de login e layout base do admin.
+### 3. CMS Management Interfaces
+- [x] **Clients**: CRUD for logos and names.
+- [x] **Services**: Manage pilares, descriptions, and display order.
+- [x] **Testimonials**: Edit, add, and remove client quotes.
+- [x] **Presence**: Interactive map configuration.
+- [x] **Communication**: Manage social links and lead recipient email.
+- [x] **SEO**: Edit meta tags for every page.
+
+### 4. Frontend Integration (Dynamic Content)
+- [ ] Refactor `Header.tsx` and `Footer.tsx` to use dynamic social links and contact info.
+- [ ] Wire `Hero.tsx` button to dynamic target if needed (already set to `#atuacao`).
+- [ ] Connect `LogoCloud.tsx` and `Testimonials.tsx` to database hooks.
+- [ ] Integrate `BrazilMap.tsx` with `served_states` table.
+- [ ] Update `Methodology.tsx` to render services from CMS.
+
+### 5. Final Polishing & Verification
+- [x] Fix redirect loops in auth guard.
+- [ ] Verify lead submission with dynamic recipient.
+- [ ] Ensure SEO metatags update correctly on all routes.
+
+## Technical Details
+- **Framework**: React 19, TanStack Start, TanStack Query.
+- **Backend**: Lovable Cloud (Supabase) for Auth and PostgreSQL.
+- **Styling**: Tailwind CSS v4, Motion for animations.
+- **Icons**: Lucide React.
