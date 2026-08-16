@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Linkedin, Mail, Phone } from "lucide-react";
 import { CONTACT, OFFICES } from "@/lib/site-data";
+import { useSocialLinks, useSiteSettings } from "@/hooks/use-site-content";
 import { Logo, LogoWatermark } from "./Logo";
 
 export function Footer() {
