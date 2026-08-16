@@ -1,4 +1,4 @@
-import { createServerFn } from "@tanstack/react-router";
+import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
 // Simple in-memory rate limiting for the dev/demo environment
@@ -20,7 +20,7 @@ const LeadSchema = z.object({
 });
 
 export const submitLead = createServerFn({ method: "POST" })
-  .inputValidator((data) => LeadSchema.parse(data))
+  .inputValidator((data: unknown) => LeadSchema.parse(data))
   .handler(async ({ data }) => {
     // 1. Honeypot check
     if (data.honeypot) {
