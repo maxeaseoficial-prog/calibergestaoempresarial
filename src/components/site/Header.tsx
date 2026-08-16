@@ -82,7 +82,7 @@ export function Header() {
 
         <div className="flex items-center justify-end gap-2">
           <CalAnchor
-            href={CONTACT.whatsapp}
+            href={whatsappLink}
             target="_blank"
             rel="noreferrer"
             className="hidden text-xs lg:inline-flex"
