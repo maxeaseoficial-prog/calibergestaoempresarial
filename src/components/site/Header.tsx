@@ -106,6 +106,9 @@ export function Header() {
 }
 
 function MobileNavigation({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const { data: socialLinks } = useSocialLinks();
+  const whatsappLink = socialLinks?.find(s => s.name.toLowerCase() === 'whatsapp')?.url || CONTACT.whatsapp;
+
   if (!open) return null;
   return (
     <div className="fixed inset-0 z-50 flex flex-col bg-purple-dark text-white lg:hidden">
