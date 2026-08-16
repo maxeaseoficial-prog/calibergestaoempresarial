@@ -3,11 +3,8 @@ import { supabase } from '@/integrations/supabase/client';
 
 export const Route = createFileRoute('/admin')({
   beforeLoad: async ({ location }) => {
-    // location.pathname is "/admin" or "/admin/login" or "/admin/clientes"
-    // TanStack Router might normalize "/admin/login/" to "/admin/login"
-    const path = location.pathname.replace(/\/$/, '');
-    
-    if (path === '/admin/login') {
+    // If explicitly going to /admin/login, allow it
+    if (location.href.includes('/admin/login')) {
       return;
     }
 
