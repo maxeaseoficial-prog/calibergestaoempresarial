@@ -107,19 +107,19 @@ function Dashboard() {
             <TrendingUp className="size-5 text-purple/40" />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <Link to="/admin/contatos" className="p-4 rounded-2xl bg-slate-50 border border-transparent hover:border-purple/20 transition-all group">
+            <Link to={'/admin/contatos' as any} className="p-4 rounded-2xl bg-slate-50 border border-transparent hover:border-purple/20 transition-all group">
               <p className="text-sm font-bold text-ink group-hover:text-purple">Contatos e Redes</p>
               <p className="text-xs text-ink/40 mt-1">Alterar links sociais</p>
             </Link>
-            <Link to="/admin/formulario" className="p-4 rounded-2xl bg-slate-50 border border-transparent hover:border-purple/20 transition-all group">
+            <Link to={'/admin/formulario' as any} className="p-4 rounded-2xl bg-slate-50 border border-transparent hover:border-purple/20 transition-all group">
               <p className="text-sm font-bold text-ink group-hover:text-purple">Configurações de E-mail</p>
               <p className="text-xs text-ink/40 mt-1">Destinatário de leads</p>
             </Link>
-            <Link to="/admin/seo" className="p-4 rounded-2xl bg-slate-50 border border-transparent hover:border-purple/20 transition-all group">
+            <Link to={'/admin/seo' as any} className="p-4 rounded-2xl bg-slate-50 border border-transparent hover:border-purple/20 transition-all group">
               <p className="text-sm font-bold text-ink group-hover:text-purple">Meta Tags SEO</p>
               <p className="text-xs text-ink/40 mt-1">Otimização de busca</p>
             </Link>
-            <Link to="/admin/configuracoes" className="p-4 rounded-2xl bg-slate-50 border border-transparent hover:border-purple/20 transition-all group">
+            <Link to={'/admin/configuracoes' as any} className="p-4 rounded-2xl bg-slate-50 border border-transparent hover:border-purple/20 transition-all group">
               <p className="text-sm font-bold text-ink group-hover:text-purple">Perfil</p>
               <p className="text-xs text-ink/40 mt-1">Alterar senha admin</p>
             </Link>
