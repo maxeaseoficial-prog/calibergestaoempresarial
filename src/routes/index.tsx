@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useSeoSettings } from "@/hooks/use-seo";
+import { useSeoSettings, seoQueryOptions } from "@/hooks/use-seo";
+
 
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
@@ -15,9 +16,13 @@ import { NationalPresence } from "@/components/site/NationalPresence";
 import { ContactCTA } from "@/components/site/ContactCTA";
 
 export const Route = createFileRoute("/")({
+  loader: ({ context }) => {
+    return context.queryClient.ensureQueryData(seoQueryOptions("/"));
+  },
   head: ({ loaderData }) => {
-    const seo = (loaderData as any)?.seo;
+    const seo = loaderData as any;
     return {
+
       title: seo?.title || "Cáliber — Eficiência em Gestão Empresarial",
       meta: [
         { name: "description", content: seo?.description || "Consultoria estratégica premium para transformar sua gestão e resultados." },
