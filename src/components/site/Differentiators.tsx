@@ -1,11 +1,19 @@
 import { cn } from "@/lib/utils";
 import { DIFFERENTIATORS } from "@/lib/site-data";
+import { useServices } from "@/hooks/use-site-content";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
 import * as LucideIcons from "lucide-react";
 import { Logo } from "./Logo";
 
 export function Differentiators() {
+  const { data: dbServices } = useServices();
+  const differentiators = useMemo(() => {
+    // If you want to use the same table but filter for 'differentiators' 
+    // or just use site-data as fallback. For now, let's just show how to wire it.
+    return DIFFERENTIATORS;
+  }, [dbServices]);
+
   return (
     <section id="diferenciais" className="py-20 lg:py-32 bg-white overflow-hidden">
       <div className="container-cal">
