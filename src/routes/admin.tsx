@@ -3,8 +3,9 @@ import { supabase } from '@/integrations/supabase/client';
 
 export const Route = createFileRoute('/admin')({
   beforeLoad: async ({ location }) => {
-    // Avoid redirect loop when already on login
-    if (location.pathname === '/admin/login') {
+    // DO NOT REDIRECT if we are already going to /admin/login
+    // location.pathname is just "/login" relative to /admin parent
+    if (location.pathname === '/admin/login' || location.pathname === '/admin/login/') {
       return;
     }
 
