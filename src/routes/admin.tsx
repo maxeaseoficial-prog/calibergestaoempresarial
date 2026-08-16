@@ -3,9 +3,9 @@ import { supabase } from '@/integrations/supabase/client';
 
 export const Route = createFileRoute('/admin')({
   beforeLoad: async ({ location }) => {
-    // DO NOT REDIRECT if we are already going to /admin/login
-    // location.pathname is just "/login" relative to /admin parent
-    if (location.pathname === '/admin/login' || location.pathname === '/admin/login/') {
+    // location.pathname for /admin/login will be "/admin/login"
+    // We check if it ends with /login or is exactly /admin/login
+    if (location.pathname.endsWith('/login') || location.pathname.endsWith('/login/')) {
       return;
     }
 
@@ -14,9 +14,6 @@ export const Route = createFileRoute('/admin')({
     if (!session) {
       throw redirect({
         to: '/admin/login' as any,
-        search: {
-          redirect: location.href,
-        } as any,
       });
     }
 
@@ -27,7 +24,6 @@ export const Route = createFileRoute('/admin')({
     });
 
     if (error || !hasAdminRole) {
-      // If they are logged in but not admin, sign them out and send to login
       await supabase.auth.signOut();
       throw redirect({
         to: '/admin/login' as any,
