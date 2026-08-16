@@ -1,8 +1,16 @@
 import { CLIENTS } from "@/lib/site-data";
 import { Reveal } from "./Reveal";
+import { useClients } from "@/hooks/use-site-content";
+
 
 export function LogoCloud() {
-  const loop = [...CLIENTS, ...CLIENTS];
+  const { data: dbClients } = useClients();
+  const clients = dbClients && dbClients.length > 0 
+    ? dbClients.map(c => ({ name: c.name, src: c.logo_url }))
+    : CLIENTS;
+    
+  const loop = [...clients, ...clients];
+
   return (
     <section id="clientes" className="overflow-hidden border-y border-purple/10 bg-card py-20">
       <div className="container-cal text-center">
@@ -38,9 +46,15 @@ export function LogoCloud() {
 }
 
 export function LogoGrid() {
+  const { data: dbClients } = useClients();
+  const clients = dbClients && dbClients.length > 0 
+    ? dbClients.map(c => ({ name: c.name, src: c.logo_url }))
+    : CLIENTS;
+
   return (
     <div className="grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-purple/10 bg-purple/10 sm:grid-cols-3 lg:grid-cols-5">
-      {CLIENTS.map((client) => (
+      {clients.map((client) => (
+
         <div
           key={client.name}
           className="flex aspect-[4/3] items-center justify-center bg-card p-6 transition-colors duration-300 hover:bg-lavender"

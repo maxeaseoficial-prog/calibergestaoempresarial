@@ -2,7 +2,6 @@ import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
 // Simple in-memory rate limiting for the dev/demo environment
-// In a production environment, this should ideally be handled by a more robust store like Redis
 const rateLimitMap = new Map<string, { count: number; lastReset: number }>();
 const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour
 const MAX_REQUESTS = 5;
@@ -21,7 +20,7 @@ const LeadSchema = z.object({
 });
 
 export const submitLead = createServerFn({ method: "POST" })
-  .inputValidator((data) => LeadSchema.parse(data))
+  .inputValidator((data: unknown) => LeadSchema.parse(data))
   .handler(async ({ data }) => {
     // 1. Honeypot check
     if (data.honeypot) {
@@ -29,9 +28,9 @@ export const submitLead = createServerFn({ method: "POST" })
       return { success: false, error: "INVALID_FORM" };
     }
 
-    // 2. Rate limiting (Mock IP-based limit - in real worker this would use headers)
+    // 2. Rate limiting
     const now = Date.now();
-    const mockIp = "anonymous"; // In production, extract from request headers
+    const mockIp = "anonymous";
     const limit = rateLimitMap.get(mockIp);
 
     if (limit) {
@@ -53,14 +52,22 @@ export const submitLead = createServerFn({ method: "POST" })
       
       if (!apiKey) {
         console.error("RESEND_API_KEY not configured");
-        // We still return a generic error to the user
         return { success: false, error: "SEND_FAILED" };
       }
 
       const { Resend } = await import("resend");
+      const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+      
       const resend = new Resend(apiKey);
 
-      const recipient = "leonardo.froese@gmail.com";
+      // Fetch recipient from database
+      const { data: settings } = await supabaseAdmin
+        .from('site_settings')
+        .select('value')
+        .eq('key', 'lead_recipient_email')
+        .single();
+        
+      const recipient = settings?.value || "leonardo.froese@gmail.com";
       const subject = `Novo lead pelo site Cáliber — ${data.company}`;
 
       const { data: resendData, error } = await resend.emails.send({

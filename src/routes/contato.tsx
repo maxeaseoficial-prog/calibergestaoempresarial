@@ -1,13 +1,29 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { Header } from '@/components/site/Header';
 import { Footer } from '@/components/site/Footer';
+import { seoQueryOptions } from '@/hooks/use-seo';
+
 import { CONTACT, OFFICES } from '@/lib/site-data';
 import { Reveal } from '@/components/site/Reveal';
 import { Mail, Phone, MapPin, MessageSquare, Instagram, Facebook, Linkedin } from 'lucide-react';
 
 export const Route = createFileRoute('/contato')({
+  loader: ({ context }) => {
+    return context.queryClient.ensureQueryData(seoQueryOptions("/contato"));
+  },
+  head: ({ loaderData }) => {
+    const seo = loaderData as any;
+    return {
+
+      title: seo?.title || "Contato — Cáliber",
+      meta: [
+        { name: "description", content: seo?.description || "Entre em contato conosco e transforme sua gestão." },
+      ],
+    };
+  },
   component: ContatoComponent,
 });
+
 
 function ContactCard({ 
   icon: Icon, 

@@ -1,10 +1,26 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Header } from '@/components/site/Header'
 import { Footer } from '@/components/site/Footer'
+import { seoQueryOptions } from '@/hooks/use-seo'
+
 
 export const Route = createFileRoute('/sobre')({
+  loader: ({ context }) => {
+    return context.queryClient.ensureQueryData(seoQueryOptions("/sobre"));
+  },
+  head: ({ loaderData }) => {
+    const seo = loaderData as any;
+    return {
+
+      title: seo?.title || "Sobre a Cáliber — Eficiência em Gestão",
+      meta: [
+        { name: "description", content: seo?.description || "Conheça a história e os valores da Cáliber." },
+      ],
+    };
+  },
   component: SobreComponent,
 })
+
 
 function SobreComponent() {
   return (

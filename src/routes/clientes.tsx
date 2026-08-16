@@ -1,10 +1,26 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Header } from '@/components/site/Header'
 import { Footer } from '@/components/site/Footer'
+import { seoQueryOptions } from '@/hooks/use-seo'
+
 
 export const Route = createFileRoute('/clientes')({
+  loader: ({ context }) => {
+    return context.queryClient.ensureQueryData(seoQueryOptions("/clientes"));
+  },
+  head: ({ loaderData }) => {
+    const seo = loaderData as any;
+    return {
+
+      title: seo?.title || "Clientes — Cáliber",
+      meta: [
+        { name: "description", content: seo?.description || "Empresas que confiam na Cáliber para sua gestão." },
+      ],
+    };
+  },
   component: ClientesComponent,
 })
+
 
 function ClientesComponent() {
   return (

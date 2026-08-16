@@ -1,12 +1,20 @@
-import { useState } from "react";
-import { MapPin, Users, Check } from "lucide-react";
+import { useState, useMemo } from "react";
+import { MapPin } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { ACTIVE_STATES } from "@/lib/map-data";
 import { BrazilMap } from "./BrazilMap";
+import { useServedStates } from "@/hooks/use-site-content";
 import { cn } from "@/lib/utils";
+
 
 export function NationalPresence() {
   const [activeStateId, setActiveStateId] = useState<string | null>(null);
+  const { data: dbStates } = useServedStates();
+
+  const activeStatesCount = useMemo(() => {
+    return dbStates && dbStates.length > 0 ? dbStates.length : ACTIVE_STATES.length;
+  }, [dbStates]);
+
 
   return (
     <section id="atuacao" className="relative overflow-hidden bg-slate-50/50 py-24 lg:py-32">
@@ -26,7 +34,7 @@ export function NationalPresence() {
             
             <Reveal delay={80}>
               <h2 className="mt-6 max-w-[540px] text-[clamp(2.25rem,4vw,3.75rem)] font-bold leading-[1.02] tracking-tight text-ink md:mt-8">
-                A Cáliber já chegou a empresas em 10 estados. A próxima pode ser a sua.
+                A Cáliber já chegou a empresas em {activeStatesCount} estados. A próxima pode ser a sua.
               </h2>
             </Reveal>
             
@@ -40,7 +48,7 @@ export function NationalPresence() {
               <div className="mt-10 flex flex-col gap-5 md:mt-12">
                 <div>
                   <h3 className="text-[11px] font-bold tracking-[0.2em] text-purple uppercase opacity-80">
-                    PRESENÇA EM 10 ESTADOS
+                    PRESENÇA EM {activeStatesCount} ESTADOS
                   </h3>
                 </div>
 
