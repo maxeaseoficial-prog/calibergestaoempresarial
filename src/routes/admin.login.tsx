@@ -14,14 +14,20 @@ function AdminLogin() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleLogin = async (e?: React.FormEvent | React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    
+    if (loading) return;
+
     setLoading(true);
     setError(null);
 
     try {
-      const { data, error: authError } = await supabase.auth.signInWithPassword({
-        email,
+      const { error: authError } = await supabase.auth.signInWithPassword({
+        email: email.trim(),
         password,
       });
 
@@ -31,8 +37,11 @@ function AdminLogin() {
         return;
       }
 
-      // Role check is handled by the parent /admin route's beforeLoad
-      window.location.href = '/admin';
+      // Small delay to ensure session is stored
+      await new Promise(r => setTimeout(r, 800));
+      
+      // Use replace to avoid back button issues and force reload
+      window.location.replace('/admin');
     } catch (err) {
       setError('Erro ao realizar login.');
       setLoading(false);
