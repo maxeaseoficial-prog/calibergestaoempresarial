@@ -1,47 +1,19 @@
-# Plano de Implementação - Área Administrativa Cáliber
+# Security Fixes Plan
 
-Completar a integração entre o painel administrativo e o site público, garantindo que Clientes, Serviços, Depoimentos e SEO sejam totalmente gerenciáveis via interface sem necessidade de alterações no código.
+Fix identified security issues from the scan to improve application posture.
 
-## 1. Migração e Persistência de Dados (Supabase)
-Migrar todos os dados atualmente hardcoded no código para tabelas do banco de dados, garantindo que o conteúdo atual seja preservado como estado inicial.
+## Proposed Changes
 
-- **Clientes:** Extrair logos de `src/lib/site-data.ts` e inserir na tabela `clients`.
-- **Serviços:** Migrar descrições e títulos de `src/lib/site-data.ts` para a tabela `services`.
-- **Depoimentos:** Migrar os depoimentos reais (Paulo, Michelli, Adriano) para a tabela `testimonials`.
-- **SEO:** Criar registros iniciais para a rota principal (`/`) na tabela `seo_settings`.
+### Database Security
+- Revoke public execution permissions on `has_role` function to prevent role enumeration or metadata leaks.
+- Ensure the function is only executable by `authenticated` and `service_role`.
 
-## 2. Ajustes na Interface Administrativa (/admin)
-Refinar as telas existentes para suportar o fluxo completo de CRUD e garantir estados de interface consistentes.
+### Server-Side Data Protection
+- Remove hardcoded lead routing email from `src/lib/leads.functions.ts` fallback.
+- Move "authorized emails" for admin setup into server-only environment variables or check against existing admin count more strictly.
+- Ensure sensitive contact info is fetched from the database rather than hardcoded in source modules.
 
-- **Clientes (`/admin/clientes`):**
-  - Implementar upload de imagem via Supabase Storage (se disponível) ou aceitar URLs externas.
-  - Adicionar campos de texto alternativo e controle de status (ativo/inativo).
-  - Adicionar confirmação de exclusão.
-- **Serviços (`/admin/servicos`):**
-  - Ajustar formulário para incluir todos os campos necessários (título, descrição, ícone, subtítulo, ordem).
-  - Garantir que a edição reflita imediatamente no carrossel 3D da home.
-- **Depoimentos (`/admin/depoimentos`):**
-  - Adicionar campos para Cargo/Empresa e Foto/Logo.
-  - Implementar listagem visual com preview das logos.
-- **SEO (`/admin/seo`):**
-  - Corrigir a visualização e edição das meta tags.
-  - Garantir que os campos "Título SEO" e "Meta Description" funcionem.
-
-## 3. Integração com o Site Público
-Garantir que os componentes do site consumam prioritariamente os dados do banco de dados, usando os dados hardcoded apenas como fallback seguro.
-
-- **Componente `LogoCloud`:** Atualizar para priorizar `dbClients`.
-- **Componente `Methodology`:** Sincronizar os cards com os serviços vindos do banco.
-- **Componente `Testimonials`:** Integrar com a tabela de depoimentos, mantendo o layout editorial.
-- **SEO Global:** Configurar o `head` no `src/routes/index.tsx` para consumir os dados dinâmicos via hook `useSeoSettings`.
-
-## 4. Segurança e Validação
-- Aplicar RLS (Row Level Security) em todas as novas tabelas.
-- Garantir que apenas usuários com `app_role = 'admin'` possam realizar mutações (INSERT, UPDATE, DELETE).
-- Validar formatos de arquivo e tamanhos nos uploads de imagem.
-
-## Detalhes Técnicos
-- **Frontend:** React 19, TanStack Start (Router + Query), Lucide React.
-- **Backend:** Supabase (Auth, DB, RLS, Storage).
-- **Hooks:** Centralizar fetching em `src/hooks/use-site-content.ts` e `src/hooks/use-seo.ts`.
-- **Validação:** Zod para esquemas de formulário.
+## Technical Details
+- **Migration**: Create a new SQL migration to `REVOKE ALL ON FUNCTION public.has_role FROM PUBLIC, anon;` and `GRANT EXECUTE TO authenticated, service_role;`.
+- **Server Function**: Update `submitLead` in `src/lib/leads.functions.ts` to strictly use database settings and handle missing configuration safely without leaking developer emails.
+- **Admin Setup**: Refactor `src/lib/setup.functions.ts` to remove hardcoded email checks.
