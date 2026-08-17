@@ -50,8 +50,8 @@ function AdminLogin() {
       // Small delay to ensure session is stored
       await new Promise(r => setTimeout(r, 800));
       
-      // Use navigate to go to admin dashboard
-      navigate({ to: '/admin' });
+      // Use href to force a full reload and ensure session is picked up by all components
+      window.location.href = '/admin';
     } catch (err) {
       setError('Não foi possível entrar. Tente novamente.');
       setLoading(false);
