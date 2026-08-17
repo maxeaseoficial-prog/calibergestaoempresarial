@@ -13,7 +13,7 @@ export function ImpactSection() {
         <Reveal>
           <span className="eyebrow mx-auto justify-center text-purple-light">
             
-            A Solução Definitiva
+            A solução definitiva
           </span>
         </Reveal>
 
