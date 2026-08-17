@@ -1,8 +1,8 @@
-import { createFileRoute, Link, Outlet, redirect } from '@tanstack/react-router';
-import { LayoutGrid, Users, MessageSquare, Briefcase, MapPin, Settings, LogOut, ExternalLink, Menu, X, Globe, Share2, Mail } from 'lucide-react';
+import { createFileRoute, Link, Outlet, useNavigate } from '@tanstack/react-router';
+import { LayoutGrid, Users, MessageSquare, Briefcase, MapPin, Settings, LogOut, ExternalLink, Menu, X, Globe, Share2, Mail, Loader2 } from 'lucide-react';
 import { Logo } from '@/components/site/Logo';
 import { supabase } from '@/integrations/supabase/client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 
 export const Route = createFileRoute('/admin/_admin')({
