@@ -166,13 +166,23 @@ function AdminSetup() {
               Já possui uma conta? Entrar
             </Link>
             
-            <button 
-              type="button"
-              onClick={handleConfirmExisting}
-              className="text-xs text-purple/60 hover:text-purple underline cursor-pointer"
-            >
-              Confirmar conta leonardo.froese@gmail.com
-            </button>
+            <div className="flex flex-col gap-2 border-t border-ink/5 pt-4">
+              <button 
+                type="button"
+                onClick={handleSetupDefaultAdmin}
+                className="text-xs font-semibold text-purple hover:text-purple-deep underline cursor-pointer"
+              >
+                Configurar Acesso Padrão (admin / admin)
+              </button>
+              
+              <button 
+                type="button"
+                onClick={handleConfirmExisting}
+                className="text-[10px] text-ink/30 hover:text-purple underline cursor-pointer"
+              >
+                Confirmar leonardo.froese@gmail.com
+              </button>
+            </div>
           </div>
         </form>
       </div>
