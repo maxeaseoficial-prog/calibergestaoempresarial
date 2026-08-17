@@ -28,7 +28,7 @@ export function WhyCaliber() {
               <Headset className="size-8" />
             </div>
             <div>
-              <p className="text-xs font-bold tracking-widest text-white/50 uppercase">Central de Atendimento</p>
+              <p className="text-xs font-bold tracking-widest text-white/50">Central de atendimento</p>
               <a href={phoneMTHref} className="mt-1 block text-2xl font-black transition-colors hover:text-purple-light lg:text-3xl">
                 {phoneMT}
               </a>
