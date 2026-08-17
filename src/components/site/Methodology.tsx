@@ -94,13 +94,13 @@ export function Methodology() {
   };
 
   return (
-    <section id="metodologia" className="py-20 lg:py-32 overflow-hidden bg-white">
+    <section id="metodologia" className="py-12 lg:py-20 overflow-hidden bg-white">
       <div className="container-cal">
-        <div className="flex flex-col items-center mb-16 lg:mb-24">
+        <div className="flex flex-col items-center mb-8 lg:mb-10">
           <SectionHeading
             title={<>Como tornamos sua empresa <br className="hidden lg:block" /> mais eficiente?</>}
             align="center"
-            className="mb-6 max-w-4xl"
+            className="mb-4 max-w-4xl"
             titleClassName="text-purple"
           />
           <div className="flex items-center gap-4 w-full max-w-xs md:max-w-md">
