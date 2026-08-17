@@ -42,6 +42,8 @@ function AdminSetup() {
     } finally {
       setLoading(false);
     }
+  };
+
   const handleConfirmExisting = async () => {
     setLoading(true);
     setError(null);
