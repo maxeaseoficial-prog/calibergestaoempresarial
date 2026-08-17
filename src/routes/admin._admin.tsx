@@ -105,7 +105,7 @@ function AdminLayout() {
               className={cn(
                 "flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors",
                 "text-slate-600 hover:bg-slate-50 hover:text-slate-900",
-                "&.active]:bg-purple/10 [&.active]:text-purple"
+                "[&.active]:bg-purple/10 [&.active]:text-purple"
               )}
             >
               <item.icon className="mr-3 h-5 w-5" />
