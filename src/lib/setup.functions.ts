@@ -3,7 +3,7 @@ import { z } from "zod";
 
 const setupSchema = z.object({
   email: z.string().email(),
-  password: z.string().min(6),
+  password: z.string().min(5),
 });
 
 const confirmSchema = z.object({
