@@ -284,14 +284,18 @@ export function Methodology() {
                         </p>
 
                         {isActive && card.id !== 4 && (
-                          <motion.div
+                          <motion.button
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="mt-8 flex items-center gap-2 text-white/90 text-sm font-bold tracking-widest group/btn"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedServiceId(card.id);
+                            }}
+                            className="mt-8 flex items-center gap-2 px-6 py-2.5 rounded-full bg-white text-purple hover:bg-purple hover:text-white border border-purple transition-all text-sm font-bold tracking-widest group/btn shadow-soft"
                           >
                             <span>Ver detalhes</span>
                             <ArrowRight className="size-4 group-hover/btn:translate-x-1 transition-transform" />
-                          </motion.div>
+                          </motion.button>
                         )}
                       </div>
 
