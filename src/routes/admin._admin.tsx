@@ -8,15 +8,15 @@ import { cn } from '@/lib/utils';
 export const Route = createFileRoute('/admin/_admin')({
   beforeLoad: async ({ location }) => {
     if (typeof window === 'undefined') return;
-    
+
     let { data: { session } } = await supabase.auth.getSession();
+    console.log("[AdminAuth] Client session check:", !!session);
     
-    // Fallback if session is not immediately available but might be in localStorage
     if (!session) {
-      // Wait for session to hydrate
-      await new Promise(r => setTimeout(r, 500));
+      await new Promise(r => setTimeout(r, 1000));
       const { data: { session: retrySession } } = await supabase.auth.getSession();
       session = retrySession;
+      console.log("[AdminAuth] Retry session check:", !!session);
     }
 
     if (!session) {
