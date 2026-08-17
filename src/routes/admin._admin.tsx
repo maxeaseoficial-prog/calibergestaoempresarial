@@ -101,11 +101,11 @@ function AdminLayout() {
             <Link
               key={item.href}
               to={item.href as any}
+              activeOptions={{ exact: item.href === '/admin' }}
               className={cn(
                 "flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors",
-                window.location.pathname === item.href
-                  ? "bg-purple/10 text-purple"
-                  : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                "text-slate-600 hover:bg-slate-50 hover:text-slate-900",
+                "[&.active]:bg-purple/10 [&.active]:text-purple"
               )}
             >
               <item.icon className="mr-3 h-5 w-5" />
@@ -139,7 +139,7 @@ function AdminLayout() {
         {/* Top Header Desktop */}
         <header className="hidden md:flex items-center justify-between px-8 py-4 bg-white border-b border-slate-200">
           <h1 className="text-xl font-bold text-slate-900 capitalize">
-            {navItems.find(item => item.href === window.location.pathname)?.label || 'Painel de Controle'}
+            {navItems.find(item => window.location.pathname === item.href || (item.href !== '/admin' && window.location.pathname.startsWith(item.href)))?.label || 'Painel de Controle'}
           </h1>
           <div className="flex items-center space-x-4">
             <Link to="/" className="text-sm text-slate-500 hover:text-purple flex items-center transition-colors">
@@ -173,11 +173,11 @@ function AdminLayout() {
                 <Link
                   key={item.href}
                   to={item.href as any}
+                  activeOptions={{ exact: item.href === '/admin' }}
                   className={cn(
-                    "flex items-center px-4 py-3 text-sm font-medium rounded-lg",
-                    window.location.pathname === item.href
-                      ? "bg-purple/10 text-purple"
-                      : "text-slate-600"
+                    "flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors",
+                    "text-slate-600",
+                    "[&.active]:bg-purple/10 [&.active]:text-purple"
                   )}
                   onClick={() => setIsSidebarOpen(false)}
                 >
