@@ -6,15 +6,34 @@ import { cn } from "@/lib/utils";
  * O logotipo original da Cáliber (PNG branco) é usado como máscara,
  * permitindo colorir a marca com currentColor sem redesenhá-la.
  */
-export function Logo({ className }: { className?: string }) {
+export function Logo({ 
+  className,
+  variant = 'default'
+}: { 
+  className?: string;
+  variant?: 'default' | 'header';
+}) {
+  const asset = variant === 'header' ? headerLogoAsset : logoAsset;
+  
+  // If it's the header logo, we render it as an img to preserve its original colors (white text/icon)
+  if (variant === 'header') {
+    return (
+      <img 
+        src={asset.url} 
+        alt="Cáliber" 
+        className={cn("block object-contain", className)}
+      />
+    );
+  }
+
   return (
     <span
       role="img"
       aria-label="Cáliber"
       className={cn("block bg-current", className)}
       style={{
-        WebkitMaskImage: `url(${logoAsset.url})`,
-        maskImage: `url(${logoAsset.url})`,
+        WebkitMaskImage: `url(${asset.url})`,
+        maskImage: `url(${asset.url})`,
         WebkitMaskRepeat: "no-repeat",
         maskRepeat: "no-repeat",
         WebkitMaskPosition: "center",
