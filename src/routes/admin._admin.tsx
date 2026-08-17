@@ -11,7 +11,8 @@ export const Route = createFileRoute('/admin/_admin')({
     
     // Fallback if session is not immediately available but might be in localStorage
     if (!session) {
-      console.log("[AdminAuth] Session not found in initial check, waiting 500ms...");
+      // Wait for session to hydrate
+      await new Promise(r => setTimeout(r, 500));
       await new Promise(r => setTimeout(r, 500));
       const { data: { session: retrySession } } = await supabase.auth.getSession();
       session = retrySession;
