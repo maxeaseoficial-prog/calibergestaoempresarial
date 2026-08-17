@@ -108,9 +108,16 @@ function AdminLogin() {
           <button
             type="submit"
             disabled={loading}
-            className="flex w-full items-center justify-center gap-2 rounded-xl bg-purple py-4 text-sm font-bold tracking-wider text-white uppercase transition-all hover:bg-purple-deep hover:shadow-lift disabled:opacity-70"
+            className="flex w-full items-center justify-center gap-2 rounded-xl bg-purple py-4 text-sm font-bold tracking-wider text-white uppercase transition-all hover:bg-purple-deep hover:shadow-lift disabled:opacity-70 disabled:cursor-not-allowed"
           >
-            {loading ? <Loader2 className="size-4 animate-spin" /> : "ENTRAR"}
+            {loading ? (
+              <>
+                <Loader2 className="size-4 animate-spin" />
+                <span>Entrando...</span>
+              </>
+            ) : (
+              "ENTRAR"
+            )}
           </button>
 
           <div className="text-center">
