@@ -87,7 +87,7 @@ export function Header() {
             rel="noreferrer"
             className="hidden text-xs lg:inline-flex"
           >
-            Fale com um Especialista
+            Fale com um especialista
           </CalAnchor>
           <button
             type="button"
@@ -150,7 +150,7 @@ function MobileNavigation({ open, onClose }: { open: boolean; onClose: () => voi
           variant="white"
           className="mt-8 w-full"
         >
-          Fale com um Especialista
+          Fale com um especialista
         </CalAnchor>
       </nav>
     </div>
