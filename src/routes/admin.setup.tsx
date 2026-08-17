@@ -61,6 +61,32 @@ function AdminSetup() {
     }
   };
 
+  const handleSetupDefaultAdmin = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const result = await createAdmin({
+        data: {
+          email: 'admin@caliber.com.br',
+          password: 'admin',
+        }
+      });
+      if (result.success) {
+        setSuccess(true);
+      }
+    } catch (err: any) {
+      // If it already exists, just confirm it
+      try {
+        await confirmUser({ data: { email: 'admin@caliber.com.br' } });
+        setSuccess(true);
+      } catch (innerErr) {
+        setError('Erro ao configurar admin padrão.');
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
   if (success) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-slate-50 p-4">
