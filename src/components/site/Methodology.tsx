@@ -134,7 +134,7 @@ export function Methodology() {
 
 
           {/* Cards Stage */}
-          <div className="flex justify-center items-center h-[450px] sm:h-[500px] md:h-[600px] relative perspective-3d touch-pan-y">
+          <div className="flex justify-center items-center h-[380px] sm:h-[420px] md:h-[500px] relative perspective-3d touch-pan-y">
             <AnimatePresence mode="wait">
               {services.map((card, index) => {
                 const relativeIndex = (index - activeIndex + services.length) % services.length;
