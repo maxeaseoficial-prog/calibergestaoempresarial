@@ -12,7 +12,7 @@ export function LogoCloud() {
   const loop = [...clients, ...clients];
 
   return (
-    <section id="clientes" className="overflow-hidden border-y border-purple/10 bg-card py-20">
+    <section id="clientes" className="overflow-hidden border-y border-purple/10 bg-card py-12 lg:py-16">
       <div className="container-cal text-center">
         <Reveal>
           <span className="eyebrow block">
@@ -26,7 +26,7 @@ export function LogoCloud() {
         </Reveal>
       </div>
 
-      <div className="relative mt-14">
+      <div className="relative mt-10">
         <div className="flex w-max marquee-track gap-14 px-8">
           {loop.map((client, index) => (
             <img

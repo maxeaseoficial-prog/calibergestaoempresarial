@@ -5,7 +5,7 @@ import { LogoWatermark } from "./Logo";
 
 export function ImpactSection() {
   return (
-    <section className="relative overflow-hidden bg-purple-dark py-24 text-center text-white lg:py-40">
+    <section className="relative overflow-hidden bg-purple-dark py-16 text-center text-white lg:py-24 min-h-[60vh] flex items-center">
       <div className="absolute inset-0 bg-gradient-to-br from-purple-dark via-purple-deep to-purple opacity-40" />
 
 

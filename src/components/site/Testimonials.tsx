@@ -19,7 +19,7 @@ export function Testimonials() {
   return (
     <section className="relative overflow-hidden bg-white">
       {/* Top Frame */}
-      <div className="relative z-20 h-24 w-full bg-purple lg:h-40">
+      <div className="relative z-20 h-16 w-full bg-purple lg:h-24">
         <svg 
           viewBox="0 0 1440 120" 
           fill="none" 
@@ -34,7 +34,7 @@ export function Testimonials() {
         </svg>
       </div>
 
-      <div className="container-cal relative z-10 py-32 lg:py-48">
+      <div className="container-cal relative z-10 py-20 lg:py-32">
         <Reveal>
           <div className="mb-20 mx-auto text-center max-w-2xl">
             <span className="eyebrow block">Quem já evoluiu</span>

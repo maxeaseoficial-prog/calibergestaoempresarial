@@ -94,9 +94,9 @@ export function Methodology() {
   };
 
   return (
-    <section id="metodologia" className="py-12 lg:py-20 overflow-hidden bg-white">
+    <section id="metodologia" className="py-10 lg:py-16 overflow-hidden bg-white min-h-[80vh] flex flex-col justify-center">
       <div className="container-cal">
-        <div className="flex flex-col items-center mb-8 lg:mb-10">
+        <div className="flex flex-col items-center mb-6 lg:mb-8">
           <SectionHeading
             title={<>Como tornamos sua empresa <br className="hidden lg:block" /> mais eficiente?</>}
             align="center"
@@ -134,7 +134,7 @@ export function Methodology() {
 
 
           {/* Cards Stage */}
-          <div className="flex justify-center items-center h-[380px] sm:h-[420px] md:h-[500px] relative perspective-3d touch-pan-y">
+          <div className="flex justify-center items-center h-[340px] sm:h-[380px] md:h-[420px] lg:h-[460px] relative perspective-3d touch-pan-y">
             <AnimatePresence mode="wait">
               {services.map((card, index) => {
                 const relativeIndex = (index - activeIndex + services.length) % services.length;
@@ -190,7 +190,7 @@ export function Methodology() {
                 return (
                   <motion.div
                     key={card.id}
-                    className="absolute w-[280px] sm:w-[380px] md:w-[500px] lg:w-[600px] aspect-[16/10] cursor-pointer"
+                    className="absolute w-[280px] sm:w-[350px] md:w-[450px] lg:w-[540px] aspect-[16/10] cursor-pointer"
                     style={{
                       transformStyle: "preserve-3d",
                       backfaceVisibility: "hidden",
@@ -222,7 +222,7 @@ export function Methodology() {
                   >
                     <motion.div 
                       className={cn(
-                        "w-full h-full p-8 md:p-12 rounded-[32px] relative overflow-hidden flex flex-col items-center justify-center text-center border transition-all duration-500",
+                        "w-full h-full p-6 md:p-10 rounded-[28px] relative overflow-hidden flex flex-col items-center justify-center text-center border transition-all duration-500",
                         isActive 
                           ? "bg-purple border-purple-light/20 shadow-[0_30px_80px_rgba(95,85,135,0.4)]" 
                           : "bg-purple-deep border-purple/10 shadow-soft"
@@ -311,7 +311,7 @@ export function Methodology() {
           </div>
 
           {/* Indicators */}
-          <div className="flex items-center justify-center gap-3 mt-12 md:mt-16">
+          <div className="flex items-center justify-center gap-3 mt-8 md:mt-10">
             {services.map((_, i) => (
               <button
                 key={i}
@@ -328,7 +328,7 @@ export function Methodology() {
           </div>
         </div>
 
-        <div className="mt-24 flex items-center justify-center gap-6">
+        <div className="mt-12 lg:mt-16 flex items-center justify-center gap-6">
           <div className="h-[1px] flex-1 bg-purple/10 max-w-[100px] hidden md:block" />
           <p className="text-ink/60 text-sm md:text-base text-center">
             Não entregamos teoria. <span className="text-purple font-bold">Entregamos resultado.</span>

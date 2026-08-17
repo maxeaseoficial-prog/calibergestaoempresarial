@@ -5,7 +5,7 @@ import { Reveal } from "./Reveal";
 
 export function ContactCTA() {
   return (
-    <section className="relative overflow-hidden gradient-deep py-24 text-white lg:py-32">
+    <section className="relative overflow-hidden gradient-deep py-20 text-white lg:py-28 min-h-[50vh] flex items-center">
       {/* Logo watermark removed */}
       <div className="container-cal relative">
         <div className="max-w-3xl">

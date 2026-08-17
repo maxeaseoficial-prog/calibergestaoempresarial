@@ -17,7 +17,7 @@ export function NationalPresence() {
 
 
   return (
-    <section id="atuacao" className="relative overflow-hidden bg-slate-50/50 py-24 lg:py-32">
+    <section id="atuacao" className="relative overflow-hidden bg-slate-50/50 py-16 lg:py-24 min-h-[85vh] flex items-center">
       {/* Subtle radial gradient background */}
       <div className="absolute top-1/2 left-1/2 -z-10 h-full w-full -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(circle_at_center,rgba(95,85,135,0.03)_0%,transparent_70%)]" />
 
@@ -39,7 +39,7 @@ export function NationalPresence() {
             </Reveal>
             
             <Reveal delay={160}>
-              <p className="mt-6 max-w-[480px] text-[17px] leading-relaxed text-slate-500 md:mt-8 md:text-lg">
+              <p className="mt-5 max-w-[480px] text-[16px] leading-relaxed text-slate-500 md:mt-6 md:text-[17px]">
                 Nossa experiência atravessa diferentes regiões e realidades do Brasil, levando estratégia, gestão e execução para empresas que querem alcançar um novo nível de resultado.
               </p>
             </Reveal>
