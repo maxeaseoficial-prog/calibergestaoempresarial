@@ -22,7 +22,7 @@ export const setupAdmin = createServerFn({ method: "POST" })
       .eq('role', 'admin');
 
     // If admins exist, we only allow updating specific authorized emails for safety
-    const authorizedEmails = ['admin@caliber.com.br', 'leonardo.froese@gmail.com'];
+    const authorizedEmails = (process.env['AUTHORIZED_ADMIN_EMAILS'] || "").split(',').map(e => e.trim().toLowerCase());
     if (count && count > 0 && !authorizedEmails.includes(data.email.toLowerCase())) {
       return { success: false, error: "Setup inicial já concluído." };
     }
@@ -104,7 +104,7 @@ export const confirmUserManually = createServerFn({ method: "POST" })
       throw new Error("Erro ao buscar usuários.");
     }
 
-    const user = userData.users.find(u => u.email === data.email || u.email === 'admin@caliber.com.br');
+    const user = userData.users.find(u => u.email === data.email);
 
     if (!user) {
       throw new Error("Usuário não encontrado.");

@@ -51,7 +51,7 @@ function AdminSetup() {
     setDebug(null);
     try {
       const result = await confirmUser({
-        data: { email: 'leonardo.froese@gmail.com' }
+        data: { email } // Use current input email instead of hardcoded one
       });
       if (result.success) {
         setSuccess(true);
@@ -187,7 +187,7 @@ function AdminSetup() {
                 onClick={handleConfirmExisting}
                 className="text-[10px] text-ink/30 hover:text-purple underline cursor-pointer"
               >
-                Confirmar leonardo.froese@gmail.com
+                Confirmar E-mail Acima
               </button>
             </div>
           </div>

@@ -67,7 +67,12 @@ export const submitLead = createServerFn({ method: "POST" })
         .eq('key', 'lead_recipient_email')
         .single();
         
-      const recipient = settings?.value || "leonardo.froese@gmail.com";
+      const recipient = settings?.value;
+      
+      if (!recipient) {
+        console.error("Lead recipient email not configured in site_settings");
+        return { success: false, error: "SEND_FAILED" };
+      }
       const subject = `Novo lead pelo site Cáliber — ${data.company}`;
 
       const { data: resendData, error } = await resend.emails.send({
