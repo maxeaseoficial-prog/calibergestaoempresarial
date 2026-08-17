@@ -45,7 +45,7 @@ export function Solutions() {
                   </p>
                   <div className="mt-10">
                     <CalAnchor href={CONTACT.whatsapp} variant="ghostLight" target="_blank">
-                      Solicitar Detalhes
+                      Solicitar detalhes
                     </CalAnchor>
                   </div>
                 </div>

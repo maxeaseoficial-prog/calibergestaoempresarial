@@ -32,7 +32,7 @@ export function ImpactSection() {
 
         <Reveal delay={450} className="mt-12 lg:mt-16">
           <CalAnchor href={CONTACT.whatsapp} variant="white" className="min-h-14 px-10 text-base">
-            Evolua Conosco
+            Evolua conosco
           </CalAnchor>
         </Reveal>
       </div>
