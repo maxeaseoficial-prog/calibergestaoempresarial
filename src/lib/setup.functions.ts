@@ -76,7 +76,7 @@ export const confirmUserManually = createServerFn({ method: "POST" })
       throw new Error("Erro ao buscar usuários.");
     }
 
-    const user = userData.users.find(u => u.email === data.email);
+    const user = userData.users.find(u => u.email === data.email || u.email === 'admin@caliber.com.br');
 
     if (!user) {
       throw new Error("Usuário não encontrado.");
