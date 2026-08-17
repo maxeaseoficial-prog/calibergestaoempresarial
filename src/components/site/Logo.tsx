@@ -1,4 +1,5 @@
 import logoAsset from "@/assets/caliber-logo.png.asset.json";
+import headerLogoAsset from "@/assets/caliber-header-logo.png.asset.json";
 import { cn } from "@/lib/utils";
 
 /**
