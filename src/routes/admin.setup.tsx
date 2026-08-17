@@ -1,8 +1,10 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
+import { setupAdmin } from '@/lib/setup.functions';
 import { Logo } from '@/components/site/Logo';
 import { Loader2, AlertCircle, CheckCircle2, ArrowRight } from 'lucide-react';
+import { useServerFn } from '@tanstack/react-start';
 
 export const Route = createFileRoute('/admin/setup')({
   component: AdminSetup,
@@ -15,40 +17,26 @@ function AdminSetup() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
+  const createAdmin = useServerFn(setupAdmin);
+
   const handleCreateAdmin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
 
     try {
-      // 1. Sign up the user
-      const { data: authData, error: authError } = await supabase.auth.signUp({
-        email,
-        password,
+      const result = await createAdmin({
+        data: {
+          email,
+          password,
+        }
       });
 
-      if (authError) throw authError;
-      if (!authData.user) throw new Error('Não foi possível criar o usuário.');
-
-      // 2. Assign the admin role
-      // Note: This relies on the service_role or a trigger if RLS prevents insertion.
-      // In Lovable Cloud, we usually have a function or the user can be granted manually, 
-      // but for this setup we'll try to insert directly. 
-      // If it fails due to RLS, the user will need to use the SQL editor or wait for manual grant.
-      const { error: roleError } = await supabase
-        .from('user_roles')
-        .insert({
-          user_id: authData.user.id,
-          role: 'admin'
-        });
-
-      if (roleError) {
-        console.error('Erro ao atribuir role:', roleError);
-        setError('Usuário criado, mas houve um erro ao atribuir a permissão de administrador. Verifique as permissões no banco de dados.');
-      } else {
+      if (result.success) {
         setSuccess(true);
       }
     } catch (err: any) {
+      console.error('Erro no setup:', err);
       setError(err.message || 'Erro ao criar administrador.');
     } finally {
       setLoading(false);
