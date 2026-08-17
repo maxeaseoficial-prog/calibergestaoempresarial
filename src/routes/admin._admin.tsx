@@ -6,39 +6,48 @@ import { useState } from 'react';
 import { cn } from '@/lib/utils';
 
 export const Route = createFileRoute('/admin/_admin')({
-  beforeLoad: async ({ location }) => {
-    const { data: { user } } = await supabase.auth.getUser();
-    
-    if (!user) {
-      throw redirect({
-        to: '/admin/login' as any,
-        search: {
-          redirect: location.href,
-        } as any,
-      });
-    }
-
-    const { data: hasAdminRole, error } = await supabase.rpc('has_role', {
-      _user_id: user.id,
-      _role: 'admin' as any
-    });
-
-    if (error || !hasAdminRole) {
-      await supabase.auth.signOut();
-      throw redirect({
-        to: '/admin/login' as any,
-        search: {
-          error: 'unauthorized'
-        } as any,
-      });
-    }
-  },
   component: AdminLayout,
 });
 
 function AdminLayout() {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      
+      if (!session) {
+        navigate({ to: '/admin/login', search: { redirect: window.location.href } as any });
+        return;
+      }
+
+      const { data: hasAdminRole } = await supabase.rpc('has_role', {
+        _user_id: session.user.id,
+        _role: 'admin' as any
+      });
+
+      if (!hasAdminRole) {
+        await supabase.auth.signOut();
+        navigate({ to: '/admin/login', search: { error: 'unauthorized' } as any });
+        return;
+      }
+
+      setLoading(false);
+    };
+
+    checkAuth();
+  }, [navigate]);
+
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-slate-50">
+        <Loader2 className="h-8 w-8 animate-spin text-purple" />
+      </div>
+    );
+  }
 
   const handleLogout = async () => {
     setIsLoggingOut(true);
