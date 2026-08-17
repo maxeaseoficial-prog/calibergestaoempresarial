@@ -53,20 +53,15 @@ export function Hero() {
 
   return (
     <section className="relative overflow-hidden pt-32 pb-20 lg:pt-48 lg:pb-32 min-h-[90vh] flex items-center">
-      {/* Background Video */}
+      {/* Background Image */}
       <div className="absolute inset-0 -z-20 overflow-hidden bg-black">
-        <video
-          key={heroVideoAsset.url}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="h-full w-full object-cover opacity-50"
-        >
-          <source src={heroVideoAsset.url} type="video/mp4" />
-        </video>
+        <img
+          src={heroBackgroundAsset.url}
+          alt=""
+          className="h-full w-full object-cover opacity-60"
+        />
         {/* Overlay for readability */}
-        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-black/40" />
       </div>
 
       {/* Background elements */}
