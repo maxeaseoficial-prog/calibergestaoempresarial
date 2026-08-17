@@ -33,7 +33,7 @@ function AdminDashboard() {
         supabase.from('clients').select('id', { count: 'exact', head: true }),
         supabase.from('services').select('id', { count: 'exact', head: true }),
         supabase.from('testimonials').select('id', { count: 'exact', head: true }),
-        supabase.from('served_states').select('id', { count: 'exact', head: true }).eq('is_active', true),
+        supabase.from('served_states').select('id', { count: 'exact', head: true }),
       ]);
 
       return {

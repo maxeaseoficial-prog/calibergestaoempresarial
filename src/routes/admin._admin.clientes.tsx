@@ -20,7 +20,7 @@ function ClientsAdmin() {
       const { data, error } = await supabase
         .from('clients')
         .select('*')
-        .order('sort_order', { ascending: true });
+        .order('created_at', { ascending: false });
       if (error) throw error;
       return data;
     }

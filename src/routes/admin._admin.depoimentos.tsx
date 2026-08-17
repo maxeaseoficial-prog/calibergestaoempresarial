@@ -25,7 +25,7 @@ function TestimonialsAdmin() {
       const { data, error } = await supabase
         .from('testimonials')
         .select('*')
-        .order('sort_order', { ascending: true });
+        .order('created_at', { ascending: false });
       if (error) throw error;
       return data;
     }
