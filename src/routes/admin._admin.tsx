@@ -24,12 +24,16 @@ function AdminLayout() {
         return;
       }
 
-      const { data: hasAdminRole } = await supabase.rpc('has_role', {
-        _user_id: session.user.id,
-        _role: 'admin' as any
-      });
+      const { data: roles, error: roleError } = await supabase
+        .from('user_roles')
+        .select('role')
+        .eq('user_id', session.user.id)
+        .eq('role', 'admin');
 
-      if (!hasAdminRole) {
+      const hasAdminRole = roles && roles.length > 0;
+
+      if (roleError || !hasAdminRole) {
+        console.error("[AdminAuth] Role check failed:", roleError);
         await supabase.auth.signOut();
         navigate({ to: '/admin/login', search: { error: 'unauthorized' } as any });
         return;
