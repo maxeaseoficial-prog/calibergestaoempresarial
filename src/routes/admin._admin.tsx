@@ -28,7 +28,6 @@ export const Route = createFileRoute('/admin/_admin')({
       });
     }
 
-    console.log("[AdminAuth] Checking role for user:", session.user.id);
     const { data: hasAdminRole, error } = await supabase.rpc('has_role', {
       _user_id: session.user.id,
       _role: 'admin' as any
@@ -39,7 +38,6 @@ export const Route = createFileRoute('/admin/_admin')({
     }
 
     if (error || !hasAdminRole) {
-      console.log("[AdminAuth] Unauthorized or error, signing out and redirecting");
       await supabase.auth.signOut();
       throw redirect({
         to: '/admin/login' as any,
@@ -48,7 +46,6 @@ export const Route = createFileRoute('/admin/_admin')({
         } as any,
       });
     }
-    console.log("[AdminAuth] Access granted");
   },
   component: AdminLayout,
 });
