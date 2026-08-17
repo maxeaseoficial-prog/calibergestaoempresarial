@@ -193,7 +193,7 @@ export function ServiceDetailsModal({ isOpen, onClose, serviceId }: ServiceDetai
                 >
                   <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple/5 text-purple text-xs font-bold tracking-widest border border-purple/10">
                     <Calendar className="size-4" />
-                    {data.frequency}
+                    {data.frequency.charAt(0).toUpperCase() + data.frequency.slice(1).toLowerCase()}
                   </span>
                 </motion.div>
               )}
@@ -217,7 +217,7 @@ export function ServiceDetailsModal({ isOpen, onClose, serviceId }: ServiceDetai
                       <div className="size-12 rounded-full bg-white border-2 border-purple flex items-center justify-center text-purple font-bold text-sm mb-6 shadow-sm">
                         {step.id}
                       </div>
-                      <h4 className="font-bold text-ink mb-2 text-sm">{step.title}</h4>
+                      <h4 className="font-bold text-ink mb-2 text-sm">{step.title.charAt(0).toUpperCase() + step.title.slice(1).toLowerCase()}</h4>
                       <p className="text-ink/60 text-xs leading-relaxed">{step.description}</p>
                     </div>
                   ))}
