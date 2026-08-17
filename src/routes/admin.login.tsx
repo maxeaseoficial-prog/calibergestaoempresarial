@@ -45,8 +45,8 @@ function AdminLogin() {
       // Small delay to ensure session is stored
       await new Promise(r => setTimeout(r, 800));
       
-      // Use replace to avoid back button issues and force reload
-      window.location.replace('/admin');
+      // Use navigate to go to admin dashboard
+      navigate({ to: '/admin' });
     } catch (err) {
       setError('Não foi possível entrar. Tente novamente.');
       setLoading(false);
