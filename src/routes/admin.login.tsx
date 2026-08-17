@@ -49,8 +49,8 @@ function AdminLogin() {
       // Small delay to ensure session is stored in all contexts
       await new Promise(r => setTimeout(r, 800));
       
-      // Explicitly navigate to /admin/ (the pathless layout parent) or directly to dashboard
-      window.location.replace('/admin/atuacao'); // Testing a direct sub-route to bypass redirect loops
+      // Explicitly navigate to /admin/ (the pathless layout parent)
+      window.location.replace('/admin/');
     } catch (err) {
       console.error("[AdminLogin] Unexpected error:", err);
       setError('Ocorreu um erro inesperado. Tente novamente.');
