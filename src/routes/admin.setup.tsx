@@ -48,6 +48,7 @@ function AdminSetup() {
   const handleConfirmExisting = async () => {
     setLoading(true);
     setError(null);
+    setDebug(null);
     try {
       const result = await confirmUser({
         data: { email: 'leonardo.froese@gmail.com' }
@@ -65,7 +66,9 @@ function AdminSetup() {
   const handleSetupDefaultAdmin = async () => {
     setLoading(true);
     setError(null);
+    setDebug(null);
     try {
+      setDebug("Iniciando configuração de admin@caliber.com.br...");
       const result = await createAdmin({
         data: {
           email: 'admin@caliber.com.br',
@@ -73,16 +76,12 @@ function AdminSetup() {
         }
       });
       if (result.success) {
+        setDebug("Sucesso! Usuário configurado como admin.");
         setSuccess(true);
       }
     } catch (err: any) {
-      // If it already exists, just confirm it
-      try {
-        await confirmUser({ data: { email: 'admin@caliber.com.br' } });
-        setSuccess(true);
-      } catch (innerErr) {
-        setError('Erro ao configurar admin padrão.');
-      }
+      console.error('Setup error:', err);
+      setError(err.message || 'Erro ao configurar admin padrão.');
     } finally {
       setLoading(false);
     }
@@ -151,6 +150,12 @@ function AdminSetup() {
             <div className="flex items-center gap-2 rounded-lg bg-red-50 p-3 text-xs text-red-600">
               <AlertCircle className="size-4 shrink-0" />
               {error}
+            </div>
+          )}
+
+          {debug && (
+            <div className="rounded-lg bg-blue-50 p-3 text-[10px] text-blue-600 font-mono">
+              {debug}
             </div>
           )}
 
