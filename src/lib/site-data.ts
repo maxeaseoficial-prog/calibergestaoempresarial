@@ -21,7 +21,7 @@ export const OFFICES = [
   {
     city: "Cuiabá",
     state: "MT",
-    lines: ["Av. Miguel Sutil, 8000", "Santa Rosa Tower"],
+    lines: ["Av. Senador Filinto Muller, 970", "Goiabeiras"],
     map: "https://g.page/CaliberConsultoriaEmpresarial?share",
     phone: CONTACT.phoneMT,
     phoneHref: CONTACT.phoneMTHref,
