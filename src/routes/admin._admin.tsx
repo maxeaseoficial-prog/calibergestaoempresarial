@@ -18,13 +18,12 @@ function AdminLayout() {
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   useEffect(() => {
-    const checkAuth = async () => {
-      try {
         const { data: { session } } = await supabase.auth.getSession();
+        console.log("[AdminAuth] Session:", !!session);
         
         if (!session) {
           setLoading(false);
-          setAuthError('No session found');
+          setAuthError('No session found in getSession()');
           return;
         }
 
@@ -34,11 +33,13 @@ function AdminLayout() {
           .eq('user_id', session.user.id)
           .eq('role', 'admin');
 
+        console.log("[AdminAuth] Role check result:", roles);
+
         const hasAdminRole = roles && roles.length > 0;
 
         if (roleError || !hasAdminRole) {
           setLoading(false);
-          setAuthError(`Role check failed: ${roleError?.message || 'User is not admin'}`);
+          setAuthError(`Role check failed. Error: ${roleError?.message || 'None'}. Roles found: ${JSON.stringify(roles)}`);
           return;
         }
 
