@@ -33,7 +33,7 @@ const CARDS = [
   {
     id: 4,
     number: "",
-    title: ["CÁLIBER COR"],
+    title: ["CÁLIBER CORE"],
     subtitle: "FERRAMENTAS CORPORATIVAS ESPECIAIS",
     description: "Soluções exclusivas que integram tecnologia, pessoas e processos para elevar o nível da sua gestão.",
     icon: LayoutGrid,
