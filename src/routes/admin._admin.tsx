@@ -10,6 +10,7 @@ export const Route = createFileRoute('/admin/_admin')({
     const { data: { session } } = await supabase.auth.getSession();
     
     if (!session) {
+      console.log("[AdminAuth] No session found, redirecting to login");
       throw redirect({
         to: '/admin/login' as any,
         search: {
@@ -18,12 +19,18 @@ export const Route = createFileRoute('/admin/_admin')({
       });
     }
 
+    console.log("[AdminAuth] Checking role for user:", session.user.id);
     const { data: hasAdminRole, error } = await supabase.rpc('has_role', {
       _user_id: session.user.id,
       _role: 'admin' as any
     });
 
+    if (error) {
+      console.error("[AdminAuth] Error checking role:", error);
+    }
+
     if (error || !hasAdminRole) {
+      console.log("[AdminAuth] Unauthorized or error, signing out and redirecting");
       await supabase.auth.signOut();
       throw redirect({
         to: '/admin/login' as any,
@@ -32,6 +39,7 @@ export const Route = createFileRoute('/admin/_admin')({
         } as any,
       });
     }
+    console.log("[AdminAuth] Access granted");
   },
   component: AdminLayout,
 });
