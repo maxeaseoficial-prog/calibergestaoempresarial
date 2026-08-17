@@ -28,7 +28,7 @@ export function ContactCTA() {
           </Reveal>
           <Reveal delay={220}>
             <div className="mt-10 flex flex-wrap items-center gap-3">
-              <CalAnchor href={CONTACT.whatsapp} target="_blank" rel="noreferrer" variant="white">
+              <CalAnchor href={CONTACT.whatsapp} target="_blank" rel="noreferrer" variant="white" arrow={false}>
                 Fale com um especialista
               </CalAnchor>
             </div>

@@ -72,7 +72,7 @@ export function EvoluaConoscoModal({ isOpen, onClose }: EvoluaConoscoModalProps)
             {/* Header */}
             <div className="flex items-center justify-between border-b border-ink/5 px-8 py-6">
               <div>
-                <span className="eyebrow text-purple">EVOLUA CONOSCO</span>
+                <span className="eyebrow text-purple">Evolua conosco</span>
                 <h2 id="modal-title" className="mt-2 text-2xl font-bold tracking-tight text-ink">
                   {isSuccess ? "Solicitação enviada" : "Vamos entender o momento da sua empresa."}
                 </h2>
@@ -111,9 +111,9 @@ export function EvoluaConoscoModal({ isOpen, onClose }: EvoluaConoscoModalProps)
                   </p>
                   <button
                     onClick={onClose}
-                    className="mt-10 rounded-xl bg-purple px-12 py-4 text-sm font-bold tracking-wider text-white uppercase transition-all hover:bg-purple-deep hover:shadow-lift"
+                    className="mt-10 rounded-xl bg-purple px-12 py-4 text-sm font-bold tracking-wider text-white transition-all hover:bg-purple-deep hover:shadow-lift"
                   >
-                    FECHAR
+                    Fechar
                   </button>
                 </div>
               )}

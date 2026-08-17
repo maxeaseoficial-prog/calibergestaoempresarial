@@ -20,7 +20,7 @@ export function Differentiators() {
       <div className="container-cal">
         <div className="flex flex-col items-center mb-16 lg:mb-20">
           <SectionHeading
-            eyebrow="Diferenciais Exclusivos"
+            eyebrow="Diferenciais exclusivos"
             title="O que só a Cáliber faz por você"
             align="center"
             className="mb-6"

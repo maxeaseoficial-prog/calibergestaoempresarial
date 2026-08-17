@@ -13,14 +13,14 @@ export function ImpactSection() {
         <Reveal>
           <span className="eyebrow mx-auto justify-center text-purple-light">
             
-            A Solução Definitiva
+            A solução definitiva
           </span>
         </Reveal>
 
         <Reveal delay={150}>
-          <h2 className="mt-8 text-[clamp(2.5rem,7vw,6.5rem)] font-black leading-[0.9] tracking-tighter uppercase">
+          <h2 className="mt-8 text-[clamp(2.5rem,7vw,6.5rem)] font-black leading-[0.9] tracking-tighter">
             Alavanque seus <br />
-            <span className="text-purple-light">Resultados.</span>
+            <span className="text-purple-light">resultados.</span>
           </h2>
         </Reveal>
 
@@ -32,7 +32,7 @@ export function ImpactSection() {
 
         <Reveal delay={450} className="mt-12 lg:mt-16">
           <CalAnchor href={CONTACT.whatsapp} variant="white" className="min-h-14 px-10 text-base">
-            Evolua Conosco
+            Evolua conosco
           </CalAnchor>
         </Reveal>
       </div>

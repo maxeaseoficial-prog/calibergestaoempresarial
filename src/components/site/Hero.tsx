@@ -83,7 +83,7 @@ export function Hero() {
                 aria-hidden={index !== i}
               >
                 <span className="eyebrow block text-purple-light">
-                  {msg.eyebrow}
+                  {msg.eyebrow.charAt(0).toUpperCase() + msg.eyebrow.slice(1).toLowerCase()}
                 </span>
 
                 <h1 className="mt-8 text-[clamp(2.8rem,6.5vw,6rem)] leading-[0.9] font-extrabold tracking-tight text-white">
@@ -104,7 +104,7 @@ export function Hero() {
               onClick={() => setIsModalOpen(true)} 
               className="inline-flex items-center justify-center rounded-xl bg-purple px-10 py-5 text-lg font-bold text-white transition-all hover:bg-purple-deep hover:shadow-lift"
             >
-              Evolua Conosco
+              Evolua conosco
             </button>
             <CalLink to="/" hash="atuacao" variant="outline" arrow={false} className="px-10 py-5 text-lg border-white text-white hover:bg-white hover:text-black">
               Conheça a Cáliber

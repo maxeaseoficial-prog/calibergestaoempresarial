@@ -4,7 +4,7 @@ import type { ComponentProps, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 const base =
-  "group inline-flex min-h-11 items-center justify-center gap-2.5 rounded-[10px] px-6 py-3 text-sm font-bold tracking-wide uppercase transition-[background-color,color,border-color,box-shadow,transform] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]";
+  "group inline-flex min-h-11 items-center justify-center gap-2.5 rounded-[10px] px-6 py-3 text-sm font-bold tracking-wide transition-[background-color,color,border-color,box-shadow,transform] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]";
 
 const variants = {
   primary: "bg-purple text-white hover:bg-purple-deep shadow-soft",

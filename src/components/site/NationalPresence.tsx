@@ -27,8 +27,8 @@ export function NationalPresence() {
           {/* Left Column: Content */}
           <div className="flex flex-col">
             <Reveal>
-              <span className="text-[11px] font-bold tracking-[0.2em] text-purple uppercase">
-                ATUAÇÃO NACIONAL
+              <span className="text-[11px] font-bold tracking-[0.2em] text-purple">
+                Atuação nacional
               </span>
             </Reveal>
             
@@ -47,8 +47,8 @@ export function NationalPresence() {
             <Reveal delay={240}>
               <div className="mt-10 flex flex-col gap-5 md:mt-12">
                 <div>
-                  <h3 className="text-[11px] font-bold tracking-[0.2em] text-purple uppercase opacity-80">
-                    PRESENÇA EM {activeStatesCount} ESTADOS
+                  <h3 className="text-[11px] font-bold tracking-[0.2em] text-purple opacity-80">
+                    Presença em {activeStatesCount} estados
                   </h3>
                 </div>
 

@@ -27,11 +27,11 @@ export function CorporateSection() {
             
             <Reveal delay={250} className="mt-12">
               <div className="rounded-3xl border border-purple/10 bg-lavender/30 p-8 lg:p-12">
-                <span className="text-xs font-black tracking-[0.3em] text-purple opacity-40 uppercase">
-                  Conceito Recorrente
+                <span className="text-xs font-black tracking-[0.3em] text-purple opacity-40">
+                  Conceito recorrente
                 </span>
                 <p className="mt-4 text-2xl font-black text-purple-deep leading-tight lg:text-3xl">
-                  DA OPERAÇÃO <br className="hidden md:block" /> À GESTÃO
+                  Da operação <br className="hidden md:block" /> à gestão
                 </p>
                 <div className="mt-8 h-px w-full bg-purple/10" />
                 <p className="mt-8 text-sm font-medium text-muted-foreground italic">

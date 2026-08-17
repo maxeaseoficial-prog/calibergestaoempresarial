@@ -159,7 +159,7 @@ export function BrazilMap({ onHoverState, activeId }: BrazilMapProps) {
               <div className="flex size-6 items-center justify-center rounded-full bg-purple/10">
                 <Users className="size-3 text-purple" />
               </div>
-              <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider">
+              <span className="text-[10px] font-semibold text-slate-500 tracking-wider">
                 Clientes atendidos
               </span>
             </div>

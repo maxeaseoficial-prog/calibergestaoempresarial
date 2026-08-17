@@ -16,7 +16,7 @@ export function Solutions() {
     <section className="bg-purple-dark py-24 lg:py-32">
       <div className="container-cal">
         <SectionHeading
-          eyebrow="Metodologia e Soluções"
+          eyebrow="Metodologia e soluções"
           title="O caminho para o faturamento bilionário"
           tone="dark"
           align="center"
@@ -45,7 +45,7 @@ export function Solutions() {
                   </p>
                   <div className="mt-10">
                     <CalAnchor href={CONTACT.whatsapp} variant="ghostLight" target="_blank">
-                      Solicitar Detalhes
+                      Solicitar detalhes
                     </CalAnchor>
                   </div>
                 </div>
