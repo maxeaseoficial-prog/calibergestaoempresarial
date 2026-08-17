@@ -23,17 +23,6 @@ export function WhyCaliber() {
             description="Ser cliente Cáliber é ter um parceiro da operação à gestão para a sua empresa crescer cada dia mais."
           />
 
-          <Reveal delay={300} className="mt-16 inline-flex items-center gap-6 p-2 lg:p-4">
-            <div className="flex size-16 items-center justify-center rounded-2xl bg-purple text-white shadow-lg shadow-purple/20">
-              <Headset className="size-8" />
-            </div>
-            <div>
-              <p className="text-xs font-bold tracking-widest text-white/50">Central de atendimento</p>
-              <a href={phoneMTHref} className="mt-1 block text-2xl font-black transition-colors hover:text-purple-light lg:text-3xl">
-                {phoneMT}
-              </a>
-            </div>
-          </Reveal>
         </div>
       </div>
     </section>
