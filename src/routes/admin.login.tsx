@@ -32,7 +32,11 @@ function AdminLogin() {
       });
 
       if (authError) {
-        setError(authError.message);
+        if (authError.status === 400 || authError.message.toLowerCase().includes('invalid')) {
+          setError('E-mail ou senha inválidos.');
+        } else {
+          setError('Não foi possível entrar. Tente novamente.');
+        }
         setLoading(false);
         return;
       }
@@ -43,7 +47,7 @@ function AdminLogin() {
       // Use replace to avoid back button issues and force reload
       window.location.replace('/admin');
     } catch (err) {
-      setError('Erro ao realizar login.');
+      setError('Não foi possível entrar. Tente novamente.');
       setLoading(false);
     }
   };
