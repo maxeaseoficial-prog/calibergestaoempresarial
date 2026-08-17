@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import { setupAdmin } from '@/lib/setup.functions';
+import { setupAdmin, confirmUserManually } from '@/lib/setup.functions';
 import { Logo } from '@/components/site/Logo';
 import { Loader2, AlertCircle, CheckCircle2, ArrowRight } from 'lucide-react';
 import { useServerFn } from '@tanstack/react-start';
