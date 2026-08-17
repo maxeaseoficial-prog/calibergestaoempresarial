@@ -12,7 +12,8 @@ export function useClients() {
         .order('sort_order', { ascending: true });
       if (error) throw error;
       return data;
-    }
+    },
+    staleTime: 1000 * 60 * 60, // 1 hour
   });
 }
 
@@ -27,7 +28,8 @@ export function useServices() {
         .order('sort_order', { ascending: true });
       if (error) throw error;
       return data;
-    }
+    },
+    staleTime: 1000 * 60 * 60,
   });
 }
 
@@ -42,7 +44,8 @@ export function useTestimonials() {
         .order('sort_order', { ascending: true });
       if (error) throw error;
       return data;
-    }
+    },
+    staleTime: 1000 * 60 * 60,
   });
 }
 
@@ -50,12 +53,14 @@ export function useServedStates() {
   return useQuery({
     queryKey: ['served-states'],
     queryFn: async () => {
-      const { data, error } = await (supabase.from('served_states') as any)
+      const { data, error } = await supabase
+        .from('served_states')
         .select('*')
         .eq('is_active', true);
       if (error) throw error;
       return data;
-    }
+    },
+    staleTime: 1000 * 60 * 60,
   });
 }
 
@@ -66,7 +71,8 @@ export function useSocialLinks() {
       const { data, error } = await supabase.from('social_links').select('*');
       if (error) throw error;
       return data;
-    }
+    },
+    staleTime: 1000 * 60 * 60,
   });
 }
 
@@ -77,6 +83,8 @@ export function useSiteSettings() {
       const { data, error } = await supabase.from('site_settings').select('*');
       if (error) throw error;
       return data;
-    }
+    },
+    staleTime: 1000 * 60 * 60,
   });
 }
+
