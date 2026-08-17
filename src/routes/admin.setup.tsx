@@ -100,6 +100,7 @@ function AdminSetup() {
           </p>
           <Link
             to="/admin/login"
+            search={{}}
             className="mt-8 flex w-full items-center justify-center gap-2 rounded-xl bg-purple py-4 text-sm font-bold tracking-wider text-white uppercase transition-all hover:bg-purple-deep"
           >
             IR PARA LOGIN <ArrowRight className="size-4" />
