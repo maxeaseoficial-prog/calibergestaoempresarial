@@ -7,19 +7,9 @@ import { cn } from '@/lib/utils';
 
 export const Route = createFileRoute('/admin/_admin')({
   beforeLoad: async ({ location }) => {
-    if (typeof window === 'undefined') return;
-
-    let { data: { session } } = await supabase.auth.getSession();
-    console.log("[AdminAuth] Client session check:", !!session);
+    const { data: { user } } = await supabase.auth.getUser();
     
-    if (!session) {
-      await new Promise(r => setTimeout(r, 1000));
-      const { data: { session: retrySession } } = await supabase.auth.getSession();
-      session = retrySession;
-      console.log("[AdminAuth] Retry session check:", !!session);
-    }
-
-    if (!session) {
+    if (!user) {
       throw redirect({
         to: '/admin/login' as any,
         search: {
@@ -28,14 +18,10 @@ export const Route = createFileRoute('/admin/_admin')({
       });
     }
 
-    /* Temporary bypass to debug
     const { data: hasAdminRole, error } = await supabase.rpc('has_role', {
-      _user_id: session.user.id,
+      _user_id: user.id,
       _role: 'admin' as any
     });
-    */
-    const hasAdminRole = true;
-    const error = null;
 
     if (error || !hasAdminRole) {
       await supabase.auth.signOut();
