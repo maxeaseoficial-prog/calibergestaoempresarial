@@ -52,19 +52,28 @@ export type Database = {
       }
       seo_settings: {
         Row: {
-          key: string
+          created_at: string | null
+          description: string | null
+          id: string
+          page_path: string
+          title: string | null
           updated_at: string | null
-          value: string
         }
         Insert: {
-          key: string
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          page_path: string
+          title?: string | null
           updated_at?: string | null
-          value: string
         }
         Update: {
-          key?: string
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          page_path?: string
+          title?: string | null
           updated_at?: string | null
-          value?: string
         }
         Relationships: []
       }
