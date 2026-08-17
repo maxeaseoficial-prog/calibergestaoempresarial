@@ -29,7 +29,7 @@ export const OFFICES = [
   {
     city: "Curitiba",
     state: "PR",
-    lines: ["Av. Sete de Setembro, 4990", "Edifício New Orleans | Batel"],
+    lines: ["Av. Sete de Setembro, 4990", "Edifício New Orleans | Batel", "Água Verde"],
     map: "https://goo.gl/maps/7XtuaCaK9eQTMYsf6",
     phone: CONTACT.phonePR,
     phoneHref: CONTACT.phonePRHref,
