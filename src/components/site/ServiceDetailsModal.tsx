@@ -177,7 +177,7 @@ export function ServiceDetailsModal({ isOpen, onClose, serviceId }: ServiceDetai
                   {data.pillars.map((pillar: any, idx: number) => (
                     <div key={idx} className="flex flex-col items-center gap-3 p-6 rounded-2xl bg-lavender/30 border border-purple/5 text-center group hover:bg-lavender/50 transition-colors">
                       <pillar.icon className="size-6 text-purple/60 group-hover:text-purple transition-colors" />
-                      <span className="text-[10px] font-bold tracking-widest text-purple/80">{pillar.label}</span>
+                      <span className="text-[10px] font-bold tracking-widest text-purple/80">{pillar.label.charAt(0).toUpperCase() + pillar.label.slice(1).toLowerCase()}</span>
                     </div>
                   ))}
                 </motion.div>
@@ -249,7 +249,7 @@ export function ServiceDetailsModal({ isOpen, onClose, serviceId }: ServiceDetai
                     {data.highlights.map((item: any, idx: number) => (
                       <div key={idx} className="flex items-center gap-3 px-5 py-3 rounded-xl bg-purple/5 text-purple border border-purple/10">
                         <item.icon className="size-5" />
-                        <span className="text-[10px] font-bold tracking-widest">{item.label}</span>
+                        <span className="text-[10px] font-bold tracking-widest">{item.label.charAt(0).toUpperCase() + item.label.slice(1).toLowerCase()}</span>
                       </div>
                     ))}
                   </div>
@@ -262,7 +262,7 @@ export function ServiceDetailsModal({ isOpen, onClose, serviceId }: ServiceDetai
                         <div className="p-3 rounded-full bg-purple/5 text-purple/40 group-hover:text-purple group-hover:bg-purple/10 transition-all">
                           <item.icon className="size-6" />
                         </div>
-                        <span className="text-[9px] font-bold tracking-widest text-ink/40">{item.label}</span>
+                        <span className="text-[9px] font-bold tracking-widest text-ink/40">{item.label.charAt(0).toUpperCase() + item.label.slice(1).toLowerCase()}</span>
                       </div>
                     ))}
                   </div>
