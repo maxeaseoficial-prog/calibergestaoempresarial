@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Facebook, Instagram, Linkedin, Mail, Phone } from "lucide-react";
+import { Mail } from "lucide-react";
 import { CONTACT, OFFICES } from "@/lib/site-data";
 import { useSocialLinks, useSiteSettings } from "@/hooks/use-site-content";
 import { Logo, LogoWatermark } from "./Logo";
@@ -33,24 +33,6 @@ export function Footer() {
               Da operação à gestão: uma plataforma completa e prática, com uma equipe
               dedicada a tornar sua empresa melhor todos os dias.
             </p>
-            <div className="mt-7 flex gap-2">
-              {[
-                { href: getSocialUrl('instagram', CONTACT.instagram), Icon: Instagram, label: "Instagram" },
-                { href: getSocialUrl('facebook', CONTACT.facebook), Icon: Facebook, label: "Facebook" },
-                { href: getSocialUrl('linkedin', CONTACT.linkedin), Icon: Linkedin, label: "LinkedIn" },
-              ].map(({ href, Icon, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={label}
-                  className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-xl border border-white/12 text-white/70 transition-colors duration-300 hover:border-white/40 hover:text-white"
-                >
-                  <Icon className="size-4.5" aria-hidden="true" />
-                </a>
-              ))}
-            </div>
           </div>
 
           <nav aria-label="Rodapé">
@@ -91,24 +73,6 @@ export function Footer() {
                 >
                   <Mail className="size-4 shrink-0" aria-hidden="true" />
                   {emailAddress}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`tel:${phoneMT.replace(/\D/g, '')}`}
-                  className="inline-flex items-center gap-2 tabular transition-colors hover:text-white"
-                >
-                  <Phone className="size-4 shrink-0" aria-hidden="true" />
-                  {phoneMT}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`tel:${phonePR.replace(/\D/g, '')}`}
-                  className="inline-flex items-center gap-2 tabular transition-colors hover:text-white"
-                >
-                  <Phone className="size-4 shrink-0" aria-hidden="true" />
-                  {phonePR}
                 </a>
               </li>
             </ul>
