@@ -18,6 +18,7 @@ function AdminSetup() {
   const [success, setSuccess] = useState(false);
 
   const createAdmin = useServerFn(setupAdmin);
+  const confirmUser = useServerFn(confirmUserManually);
 
   const handleCreateAdmin = async (e: React.FormEvent) => {
     e.preventDefault();
