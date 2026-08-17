@@ -111,9 +111,9 @@ export function EvoluaConoscoModal({ isOpen, onClose }: EvoluaConoscoModalProps)
                   </p>
                   <button
                     onClick={onClose}
-                    className="mt-10 rounded-xl bg-purple px-12 py-4 text-sm font-bold tracking-wider text-white uppercase transition-all hover:bg-purple-deep hover:shadow-lift"
+                    className="mt-10 rounded-xl bg-purple px-12 py-4 text-sm font-bold tracking-wider text-white transition-all hover:bg-purple-deep hover:shadow-lift"
                   >
-                    FECHAR
+                    Fechar
                   </button>
                 </div>
               )}

@@ -273,7 +273,7 @@ export function EvoluaConoscoForm({ onSuccess }: { onSuccess: () => void }) {
         type="submit"
         disabled={isSubmitting}
         className={cn(
-          "w-full rounded-xl bg-purple py-4 text-sm font-bold tracking-wider text-white uppercase transition-all duration-300 hover:bg-purple-deep hover:shadow-lift disabled:cursor-not-allowed disabled:opacity-70",
+          "w-full rounded-xl bg-purple py-4 text-sm font-bold tracking-wider text-white transition-all duration-300 hover:bg-purple-deep hover:shadow-lift disabled:cursor-not-allowed disabled:opacity-70",
           isSubmitting && "flex items-center justify-center gap-2"
         )}
       >
