@@ -45,15 +45,12 @@ function AdminLogin() {
 
       // Force session persistence check
       const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
-        console.error("[AdminLogin] Session not found immediately after login");
-      }
-
+      
       // Small delay to ensure session is stored in all contexts
       await new Promise(r => setTimeout(r, 800));
       
-      // Use location.replace to force a fresh reload of the admin area
-      window.location.replace('/admin');
+      // Explicitly navigate to /admin/ (the pathless layout parent) or directly to dashboard
+      window.location.replace('/admin/atuacao'); // Testing a direct sub-route to bypass redirect loops
     } catch (err) {
       console.error("[AdminLogin] Unexpected error:", err);
       setError('Ocorreu um erro inesperado. Tente novamente.');
