@@ -1,48 +1,33 @@
-# Implementation Plan - Admin Area & CMS Wiring
+# Plan - Finalize Admin Area and Wire Content
 
-Building a complete administrative area with Supabase Auth to manage site content dynamically.
+Complete the integration of the administrative area (CMS) with the frontend components, ensuring all site content is dynamic and manageable via the dashboard.
 
 ## User Review Required
 
 > [!IMPORTANT]
-> - The admin area will be accessible via `/admin`.
-> - Authentication is managed via Lovable Cloud (Supabase).
-> - We will use an "Admin" role check to restrict access.
+> The Resend API key is already configured. Please verify if the recipient email in the Admin panel (/admin/formulario) is correct.
+
+- **Differentiators Layout**: The "Differentiators" section is currently using static data as a fallback. Should we create a specific table for Differentiators or continue using the `services` table with a flag?
 
 ## Proposed Changes
 
-### 1. Database Schema & Security
-- [x] Create tables for all site content: `clients`, `services`, `testimonials`, `served_states`, `social_links`, `site_settings`, `seo_settings`.
-- [x] Enable RLS and setup `authenticated` policies for admins.
-- [x] Implement `has_role` security definer function for safe role checks.
+### CMS Integration
+- Wire `LogoCloud.tsx` to use `useClients` hook.
+- Wire `Testimonials.tsx` to use `useTestimonials` hook.
+- Finalize `Methodology.tsx` (3D Carousel) wiring to `useServices` hook.
+- Update `Differentiators.tsx` to use dynamic content from the database.
 
-### 2. Admin Infrastructure
-- [x] Create `/admin/login` for secure access.
-- [x] Implement `src/routes/admin._admin.tsx` as the protected layout for the CMS.
-- [x] Setup sidebar navigation for all CMS sections.
+### Admin Enhancements
+- Add "Differentiators" management to the Admin sidebar.
+- Ensure all CRUD operations (Clients, Services, Testimonials, Map) are fully functional.
 
-### 3. CMS Management Interfaces
-- [x] **Clients**: CRUD for logos and names.
-- [x] **Services**: Manage pilares, descriptions, and display order.
-- [x] **Testimonials**: Edit, add, and remove client quotes.
-- [x] **Presence**: Interactive map configuration.
-- [x] **Communication**: Manage social links and lead recipient email.
-- [x] **SEO**: Edit meta tags for every page.
+### Technical Details
+- Use TanStack Query hooks from `src/hooks/use-site-content.ts` for all frontend data fetching.
+- Maintain existing visual styles (3D carousel, organic frames, bento grid) while mapping dynamic data.
+- Implement proper loading states and error boundaries for dynamic sections.
+- Ensure SEO meta tags are correctly fetched and applied to each route using the `seo_settings` table.
 
-### 4. Frontend Integration (Dynamic Content)
-- [ ] Refactor `Header.tsx` and `Footer.tsx` to use dynamic social links and contact info.
-- [ ] Wire `Hero.tsx` button to dynamic target if needed (already set to `#atuacao`).
-- [ ] Connect `LogoCloud.tsx` and `Testimonials.tsx` to database hooks.
-- [ ] Integrate `BrazilMap.tsx` with `served_states` table.
-- [ ] Update `Methodology.tsx` to render services from CMS.
-
-### 5. Final Polishing & Verification
-- [x] Fix redirect loops in auth guard.
-- [ ] Verify lead submission with dynamic recipient.
-- [ ] Ensure SEO metatags update correctly on all routes.
-
-## Technical Details
-- **Framework**: React 19, TanStack Start, TanStack Query.
-- **Backend**: Lovable Cloud (Supabase) for Auth and PostgreSQL.
-- **Styling**: Tailwind CSS v4, Motion for animations.
-- **Icons**: Lucide React.
+## Deployment Profile
+- Lovable Cloud (Supabase) for database and auth.
+- TanStack Start server functions for lead submission (Resend).
+- Edge runtime compatibility.
