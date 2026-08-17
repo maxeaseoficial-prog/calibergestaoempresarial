@@ -32,7 +32,7 @@ function AdminLogin() {
       }
 
       // Role check is handled by the parent /admin route's beforeLoad
-      window.location.href = '/admin';
+      window.location.replace('/admin');
     } catch (err) {
       setError('Erro ao realizar login.');
       setLoading(false);
