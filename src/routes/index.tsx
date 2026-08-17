@@ -40,7 +40,6 @@ function Index() {
 
   return (
     <div className="flex min-h-screen flex-col">
-
       <Header />
       <main>
         <Hero />
