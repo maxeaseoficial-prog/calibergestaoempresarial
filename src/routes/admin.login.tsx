@@ -16,14 +16,18 @@ function AdminLogin() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('Login attempt started for:', email);
     setLoading(true);
     setError(null);
 
     try {
+      console.log('Calling supabase.auth.signInWithPassword');
       const { data, error: authError } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
+
+      console.log('Auth response:', { data, error: authError });
 
       if (authError) {
         setError(authError.message);
@@ -31,9 +35,10 @@ function AdminLogin() {
         return;
       }
 
-      // Role check is handled by the parent /admin route's beforeLoad
+      console.log('Login successful, redirecting to /admin');
       window.location.replace('/admin');
     } catch (err) {
+      console.error('Login error catch:', err);
       setError('Erro ao realizar login.');
       setLoading(false);
     }
