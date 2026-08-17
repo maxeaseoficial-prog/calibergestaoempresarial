@@ -32,7 +32,7 @@ export function Differentiators() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
           {DIFFERENTIATORS.map((item, idx) => {
             const number = (idx + 1).toString().padStart(2, '0');
             // @ts-ignore - Dynamic icon component lookup
@@ -41,35 +41,6 @@ export function Differentiators() {
             const IconComponent = LucideIcons[iconName] || LucideIcons.Zap;
             
             const isHighlighted = item.title === "Resultado na Prática";
-            const isFullWidth = ["Evolução", "Especialidade no Assunto"].includes(item.title);
-
-            if (isFullWidth) {
-              return (
-                <Reveal 
-                  key={item.title} 
-                  delay={idx * 50}
-                  className={cn(
-                    "group relative md:col-span-2 lg:col-span-4 rounded-[24px] border border-purple/10 bg-white transition-all duration-300 hover:-translate-y-1.5 hover:border-purple/30 hover:shadow-[0_20px_40px_rgba(95,85,135,0.08)]",
-                  )}
-                >
-                  <div className="p-8 lg:p-10 flex flex-col lg:flex-row items-start lg:items-center gap-8 h-full">
-                    <div className="flex items-center gap-6 shrink-0">
-                      <div className="flex size-16 items-center justify-center rounded-2xl bg-purple/[0.06] text-purple transition-all duration-300 group-hover:bg-purple group-hover:text-white group-hover:shadow-lg group-hover:shadow-purple/20">
-                        <IconComponent className="size-8" strokeWidth={1.5} />
-                      </div>
-                      <div className="flex flex-col">
-                        <span className="text-4xl font-black text-purple/10 group-hover:text-purple/20 transition-colors leading-none">{number}</span>
-                        <h3 className="text-2xl font-black text-ink mt-1 group-hover:text-purple transition-colors">{item.title}</h3>
-                      </div>
-                    </div>
-
-                    <p className="text-base leading-relaxed text-ink/60 flex-1 group-hover:text-ink/80 transition-colors max-w-2xl">
-                      {item.text}
-                    </p>
-                  </div>
-                </Reveal>
-              );
-            }
 
             return (
               <Reveal 
