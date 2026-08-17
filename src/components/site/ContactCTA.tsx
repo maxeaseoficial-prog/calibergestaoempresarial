@@ -6,7 +6,7 @@ import { Reveal } from "./Reveal";
 export function ContactCTA() {
   return (
     <section className="relative overflow-hidden gradient-deep py-24 text-white lg:py-32">
-      <LogoWatermark className="-right-32 top-1/2 h-[28rem] w-[28rem] -translate-y-1/2 opacity-[0.05] text-white lg:-right-4 lg:h-[32rem] lg:w-[32rem]" />
+      {/* Logo watermark removed */}
       <div className="container-cal relative">
         <div className="max-w-3xl">
           <Reveal>
@@ -29,10 +29,7 @@ export function ContactCTA() {
           <Reveal delay={220}>
             <div className="mt-10 flex flex-wrap items-center gap-3">
               <CalAnchor href={CONTACT.whatsapp} target="_blank" rel="noreferrer" variant="white">
-                Fale com um Especialista
-              </CalAnchor>
-              <CalAnchor href={CONTACT.emailHref} variant="ghostLight" arrow={false}>
-                {CONTACT.emailAddress}
+                Fale com um especialista
               </CalAnchor>
             </div>
           </Reveal>
