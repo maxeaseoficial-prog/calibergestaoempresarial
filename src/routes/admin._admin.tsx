@@ -12,6 +12,7 @@ export const Route = createFileRoute('/admin/_admin')({
 function AdminLayout() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const [authError, setAuthError] = useState<string | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
