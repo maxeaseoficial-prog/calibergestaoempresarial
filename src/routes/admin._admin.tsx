@@ -7,6 +7,8 @@ import { cn } from '@/lib/utils';
 
 export const Route = createFileRoute('/admin/_admin')({
   beforeLoad: async ({ location }) => {
+    if (typeof window === 'undefined') return;
+    
     let { data: { session } } = await supabase.auth.getSession();
     
     // Fallback if session is not immediately available but might be in localStorage
