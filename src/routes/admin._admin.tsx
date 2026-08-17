@@ -18,12 +18,13 @@ function AdminLayout() {
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   useEffect(() => {
+    const checkAuth = async () => {
+      try {
         const { data: { session } } = await supabase.auth.getSession();
-        console.log("[AdminAuth] Session:", !!session);
         
         if (!session) {
           setLoading(false);
-          setAuthError('No session found in getSession()');
+          setAuthError('Sessão não encontrada no cliente.');
           return;
         }
 
@@ -33,32 +34,47 @@ function AdminLayout() {
           .eq('user_id', session.user.id)
           .eq('role', 'admin');
 
-        console.log("[AdminAuth] Role check result:", roles);
-
         const hasAdminRole = roles && roles.length > 0;
 
         if (roleError || !hasAdminRole) {
           setLoading(false);
-          setAuthError(`Role check failed. Error: ${roleError?.message || 'None'}. Roles found: ${JSON.stringify(roles)}`);
+          setAuthError(`Permissão negada. Papel 'admin' não encontrado para este usuário.`);
           return;
         }
 
         setLoading(false);
       } catch (err: any) {
         setLoading(false);
-        setAuthError(`Unexpected error: ${err.message}`);
+        setAuthError(`Erro inesperado: ${err.message}`);
       }
     };
 
     checkAuth();
-  }, [navigate]);
+  }, []);
+
+  const handleLogout = async () => {
+    setIsLoggingOut(true);
+    await supabase.auth.signOut();
+    window.location.href = '/admin/login';
+  };
+
+  const navItems = [
+    { label: 'Visão Geral', icon: LayoutGrid, href: '/admin' },
+    { label: 'Contatos / Leads', icon: Users, href: '/admin/contatos' },
+    { label: 'Clientes', icon: UserCheck, href: '/admin/clientes' },
+    { label: 'Serviços', icon: Briefcase, href: '/admin/servicos' },
+    { label: 'Depoimentos', icon: MessageSquare, href: '/admin/depoimentos' },
+    { label: 'Atuação Nacional', icon: MapPin, href: '/admin/atuacao' },
+    { label: 'SEO', icon: Globe, href: '/admin/seo' },
+    { label: 'Configurações', icon: Settings, href: '/admin/configuracoes' },
+  ];
 
   if (authError) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center bg-slate-50 p-4">
-        <div className="text-red-600 font-bold mb-4">Erro de Autenticação</div>
-        <div className="text-slate-600 mb-8">{authError}</div>
-        <Button onClick={() => window.location.href = '/admin/login'}>
+        <div className="text-red-600 font-bold mb-4 text-xl">Erro de Acesso</div>
+        <div className="text-slate-600 mb-8 max-w-md text-center">{authError}</div>
+        <Button onClick={() => window.location.href = '/admin/login'} className="bg-purple text-white">
           Voltar para Login
         </Button>
       </div>
@@ -73,144 +89,120 @@ function AdminLayout() {
     );
   }
 
-  const handleLogout = async () => {
-    setIsLoggingOut(true);
-    await supabase.auth.signOut();
-    window.location.href = '/admin/login';
-  };
-
-  const menuGroups = [
-    {
-      label: 'Visão Geral',
-      items: [
-        { name: 'Dashboard', icon: LayoutGrid, to: '/admin' as any },
-      ]
-    },
-    {
-      label: 'Conteúdo',
-      items: [
-        { name: 'Clientes', icon: Users, to: '/admin/clientes' as any },
-        { name: 'Serviços', icon: Briefcase, to: '/admin/servicos' as any },
-        { name: 'Depoimentos', icon: MessageSquare, to: '/admin/depoimentos' as any },
-        { name: 'Atuação Nacional', icon: MapPin, to: '/admin/atuacao' as any },
-      ]
-    },
-    {
-      label: 'Comunicação',
-      items: [
-        { name: 'Contatos e Redes', icon: Share2, to: '/admin/contatos' as any },
-        { name: 'Formulário / Leads', icon: Mail, to: '/admin/formulario' as any },
-      ]
-    },
-    {
-      label: 'Site',
-      items: [
-        { name: 'SEO', icon: Globe, to: '/admin/seo' as any },
-        { name: 'Configurações', icon: Settings, to: '/admin/configuracoes' as any },
-      ]
-    }
-  ];
-
   return (
-    <div className="flex min-h-screen bg-slate-50 font-manrope">
-      {/* Mobile Backdrop */}
-      {isSidebarOpen && (
-        <div 
-          className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm lg:hidden" 
-          onClick={() => setIsSidebarOpen(false)}
-        />
-      )}
-
-      {/* Sidebar */}
-      <aside className={cn(
-        "fixed inset-y-0 left-0 z-50 w-72 bg-white border-r border-purple/10 flex flex-col transition-transform duration-300 lg:static lg:translate-x-0",
-        isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-      )}>
-        <div className="flex items-center justify-between p-6 mb-2">
-          <div className="flex items-center gap-3">
-            <Logo className="size-8" />
-            <span className="font-bold text-ink tracking-tight">Cáliber Admin</span>
-          </div>
-          <button className="lg:hidden" onClick={() => setIsSidebarOpen(false)}>
-            <X className="size-5 text-ink/40" />
-          </button>
+    <div className="flex h-screen bg-slate-50 overflow-hidden">
+      {/* Sidebar Desktop */}
+      <aside className="hidden md:flex md:w-64 md:flex-col bg-white border-r border-slate-200">
+        <div className="p-6">
+          <Logo className="h-10 w-auto" />
         </div>
-        
-        <nav className="flex-1 overflow-y-auto p-4 space-y-8 custom-scrollbar">
-          {menuGroups.map((group) => (
-            <div key={group.label}>
-              <h3 className="px-4 text-[10px] font-bold tracking-[0.2em] text-ink/30 uppercase mb-3">
-                {group.label}
-              </h3>
-              <div className="space-y-1">
-                {group.items.map((item) => (
-                  <Link
-                    key={item.name}
-                    to={item.to}
-                    onClick={() => setIsSidebarOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-ink/60 hover:bg-purple/5 hover:text-purple transition-all"
-                    activeProps={{ className: "bg-purple text-white hover:text-white shadow-lift" }}
-                  >
-                    <item.icon className="size-5" />
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
+        <nav className="flex-1 px-4 space-y-1 py-4 overflow-y-auto">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              to={item.href as any}
+              className={cn(
+                "flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors",
+                window.location.pathname === item.href
+                  ? "bg-purple/10 text-purple"
+                  : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+              )}
+            >
+              <item.icon className="mr-3 h-5 w-5" />
+              {item.label}
+            </Link>
           ))}
         </nav>
-
-        <div className="p-4 border-t border-purple/10">
-          <button 
+        <div className="p-4 border-t border-slate-200">
+          <Button
+            variant="ghost"
+            className="w-full justify-start text-red-600 hover:text-red-700 hover:bg-red-50"
             onClick={handleLogout}
             disabled={isLoggingOut}
-            className="flex w-full items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-red-500 hover:bg-red-50 transition-all cursor-pointer disabled:opacity-50"
           >
-            <LogOut className="size-5" />
-            Sair
-          </button>
+            <LogOut className="mr-3 h-5 w-5" />
+            Sair do Painel
+          </Button>
         </div>
       </aside>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col min-w-0">
-        <header className="sticky top-0 z-30 h-20 bg-white/80 backdrop-blur-md border-b border-purple/10 px-6 md:px-8 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <button 
-              className="lg:hidden p-2 rounded-lg border border-purple/10"
-              onClick={() => setIsSidebarOpen(true)}
-            >
-              <Menu className="size-5 text-ink" />
-            </button>
-            <h2 className="text-lg font-bold text-ink tracking-tight">Painel de Controle</h2>
-          </div>
-          
-          <div className="flex items-center gap-4">
-            <a 
-              href="/" 
-              target="_blank" 
-              className="hidden md:flex items-center gap-2 text-sm font-bold text-purple hover:underline underline-offset-4"
-            >
-              Ver site
-              <ExternalLink className="size-4" />
-            </a>
-            <div className="h-8 w-[1px] bg-purple/10 mx-2 hidden md:block" />
-            <div className="flex items-center gap-3">
-              <div className="text-right hidden sm:block">
-                <p className="text-xs font-bold text-ink">Administrador</p>
-                <p className="text-[10px] text-ink/40 uppercase tracking-wider">Cáliber Gestão</p>
-              </div>
-              <div className="size-10 rounded-full bg-lavender flex items-center justify-center text-purple font-bold">
-                A
-              </div>
-            </div>
+      <div className="flex flex-col flex-1 overflow-hidden">
+        {/* Header Mobile */}
+        <header className="md:hidden flex items-center justify-between p-4 bg-white border-b border-slate-200">
+          <Logo className="h-8 w-auto" />
+          <Button variant="ghost" size="icon" onClick={() => setIsSidebarOpen(true)}>
+            <Menu className="h-6 w-6" />
+          </Button>
+        </header>
+
+        {/* Top Header Desktop */}
+        <header className="hidden md:flex items-center justify-between px-8 py-4 bg-white border-b border-slate-200">
+          <h1 className="text-xl font-bold text-slate-900 capitalize">
+            {navItems.find(item => item.href === window.location.pathname)?.label || 'Painel de Controle'}
+          </h1>
+          <div className="flex items-center space-x-4">
+            <Link to="/" className="text-sm text-slate-500 hover:text-purple flex items-center transition-colors">
+              <ExternalLink className="mr-2 h-4 w-4" />
+              Ver Site
+            </Link>
           </div>
         </header>
 
-        <main className="flex-1 p-6 md:p-8 overflow-y-auto">
-          <Outlet />
+        {/* Page Content */}
+        <main className="flex-1 overflow-y-auto p-4 md:p-8 bg-slate-50/50">
+          <div className="max-w-7xl mx-auto">
+            <Outlet />
+          </div>
         </main>
       </div>
+
+      {/* Mobile Sidebar Overlay */}
+      {isSidebarOpen && (
+        <div className="fixed inset-0 z-50 md:hidden">
+          <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm" onClick={() => setIsSidebarOpen(false)} />
+          <aside className="fixed inset-y-0 left-0 w-64 bg-white shadow-xl animate-in slide-in-from-left duration-300">
+            <div className="p-6 flex items-center justify-between border-b border-slate-200">
+              <Logo className="h-8 w-auto" />
+              <Button variant="ghost" size="icon" onClick={() => setIsSidebarOpen(false)}>
+                <X className="h-6 w-6" />
+              </Button>
+            </div>
+            <nav className="p-4 space-y-1 overflow-y-auto">
+              {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  to={item.href as any}
+                  className={cn(
+                    "flex items-center px-4 py-3 text-sm font-medium rounded-lg",
+                    window.location.pathname === item.href
+                      ? "bg-purple/10 text-purple"
+                      : "text-slate-600"
+                  )}
+                  onClick={() => setIsSidebarOpen(false)}
+                >
+                  <item.icon className="mr-3 h-5 w-5" />
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+            <div className="p-4 border-t border-slate-200">
+              <Button
+                variant="ghost"
+                className="w-full justify-start text-red-600"
+                onClick={handleLogout}
+                disabled={isLoggingOut}
+              >
+                <LogOut className="mr-3 h-5 w-5" />
+                Sair
+              </Button>
+            </div>
+          </aside>
+        </div>
+      )}
     </div>
   );
 }
+
+// Separate icon imports to avoid missing lucide-react names
+import { UserCheck } from 'lucide-react';
