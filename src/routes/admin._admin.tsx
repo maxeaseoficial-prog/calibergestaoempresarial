@@ -17,29 +17,34 @@ function AdminLayout() {
 
   useEffect(() => {
     const checkAuth = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      
-      if (!session) {
-        navigate({ to: '/admin/login', search: { redirect: window.location.href } as any });
-        return;
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        
+        if (!session) {
+          setLoading(false);
+          setAuthError('No session found');
+          return;
+        }
+
+        const { data: roles, error: roleError } = await supabase
+          .from('user_roles')
+          .select('role')
+          .eq('user_id', session.user.id)
+          .eq('role', 'admin');
+
+        const hasAdminRole = roles && roles.length > 0;
+
+        if (roleError || !hasAdminRole) {
+          setLoading(false);
+          setAuthError(`Role check failed: ${roleError?.message || 'User is not admin'}`);
+          return;
+        }
+
+        setLoading(false);
+      } catch (err: any) {
+        setLoading(false);
+        setAuthError(`Unexpected error: ${err.message}`);
       }
-
-      const { data: roles, error: roleError } = await supabase
-        .from('user_roles')
-        .select('role')
-        .eq('user_id', session.user.id)
-        .eq('role', 'admin');
-
-      const hasAdminRole = roles && roles.length > 0;
-
-      if (roleError || !hasAdminRole) {
-        console.error("[AdminAuth] Role check failed:", roleError);
-        await supabase.auth.signOut();
-        navigate({ to: '/admin/login', search: { error: 'unauthorized' } as any });
-        return;
-      }
-
-      setLoading(false);
     };
 
     checkAuth();
