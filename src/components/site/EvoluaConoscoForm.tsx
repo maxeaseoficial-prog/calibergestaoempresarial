@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 const FormSchema = z.object({
   name: z.string().min(2, "Informe seu nome."),
   email: z.string().email("Informe um e-mail válido."),
-  whatsapp: z.string().min(14, "Informe seu WhatsApp (mínimo 10 dígitos)."), // Brazilian mask adds chars
+  whatsapp: z.string().transform(v => v.replace(/\D/g, "")).refine(v => v.length >= 10 && v.length <= 11, "Informe seu WhatsApp (mínimo 10 dígitos)."),
   role: z.string().min(1, "Selecione seu cargo."),
   company: z.string().min(2, "Informe o nome da empresa."),
   revenue: z.string().min(1, "Selecione a faixa de faturamento."),
@@ -79,8 +79,14 @@ export function EvoluaConoscoForm({ onSuccess }: { onSuccess: () => void }) {
     const digits = whatsappValue.replace(/\D/g, "");
     let masked = "";
     if (digits.length > 0) masked = "(" + digits.substring(0, 2);
-    if (digits.length > 2) masked += ") " + digits.substring(2, 7);
-    if (digits.length > 7) masked += "-" + digits.substring(7, 11);
+    if (digits.length > 2) masked += ") " + digits.substring(2, 6);
+    if (digits.length > 6) {
+      if (digits.length === 11) {
+        masked = "(" + digits.substring(0, 2) + ") " + digits.substring(2, 7) + "-" + digits.substring(7, 11);
+      } else {
+        masked = "(" + digits.substring(0, 2) + ") " + digits.substring(2, 6) + "-" + digits.substring(6, 10);
+      }
+    }
     
     if (masked !== whatsappValue) {
       setValue("whatsapp", masked, { shouldValidate: true });
