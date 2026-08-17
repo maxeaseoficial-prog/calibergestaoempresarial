@@ -82,8 +82,8 @@ export function Hero() {
                 )}
                 aria-hidden={index !== i}
               >
-                <span className="eyebrow block text-purple-light capitalize">
-                  {msg.eyebrow}
+                <span className="eyebrow block text-purple-light">
+                  {msg.eyebrow.charAt(0).toUpperCase() + msg.eyebrow.slice(1).toLowerCase()}
                 </span>
 
                 <h1 className="mt-8 text-[clamp(2.8rem,6.5vw,6rem)] leading-[0.9] font-extrabold tracking-tight text-white">
