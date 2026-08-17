@@ -18,7 +18,6 @@ export const Route = createFileRoute('/admin/_admin')({
     }
 
     if (!session) {
-      console.log("[AdminAuth] No session found after retry, redirecting to login");
       throw redirect({
         to: '/admin/login' as any,
         search: {
