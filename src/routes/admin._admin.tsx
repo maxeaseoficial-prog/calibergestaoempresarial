@@ -4,6 +4,7 @@ import { Logo } from '@/components/site/Logo';
 import { supabase } from '@/integrations/supabase/client';
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 
 export const Route = createFileRoute('/admin/_admin')({
   component: AdminLayout,
