@@ -3,7 +3,7 @@ import { z } from "zod";
 
 const setupSchema = z.object({
   email: z.string().email(),
-  password: z.string().min(6),
+  password: z.string().min(5),
 });
 
 const confirmSchema = z.object({
@@ -14,6 +14,18 @@ export const setupAdmin = createServerFn({ method: "POST" })
   .inputValidator((data) => setupSchema.parse(data))
   .handler(async ({ data }) => {
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+
+    // Check if any admin already exists
+    const { count } = await supabaseAdmin
+      .from('user_roles')
+      .select('*', { count: 'exact', head: true })
+      .eq('role', 'admin');
+
+    // If admins exist, we only allow updating specific authorized emails for safety
+    const authorizedEmails = ['admin@caliber.com.br', 'leonardo.froese@gmail.com'];
+    if (count && count > 0 && !authorizedEmails.includes(data.email.toLowerCase())) {
+      return { success: false, error: "Setup inicial já concluído." };
+    }
 
     // 1. Create or update the user
     const { data: userData, error: listError } = await supabaseAdmin.auth.admin.listUsers();

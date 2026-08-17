@@ -100,6 +100,7 @@ function AdminSetup() {
           </p>
           <Link
             to="/admin/login"
+            search={{ redirect: undefined, error: undefined } as any}
             className="mt-8 flex w-full items-center justify-center gap-2 rounded-xl bg-purple py-4 text-sm font-bold tracking-wider text-white uppercase transition-all hover:bg-purple-deep"
           >
             IR PARA LOGIN <ArrowRight className="size-4" />
@@ -140,8 +141,8 @@ function AdminSetup() {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Mínimo 6 caracteres"
-              minLength={6}
+              placeholder="Mínimo 5 caracteres"
+              minLength={5}
               className="flex h-12 w-full rounded-xl border border-ink/10 bg-white px-4 py-2 text-sm transition-all focus:outline-none focus:ring-2 focus:ring-purple/20"
             />
           </div>
@@ -168,7 +169,7 @@ function AdminSetup() {
           </button>
           
           <div className="flex flex-col gap-4 text-center">
-            <Link to="/admin/login" className="text-xs text-ink/40 hover:text-purple transition-colors">
+            <Link to="/admin/login" search={{ redirect: undefined, error: undefined } as any} className="text-xs text-ink/40 hover:text-purple transition-colors">
               Já possui uma conta? Entrar
             </Link>
             
