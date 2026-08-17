@@ -135,10 +135,18 @@ function AdminSetup() {
             {loading ? <Loader2 className="size-4 animate-spin" /> : "CRIAR ADMINISTRADOR"}
           </button>
           
-          <div className="text-center">
+          <div className="flex flex-col gap-4 text-center">
             <Link to="/admin/login" className="text-xs text-ink/40 hover:text-purple transition-colors">
               Já possui uma conta? Entrar
             </Link>
+            
+            <button 
+              type="button"
+              onClick={handleConfirmExisting}
+              className="text-xs text-purple/60 hover:text-purple underline cursor-pointer"
+            >
+              Confirmar conta leonardo.froese@gmail.com
+            </button>
           </div>
         </form>
       </div>
