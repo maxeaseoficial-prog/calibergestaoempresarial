@@ -51,6 +51,18 @@ function AdminLayout() {
     checkAuth();
   }, [navigate]);
 
+  if (authError) {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center bg-slate-50 p-4">
+        <div className="text-red-600 font-bold mb-4">Erro de Autenticação</div>
+        <div className="text-slate-600 mb-8">{authError}</div>
+        <Button onClick={() => window.location.href = '/admin/login'}>
+          Voltar para Login
+        </Button>
+      </div>
+    );
+  }
+
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-slate-50">
