@@ -5,6 +5,7 @@ import { CONTACT } from "@/lib/site-data";
 import { LogoWatermark } from "./Logo";
 import { cn } from "@/lib/utils";
 import heroVideoAsset from "@/assets/hero-video.mp4.asset.json";
+import heroBackgroundAsset from "@/assets/hero-background.png.asset.json";
 import { EvoluaConoscoModal } from "./EvoluaConoscoModal";
 
 const heroMessages = [
