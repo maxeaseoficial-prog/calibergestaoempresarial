@@ -14,8 +14,9 @@ function AdminLogin() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    e.stopPropagation();
     console.log('Login attempt started for:', email);
     setLoading(true);
     setError(null);
@@ -55,7 +56,7 @@ function AdminLogin() {
           <p className="mt-2 text-sm text-ink/60">Gerencie as informações do site.</p>
         </div>
 
-        <form onSubmit={handleLogin} className="space-y-6">
+        <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
           <div className="space-y-2">
             <label className="text-sm font-semibold text-ink">E-mail</label>
             <input
@@ -97,7 +98,8 @@ function AdminLogin() {
           )}
 
           <button
-            type="submit"
+            type="button"
+            onClick={handleLogin}
             disabled={loading}
             className="flex w-full items-center justify-center gap-2 rounded-xl bg-purple py-4 text-sm font-bold tracking-wider text-white uppercase transition-all hover:bg-purple-deep hover:shadow-lift disabled:opacity-70"
           >
