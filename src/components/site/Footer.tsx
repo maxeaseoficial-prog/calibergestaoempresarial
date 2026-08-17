@@ -75,24 +75,6 @@ export function Footer() {
                   {emailAddress}
                 </a>
               </li>
-              <li>
-                <a
-                  href={`tel:${phoneMT.replace(/\D/g, '')}`}
-                  className="inline-flex items-center gap-2 tabular transition-colors hover:text-white"
-                >
-                  <Phone className="size-4 shrink-0" aria-hidden="true" />
-                  {phoneMT}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`tel:${phonePR.replace(/\D/g, '')}`}
-                  className="inline-flex items-center gap-2 tabular transition-colors hover:text-white"
-                >
-                  <Phone className="size-4 shrink-0" aria-hidden="true" />
-                  {phonePR}
-                </a>
-              </li>
             </ul>
 
             <h2 className="mt-9 text-[0.68rem] font-bold tracking-[0.22em] text-purple-light uppercase">
