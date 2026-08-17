@@ -140,8 +140,8 @@ function AdminSetup() {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Mínimo 6 caracteres"
-              minLength={6}
+              placeholder="Mínimo 5 caracteres"
+              minLength={5}
               className="flex h-12 w-full rounded-xl border border-ink/10 bg-white px-4 py-2 text-sm transition-all focus:outline-none focus:ring-2 focus:ring-purple/20"
             />
           </div>
