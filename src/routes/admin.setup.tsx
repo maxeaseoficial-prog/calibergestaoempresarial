@@ -42,6 +42,21 @@ function AdminSetup() {
     } finally {
       setLoading(false);
     }
+  const handleConfirmExisting = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const result = await confirmUser({
+        data: { email: 'leonardo.froese@gmail.com' }
+      });
+      if (result.success) {
+        setSuccess(true);
+      }
+    } catch (err: any) {
+      setError(err.message || 'Erro ao confirmar usuário.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (success) {
