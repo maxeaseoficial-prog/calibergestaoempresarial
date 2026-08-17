@@ -50,7 +50,7 @@ export function Header() {
           className="flex min-w-0 items-center gap-3 text-white"
           aria-label="Cáliber — página inicial"
         >
-          <Logo className="h-12 w-12 shrink-0 lg:h-14 lg:w-14" />
+          <Logo variant="header" className="h-10 w-auto lg:h-12" />
         </Link>
 
         <nav aria-label="Principal" className="hidden justify-center lg:flex">
