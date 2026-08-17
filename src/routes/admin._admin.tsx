@@ -13,7 +13,6 @@ export const Route = createFileRoute('/admin/_admin')({
     if (!session) {
       // Wait for session to hydrate
       await new Promise(r => setTimeout(r, 500));
-      await new Promise(r => setTimeout(r, 500));
       const { data: { session: retrySession } } = await supabase.auth.getSession();
       session = retrySession;
     }
