@@ -7,10 +7,18 @@ import { cn } from '@/lib/utils';
 
 export const Route = createFileRoute('/admin/_admin')({
   beforeLoad: async ({ location }) => {
-    const { data: { session } } = await supabase.auth.getSession();
+    let { data: { session } } = await supabase.auth.getSession();
     
+    // Fallback if session is not immediately available but might be in localStorage
     if (!session) {
-      console.log("[AdminAuth] No session found, redirecting to login");
+      console.log("[AdminAuth] Session not found in initial check, waiting 500ms...");
+      await new Promise(r => setTimeout(r, 500));
+      const { data: { session: retrySession } } = await supabase.auth.getSession();
+      session = retrySession;
+    }
+
+    if (!session) {
+      console.log("[AdminAuth] No session found after retry, redirecting to login");
       throw redirect({
         to: '/admin/login' as any,
         search: {
