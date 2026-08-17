@@ -33,7 +33,7 @@ export function SectionHeading({
       {eyebrow ? (
         <Reveal>
           <div className={cn("eyebrow", tone === "dark" && "text-purple-light")}>
-            {eyebrow}
+            {typeof eyebrow === 'string' ? eyebrow.charAt(0).toUpperCase() + eyebrow.slice(1).toLowerCase() : eyebrow}
           </div>
         </Reveal>
       ) : null}
