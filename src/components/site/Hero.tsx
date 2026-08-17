@@ -82,7 +82,7 @@ export function Hero() {
                 )}
                 aria-hidden={index !== i}
               >
-                <span className="eyebrow block text-purple-light">
+                <span className="eyebrow block text-purple-light capitalize">
                   {msg.eyebrow}
                 </span>
 

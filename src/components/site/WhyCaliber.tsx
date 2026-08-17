@@ -18,7 +18,7 @@ export function WhyCaliber() {
         <div className="max-w-3xl">
           <SectionHeading
             tone="dark"
-            eyebrow={<span className="block text-3xl font-extrabold tracking-tight text-white lg:text-5xl uppercase">Por que a Cáliber?</span>}
+            eyebrow={<span className="block text-3xl font-extrabold tracking-tight text-white lg:text-5xl">Por que a Cáliber?</span>}
             title="Somos especialistas em eficiência e inovação."
             description="Ser cliente Cáliber é ter um parceiro da operação à gestão para a sua empresa crescer cada dia mais."
           />
