@@ -100,7 +100,7 @@ export function Methodology() {
           <SectionHeading
             title={<>Como tornamos sua empresa <br className="hidden lg:block" /> mais eficiente?</>}
             align="center"
-            className="mb-4 max-w-4xl"
+            className="max-w-4xl"
             titleClassName="text-purple"
           />
           <div className="flex items-center gap-4 w-full max-w-xs md:max-w-md">
