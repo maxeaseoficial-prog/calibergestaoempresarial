@@ -77,9 +77,9 @@ export function BrazilMap({ onHoverState, activeId }: BrazilMapProps) {
       <div className="absolute inset-0 bg-purple/5 blur-[100px] rounded-full" />
 
       <svg
-        viewBox="0 0 800 800"
+        viewBox="0 0 800 650"
         className="relative w-full h-auto drop-shadow-2xl"
-        style={{ filter: "drop-shadow(0 10px 20px rgba(95, 85, 135, 0.1))" }}
+        style={{ filter: "drop-shadow(0 10px 20px rgba(95, 85, 135, 0.1))", maxHeight: "400px" }}
       >
         {ALL_STATE_IDS.map((id) => {
           const isActive = activeStatesSet.has(id);
