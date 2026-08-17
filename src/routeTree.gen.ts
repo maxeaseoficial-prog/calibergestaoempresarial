@@ -17,6 +17,7 @@ import { Route as ServicosRouteImport } from './routes/servicos'
 import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as AdminAdminRouteImport } from './routes/admin._admin'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as AdminSetupRouteImport } from './routes/admin.setup'
 import { Route as AdminAdminIndexRouteImport } from './routes/admin._admin.index'
 import { Route as AdminAdminAtuacaoRouteImport } from './routes/admin._admin.atuacao'
 import { Route as AdminAdminClientesRouteImport } from './routes/admin._admin.clientes'
@@ -64,6 +65,11 @@ const AdminAdminRoute = AdminAdminRouteImport.update({
 const AdminLoginRoute = AdminLoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSetupRoute = AdminSetupRouteImport.update({
+  id: '/setup',
+  path: '/setup',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminAdminIndexRoute = AdminAdminIndexRouteImport.update({
@@ -120,6 +126,7 @@ export interface FileRoutesByFullPath {
   '/servicos': typeof ServicosRoute
   '/sobre': typeof SobreRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/setup': typeof AdminSetupRoute
   '/admin/atuacao': typeof AdminAdminAtuacaoRoute
   '/admin/clientes': typeof AdminAdminClientesRoute
   '/admin/configuracoes': typeof AdminAdminConfiguracoesRoute
@@ -138,6 +145,7 @@ export interface FileRoutesByTo {
   '/servicos': typeof ServicosRoute
   '/sobre': typeof SobreRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/setup': typeof AdminSetupRoute
   '/admin/atuacao': typeof AdminAdminAtuacaoRoute
   '/admin/clientes': typeof AdminAdminClientesRoute
   '/admin/configuracoes': typeof AdminAdminConfiguracoesRoute
@@ -157,6 +165,7 @@ export interface FileRoutesById {
   '/sobre': typeof SobreRoute
   '/admin/_admin': typeof AdminAdminRouteWithChildren
   '/admin/login': typeof AdminLoginRoute
+  '/admin/setup': typeof AdminSetupRoute
   '/admin/_admin/atuacao': typeof AdminAdminAtuacaoRoute
   '/admin/_admin/clientes': typeof AdminAdminClientesRoute
   '/admin/_admin/configuracoes': typeof AdminAdminConfiguracoesRoute
@@ -177,6 +186,7 @@ export interface FileRouteTypes {
     | '/servicos'
     | '/sobre'
     | '/admin/login'
+    | '/admin/setup'
     | '/admin/atuacao'
     | '/admin/clientes'
     | '/admin/configuracoes'
@@ -195,6 +205,7 @@ export interface FileRouteTypes {
     | '/servicos'
     | '/sobre'
     | '/admin/login'
+    | '/admin/setup'
     | '/admin/atuacao'
     | '/admin/clientes'
     | '/admin/configuracoes'
@@ -213,6 +224,7 @@ export interface FileRouteTypes {
     | '/sobre'
     | '/admin/_admin'
     | '/admin/login'
+    | '/admin/setup'
     | '/admin/_admin/atuacao'
     | '/admin/_admin/clientes'
     | '/admin/_admin/configuracoes'
@@ -289,6 +301,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/admin/login'
       preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/setup': {
+      id: '/admin/setup'
+      path: '/setup'
+      fullPath: '/admin/setup'
+      preLoaderRoute: typeof AdminSetupRouteImport
       parentRoute: typeof AdminRoute
     }
     '/admin/_admin/': {
@@ -388,11 +407,13 @@ const AdminAdminRouteWithChildren = AdminAdminRoute._addFileChildren(
 interface AdminRouteChildren {
   AdminAdminRoute: typeof AdminAdminRouteWithChildren
   AdminLoginRoute: typeof AdminLoginRoute
+  AdminSetupRoute: typeof AdminSetupRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminAdminRoute: AdminAdminRouteWithChildren,
   AdminLoginRoute: AdminLoginRoute,
+  AdminSetupRoute: AdminSetupRoute,
 }
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)

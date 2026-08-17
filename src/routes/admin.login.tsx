@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Logo } from '@/components/site/Logo';
@@ -98,6 +98,12 @@ function AdminLogin() {
           >
             {loading ? <Loader2 className="size-4 animate-spin" /> : "ENTRAR"}
           </button>
+
+          <div className="text-center">
+            <Link to="/admin/setup" className="text-xs text-ink/40 hover:text-purple transition-colors">
+              Não tem uma conta? Configurar Admin
+            </Link>
+          </div>
         </form>
       </div>
     </div>
