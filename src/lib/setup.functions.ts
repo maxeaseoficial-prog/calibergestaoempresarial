@@ -16,11 +16,13 @@ export const setupAdmin = createServerFn({ method: "POST" })
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
     // 1. Create or update the user
-    // We try to list users to see if it exists
     const { data: userData, error: listError } = await supabaseAdmin.auth.admin.listUsers();
-    if (listError) throw new Error("Erro ao acessar Auth.");
+    if (listError) {
+      console.error("Auth Error:", listError);
+      throw new Error("Erro ao acessar serviço de autenticação.");
+    }
 
-    const existingUser = userData.users.find(u => u.email === data.email);
+    const existingUser = userData.users.find(u => u.email?.toLowerCase() === data.email.toLowerCase());
 
     let userId;
 
@@ -34,7 +36,10 @@ export const setupAdmin = createServerFn({ method: "POST" })
           email_confirm: true 
         }
       );
-      if (updateError) throw updateError;
+      if (updateError) {
+        console.error("Update Error:", updateError);
+        throw updateError;
+      }
     } else {
       // Create new
       const { data: authData, error: authError } = await supabaseAdmin.auth.admin.createUser({
@@ -42,26 +47,33 @@ export const setupAdmin = createServerFn({ method: "POST" })
         password: data.password,
         email_confirm: true,
       });
-      if (authError) throw authError;
+      if (authError) {
+        console.error("Create Error:", authError);
+        throw authError;
+      }
       if (!authData.user) throw new Error("Falha ao criar usuário.");
       userId = authData.user.id;
     }
 
-    // 2. Ensure admin role exists
-    const { data: roles } = await supabaseAdmin
+    // 2. Ensure admin role exists in user_roles table
+    const { data: existingRoles, error: roleCheckError } = await supabaseAdmin
       .from('user_roles')
       .select('role')
       .eq('user_id', userId)
       .eq('role', 'admin');
 
-    if (!roles || roles.length === 0) {
+    if (roleCheckError) console.error("Role Check Error:", roleCheckError);
+
+    if (!existingRoles || existingRoles.length === 0) {
       const { error: roleError } = await supabaseAdmin
         .from('user_roles')
         .insert({
           user_id: userId,
           role: 'admin'
         });
-      if (roleError) console.error("Error assigning role:", roleError);
+      if (roleError) {
+        console.error("Error assigning role:", roleError);
+      }
     }
 
     return { success: true };
