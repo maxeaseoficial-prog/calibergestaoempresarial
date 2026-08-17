@@ -79,8 +79,14 @@ export function EvoluaConoscoForm({ onSuccess }: { onSuccess: () => void }) {
     const digits = whatsappValue.replace(/\D/g, "");
     let masked = "";
     if (digits.length > 0) masked = "(" + digits.substring(0, 2);
-    if (digits.length > 2) masked += ") " + digits.substring(2, 7);
-    if (digits.length > 7) masked += "-" + digits.substring(7, 11);
+    if (digits.length > 2) masked += ") " + digits.substring(2, 6);
+    if (digits.length > 6) {
+      if (digits.length === 11) {
+        masked = "(" + digits.substring(0, 2) + ") " + digits.substring(2, 7) + "-" + digits.substring(7, 11);
+      } else {
+        masked = "(" + digits.substring(0, 2) + ") " + digits.substring(2, 6) + "-" + digits.substring(6, 10);
+      }
+    }
     
     if (masked !== whatsappValue) {
       setValue("whatsapp", masked, { shouldValidate: true });
