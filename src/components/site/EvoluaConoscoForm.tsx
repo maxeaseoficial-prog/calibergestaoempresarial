@@ -49,7 +49,7 @@ const SOLUTIONS = [
   { id: "comercial", label: "Controladoria Estratégica Comercial" },
   { id: "financeira", label: "Controladoria Estratégica Financeira" },
   { id: "conselho", label: "Conselho de Gestão Estratégica" },
-  { id: "cor", label: "Cáliber COR — Ferramentas Especiais" },
+  { id: "cor", label: "Cáliber CORE — Ferramentas Especiais" },
   { id: "outros", label: "Ainda não sei / Quero entender" },
 ];
 
