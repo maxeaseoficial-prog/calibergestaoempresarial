@@ -177,7 +177,7 @@ export function ServiceDetailsModal({ isOpen, onClose, serviceId }: ServiceDetai
                   {data.pillars.map((pillar: any, idx: number) => (
                     <div key={idx} className="flex flex-col items-center gap-3 p-6 rounded-2xl bg-lavender/30 border border-purple/5 text-center group hover:bg-lavender/50 transition-colors">
                       <pillar.icon className="size-6 text-purple/60 group-hover:text-purple transition-colors" />
-                      <span className="text-[10px] font-bold tracking-widest text-purple/80 uppercase">{pillar.label}</span>
+                      <span className="text-[10px] font-bold tracking-widest text-purple/80">{pillar.label}</span>
                     </div>
                   ))}
                 </motion.div>
@@ -191,7 +191,7 @@ export function ServiceDetailsModal({ isOpen, onClose, serviceId }: ServiceDetai
                   transition={{ delay: 0.2 }}
                   className="mb-12"
                 >
-                  <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple/5 text-purple text-xs font-bold tracking-widest uppercase border border-purple/10">
+                  <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple/5 text-purple text-xs font-bold tracking-widest border border-purple/10">
                     <Calendar className="size-4" />
                     {data.frequency}
                   </span>
@@ -207,7 +207,7 @@ export function ServiceDetailsModal({ isOpen, onClose, serviceId }: ServiceDetai
                 transition={{ delay: 0.3 }}
                 className="mb-20"
               >
-                <h3 className="text-xs font-bold tracking-[0.2em] text-purple uppercase mb-10 text-center md:text-left">COMO FUNCIONA</h3>
+                <h3 className="text-xs font-bold tracking-[0.2em] text-purple mb-10 text-center md:text-left">COMO FUNCIONA</h3>
                 <div className="relative grid grid-cols-1 md:grid-cols-4 gap-8">
                   {/* Connection Line (Desktop) */}
                   <div className="hidden md:block absolute top-6 left-0 right-0 h-px bg-purple/10 -z-10" />
@@ -238,7 +238,7 @@ export function ServiceDetailsModal({ isOpen, onClose, serviceId }: ServiceDetai
                     {data.authority.map((item: any, idx: number) => (
                       <div key={idx} className="flex flex-col items-center md:items-start">
                         <span className="text-4xl font-bold text-purple mb-1 tabular">{item.value}</span>
-                        <span className="text-xs font-bold tracking-widest text-ink/40 uppercase">{item.label}</span>
+                        <span className="text-xs font-bold tracking-widest text-ink/40">{item.label}</span>
                       </div>
                     ))}
                   </div>
@@ -249,7 +249,7 @@ export function ServiceDetailsModal({ isOpen, onClose, serviceId }: ServiceDetai
                     {data.highlights.map((item: any, idx: number) => (
                       <div key={idx} className="flex items-center gap-3 px-5 py-3 rounded-xl bg-purple/5 text-purple border border-purple/10">
                         <item.icon className="size-5" />
-                        <span className="text-[10px] font-bold tracking-widest uppercase">{item.label}</span>
+                        <span className="text-[10px] font-bold tracking-widest">{item.label}</span>
                       </div>
                     ))}
                   </div>
@@ -262,7 +262,7 @@ export function ServiceDetailsModal({ isOpen, onClose, serviceId }: ServiceDetai
                         <div className="p-3 rounded-full bg-purple/5 text-purple/40 group-hover:text-purple group-hover:bg-purple/10 transition-all">
                           <item.icon className="size-6" />
                         </div>
-                        <span className="text-[9px] font-bold tracking-widest text-ink/40 uppercase">{item.label}</span>
+                        <span className="text-[9px] font-bold tracking-widest text-ink/40">{item.label}</span>
                       </div>
                     ))}
                   </div>
