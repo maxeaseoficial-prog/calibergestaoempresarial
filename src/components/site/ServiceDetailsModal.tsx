@@ -207,7 +207,7 @@ export function ServiceDetailsModal({ isOpen, onClose, serviceId }: ServiceDetai
                 transition={{ delay: 0.3 }}
                 className="mb-20"
               >
-                <h3 className="text-xs font-bold tracking-[0.2em] text-purple mb-10 text-center md:text-left">COMO FUNCIONA</h3>
+                <h3 className="text-xs font-bold tracking-[0.2em] text-purple mb-10 text-center md:text-left">Como funciona</h3>
                 <div className="relative grid grid-cols-1 md:grid-cols-4 gap-8">
                   {/* Connection Line (Desktop) */}
                   <div className="hidden md:block absolute top-6 left-0 right-0 h-px bg-purple/10 -z-10" />
