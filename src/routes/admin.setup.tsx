@@ -169,7 +169,7 @@ function AdminSetup() {
           </button>
           
           <div className="flex flex-col gap-4 text-center">
-            <Link to="/admin/login" className="text-xs text-ink/40 hover:text-purple transition-colors">
+            <Link to="/admin/login" search={{ redirect: undefined, error: undefined } as any} className="text-xs text-ink/40 hover:text-purple transition-colors">
               Já possui uma conta? Entrar
             </Link>
             
