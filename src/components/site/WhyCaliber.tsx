@@ -11,7 +11,7 @@ export function WhyCaliber() {
   const phoneMTHref = `tel:${phoneMT.replace(/\D/g, '')}`;
 
   return (
-    <section className="relative overflow-hidden bg-purple-deep py-24 text-white lg:py-32">
+    <section className="relative overflow-hidden bg-purple-deep py-16 text-white lg:py-24 min-h-[40vh] flex items-center">
       <LogoWatermark className="top-1/2 right-[-10%] h-[70%] w-[70%] -translate-y-1/2 opacity-[0.05] text-white" />
       
       <div className="container-cal relative z-10">

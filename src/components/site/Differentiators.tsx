@@ -16,9 +16,9 @@ export function Differentiators() {
   }, [dbServices]);
 
   return (
-    <section id="diferenciais" className="py-20 lg:py-32 bg-white overflow-hidden">
+    <section id="diferenciais" className="py-12 lg:py-20 bg-white overflow-hidden min-h-[85vh] flex flex-col justify-center">
       <div className="container-cal">
-        <div className="flex flex-col items-center mb-16 lg:mb-20">
+        <div className="flex flex-col items-center mb-10 lg:mb-12">
           <SectionHeading
             eyebrow="Diferenciais exclusivos"
             title="O que só a Cáliber faz por você"
@@ -32,7 +32,7 @@ export function Differentiators() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
           {DIFFERENTIATORS.map((item, idx) => {
             const number = (idx + 1).toString().padStart(2, '0');
             // @ts-ignore - Dynamic icon component lookup
@@ -47,11 +47,11 @@ export function Differentiators() {
                 key={item.title} 
                 delay={idx * 50}
                 className={cn(
-                  "group relative overflow-hidden rounded-[24px] border border-purple/10 p-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-purple/30 hover:shadow-[0_20px_40px_rgba(95,85,135,0.08)] flex flex-col h-full",
+                  "group relative overflow-hidden rounded-[20px] border border-purple/10 p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-purple/30 hover:shadow-[0_20px_40px_rgba(95,85,135,0.08)] flex flex-col h-full",
                   isHighlighted ? "bg-purple/[0.02] border-purple/20" : "bg-white"
                 )}
               >
-                <div className="flex justify-between items-start mb-8">
+                <div className="flex justify-between items-start mb-6">
                   <div className={cn(
                     "flex size-12 items-center justify-center rounded-xl transition-all duration-300",
                     "bg-purple/[0.04] text-purple group-hover:bg-purple group-hover:text-white group-hover:shadow-lg group-hover:shadow-purple/20"
@@ -74,7 +74,7 @@ export function Differentiators() {
           })}
         </div>
 
-        <div className="mt-20 flex items-center justify-center gap-6">
+        <div className="mt-12 flex items-center justify-center gap-6">
           <div className="h-[1px] flex-1 bg-purple/10 max-w-[100px] hidden md:block" />
           <p className="text-ink/60 text-sm md:text-base">
             Não entregamos teoria. <span className="text-purple font-bold">Entregamos resultado.</span>

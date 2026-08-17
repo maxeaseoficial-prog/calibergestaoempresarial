@@ -40,7 +40,7 @@ export function SectionHeading({
       <Reveal delay={80}>
         <Title
           className={cn(
-            "mt-5 text-[clamp(2.1rem,4.2vw,3.6rem)] leading-[1.06] font-extrabold",
+            "mt-4 text-[clamp(1.9rem,4vw,3.2rem)] leading-[1.06] font-extrabold",
             tone === "dark" ? "text-white" : "text-ink",
             titleClassName,
           )}
@@ -52,7 +52,7 @@ export function SectionHeading({
         <Reveal delay={160}>
           <p
             className={cn(
-              "mt-6 text-base leading-relaxed md:text-lg",
+              "mt-5 text-base leading-relaxed md:text-[1.05rem]",
               tone === "dark" ? "text-white/70" : "text-muted-foreground",
             )}
           >

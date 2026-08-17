@@ -19,7 +19,7 @@ export function Testimonials() {
   return (
     <section className="relative overflow-hidden bg-white">
       {/* Top Frame */}
-      <div className="relative z-20 h-24 w-full bg-purple lg:h-40">
+      <div className="relative z-20 h-16 w-full bg-purple lg:h-24">
         <svg 
           viewBox="0 0 1440 120" 
           fill="none" 
@@ -34,26 +34,26 @@ export function Testimonials() {
         </svg>
       </div>
 
-      <div className="container-cal relative z-10 py-32 lg:py-48">
+      <div className="container-cal relative z-10 py-20 lg:py-32">
         <Reveal>
-          <div className="mb-20 mx-auto text-center max-w-2xl">
+          <div className="mb-12 mx-auto text-center max-w-2xl">
             <span className="eyebrow block">Quem já evoluiu</span>
-            <h2 className="mt-5 text-[clamp(2.2rem,4vw,3.4rem)] leading-[1.05] font-extrabold text-purple">
+            <h2 className="mt-4 text-[clamp(2rem,3.5vw,3rem)] leading-[1.05] font-extrabold text-purple">
               Depoimentos
             </h2>
           </div>
         </Reveal>
 
-        <div className="grid grid-cols-1 gap-x-12 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-x-10 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((testimonial, i) => (
             <Reveal key={testimonial.name} delay={i * 100}>
               <div className="flex flex-col h-full">
                 {/* 5 Stars */}
-                <div className="flex gap-0.5 mb-7 text-purple">
+                <div className="flex gap-0.5 mb-5 text-purple">
                   {[...Array(5)].map((_, starIndex) => (
                     <Star 
                       key={starIndex} 
-                      className="size-[18px] fill-purple stroke-purple" 
+                      className="size-[16px] fill-purple stroke-purple" 
                       aria-hidden="true" 
                     />
                   ))}
@@ -61,15 +61,15 @@ export function Testimonials() {
 
                 {/* Quote Text */}
                 <blockquote className="flex-grow">
-                  <p className="text-[clamp(1.05rem,1.2vw,1.2rem)] leading-[1.7] font-medium italic text-ink/90 antialiased">
+                  <p className="text-[clamp(1rem,1.1vw,1.15rem)] leading-[1.6] font-medium italic text-ink/90 antialiased">
                     “{testimonial.quote}”
                   </p>
                 </blockquote>
 
                 {/* Identity Block */}
-                <div className="mt-10 pt-8 border-t border-purple/5 flex flex-col items-start space-y-6">
+                <div className="mt-8 pt-6 border-t border-purple/5 flex flex-col items-start space-y-4">
                   {/* Logo Area */}
-                  <div className="h-10 w-full max-w-[140px] flex items-center justify-start overflow-hidden">
+                  <div className="h-8 w-full max-w-[120px] flex items-center justify-start overflow-hidden">
                     <img
                       src={testimonial.logo}
                       alt={testimonial.logoAlt}
@@ -79,7 +79,7 @@ export function Testimonials() {
                   </div>
 
                   {/* Info */}
-                  <div className="space-y-1">
+                  <div className="space-y-0.5">
                     <span className="block text-base font-bold text-purple tracking-tight">
                       {testimonial.name}
                     </span>

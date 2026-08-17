@@ -52,7 +52,7 @@ export function Hero() {
   const active = heroMessages[index]!;
 
   return (
-    <section className="relative overflow-hidden pt-32 pb-20 lg:pt-48 lg:pb-32 min-h-[90vh] flex items-center">
+    <section className="relative overflow-hidden pt-28 pb-12 lg:pt-36 lg:pb-20 min-h-[85vh] lg:min-h-[90vh] flex items-center">
       {/* Background Image */}
       <div className="absolute inset-0 -z-20 overflow-hidden bg-black">
         <img
