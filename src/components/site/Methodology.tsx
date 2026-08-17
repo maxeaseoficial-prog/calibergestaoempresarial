@@ -271,8 +271,8 @@ export function Methodology() {
                             </h3>
                           ))}
                           {card.subtitle && (
-                            <span className="mt-2 text-white text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase">
-                              {card.subtitle}
+                            <span className="mt-2 text-white text-[10px] md:text-xs font-bold tracking-[0.2em]">
+                              {card.subtitle.charAt(0).toUpperCase() + card.subtitle.slice(1).toLowerCase()}
                             </span>
                           )}
                         </div>
@@ -287,7 +287,7 @@ export function Methodology() {
                           <motion.div
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="mt-8 flex items-center gap-2 text-white/90 text-sm font-bold tracking-widest uppercase group/btn"
+                            className="mt-8 flex items-center gap-2 text-white/90 text-sm font-bold tracking-widest group/btn"
                           >
                             <span>Ver detalhes</span>
                             <ArrowRight className="size-4 group-hover/btn:translate-x-1 transition-transform" />
