@@ -26,7 +26,7 @@ function AdminLogin() {
     setError(null);
 
     try {
-      const { data, error: authError } = await supabase.auth.signInWithPassword({
+      const { error: authError } = await supabase.auth.signInWithPassword({
         email: email.trim(),
         password,
       });
@@ -38,8 +38,10 @@ function AdminLogin() {
       }
 
       // Small delay to ensure session is stored
-      await new Promise(r => setTimeout(r, 500));
-      window.location.href = '/admin';
+      await new Promise(r => setTimeout(r, 800));
+      
+      // Use replace to avoid back button issues and force reload
+      window.location.replace('/admin');
     } catch (err) {
       setError('Erro ao realizar login.');
       setLoading(false);
@@ -57,7 +59,7 @@ function AdminLogin() {
           <p className="mt-2 text-sm text-ink/60">Gerencie as informações do site.</p>
         </div>
 
-        <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+        <form onSubmit={handleLogin} className="space-y-6">
           <div className="space-y-2">
             <label className="text-sm font-semibold text-ink">E-mail</label>
             <input
@@ -99,8 +101,7 @@ function AdminLogin() {
           )}
 
           <button
-            type="button"
-            onClick={() => handleLogin()}
+            type="submit"
             disabled={loading}
             className="flex w-full items-center justify-center gap-2 rounded-xl bg-purple py-4 text-sm font-bold tracking-wider text-white uppercase transition-all hover:bg-purple-deep hover:shadow-lift disabled:opacity-70"
           >
