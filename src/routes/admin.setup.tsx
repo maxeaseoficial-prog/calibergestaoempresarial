@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import { setupAdmin } from '@/lib/setup.functions';
+import { setupAdmin, confirmUserManually } from '@/lib/setup.functions';
 import { Logo } from '@/components/site/Logo';
 import { Loader2, AlertCircle, CheckCircle2, ArrowRight } from 'lucide-react';
 import { useServerFn } from '@tanstack/react-start';
@@ -18,6 +18,7 @@ function AdminSetup() {
   const [success, setSuccess] = useState(false);
 
   const createAdmin = useServerFn(setupAdmin);
+  const confirmUser = useServerFn(confirmUserManually);
 
   const handleCreateAdmin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,6 +39,23 @@ function AdminSetup() {
     } catch (err: any) {
       console.error('Erro no setup:', err);
       setError(err.message || 'Erro ao criar administrador.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleConfirmExisting = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const result = await confirmUser({
+        data: { email: 'leonardo.froese@gmail.com' }
+      });
+      if (result.success) {
+        setSuccess(true);
+      }
+    } catch (err: any) {
+      setError(err.message || 'Erro ao confirmar usuário.');
     } finally {
       setLoading(false);
     }
@@ -117,10 +135,18 @@ function AdminSetup() {
             {loading ? <Loader2 className="size-4 animate-spin" /> : "CRIAR ADMINISTRADOR"}
           </button>
           
-          <div className="text-center">
+          <div className="flex flex-col gap-4 text-center">
             <Link to="/admin/login" className="text-xs text-ink/40 hover:text-purple transition-colors">
               Já possui uma conta? Entrar
             </Link>
+            
+            <button 
+              type="button"
+              onClick={handleConfirmExisting}
+              className="text-xs text-purple/60 hover:text-purple underline cursor-pointer"
+            >
+              Confirmar conta leonardo.froese@gmail.com
+            </button>
           </div>
         </form>
       </div>
