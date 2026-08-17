@@ -94,9 +94,9 @@ function AdminSetup() {
           <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-green-50 text-green-600 mx-auto">
             <CheckCircle2 className="size-10" />
           </div>
-          <h1 className="text-2xl font-bold tracking-tight text-ink">Admin Criado!</h1>
+          <h1 className="text-2xl font-bold tracking-tight text-ink">Acesso Configurado!</h1>
           <p className="mt-4 text-sm text-ink/60">
-            O usuário administrador foi criado com sucesso. Agora você pode acessar o painel.
+            As credenciais foram atualizadas e o acesso está confirmado. Você já pode fazer o login.
           </p>
           <Link
             to="/admin/login"
