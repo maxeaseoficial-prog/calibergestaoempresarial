@@ -14,9 +14,14 @@ function AdminLogin() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleLogin = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const handleLogin = async (e?: React.FormEvent | React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    
+    if (loading) return;
+
     console.log('Login attempt started for:', email);
     setLoading(true);
     setError(null);
@@ -24,7 +29,7 @@ function AdminLogin() {
     try {
       console.log('Calling supabase.auth.signInWithPassword');
       const { data, error: authError } = await supabase.auth.signInWithPassword({
-        email,
+        email: email.trim(),
         password,
       });
 
@@ -36,8 +41,18 @@ function AdminLogin() {
         return;
       }
 
-      console.log('Login successful, redirecting to /admin');
-      window.location.replace('/admin');
+      console.log('Login successful, checking session...');
+      const { data: { session } } = await supabase.auth.getSession();
+      console.log('Current session:', session);
+
+      if (!session) {
+        setError('Falha ao estabelecer sessão.');
+        setLoading(false);
+        return;
+      }
+
+      console.log('Redirecting to /admin...');
+      window.location.assign('/admin');
     } catch (err) {
       console.error('Login error catch:', err);
       setError('Erro ao realizar login.');
@@ -99,7 +114,7 @@ function AdminLogin() {
 
           <button
             type="button"
-            onClick={handleLogin}
+            onClick={() => handleLogin()}
             disabled={loading}
             className="flex w-full items-center justify-center gap-2 rounded-xl bg-purple py-4 text-sm font-bold tracking-wider text-white uppercase transition-all hover:bg-purple-deep hover:shadow-lift disabled:opacity-70"
           >
