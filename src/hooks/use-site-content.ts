@@ -70,10 +70,7 @@ export function useSocialLinks() {
     queryFn: async () => {
       const { data, error } = await supabase.from('social_links').select('*');
       if (error) throw error;
-      return data.map(item => ({
-        ...item,
-        name: item.platform // Backward compatibility
-      }));
+      return data;
     },
     staleTime: 1000 * 60 * 60,
   });
