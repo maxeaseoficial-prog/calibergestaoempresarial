@@ -283,7 +283,7 @@ export function EvoluaConoscoForm({ onSuccess }: { onSuccess: () => void }) {
             Enviando...
           </>
         ) : (
-          "QUERO EVOLUIR MINHA EMPRESA"
+          "Quero evoluir minha empresa"
         )}
       </button>
     </form>
