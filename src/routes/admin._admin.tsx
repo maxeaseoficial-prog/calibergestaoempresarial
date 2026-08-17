@@ -31,10 +31,6 @@ export const Route = createFileRoute('/admin/_admin')({
       _role: 'admin' as any
     });
 
-    if (error) {
-      console.error("[AdminAuth] Error checking role:", error);
-    }
-
     if (error || !hasAdminRole) {
       await supabase.auth.signOut();
       throw redirect({
