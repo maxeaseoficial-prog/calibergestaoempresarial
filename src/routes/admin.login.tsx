@@ -22,18 +22,14 @@ function AdminLogin() {
     
     if (loading) return;
 
-    console.log('Login attempt started for:', email);
     setLoading(true);
     setError(null);
 
     try {
-      console.log('Calling supabase.auth.signInWithPassword');
       const { data, error: authError } = await supabase.auth.signInWithPassword({
         email: email.trim(),
         password,
       });
-
-      console.log('Auth response:', { data, error: authError });
 
       if (authError) {
         setError(authError.message);
@@ -41,20 +37,10 @@ function AdminLogin() {
         return;
       }
 
-      console.log('Login successful, checking session...');
-      const { data: { session } } = await supabase.auth.getSession();
-      console.log('Current session:', session);
-
-      if (!session) {
-        setError('Falha ao estabelecer sessão.');
-        setLoading(false);
-        return;
-      }
-
-      console.log('Redirecting to /admin...');
-      window.location.assign('/admin');
+      // Small delay to ensure session is stored
+      await new Promise(r => setTimeout(r, 500));
+      window.location.href = '/admin';
     } catch (err) {
-      console.error('Login error catch:', err);
       setError('Erro ao realizar login.');
       setLoading(false);
     }
