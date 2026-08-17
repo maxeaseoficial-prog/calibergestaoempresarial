@@ -14,10 +14,11 @@ export const Route = createFileRoute('/admin/login')({
 
 function AdminLogin() {
   const navigate = useNavigate();
+  const { error: searchError } = Route.useSearch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(searchError === 'unauthorized' ? 'Acesso não autorizado. Use uma conta administrativa.' : null);
 
   const handleLogin = async (e?: React.FormEvent | React.MouseEvent) => {
     if (e) {
