@@ -5,6 +5,10 @@ import { Logo } from '@/components/site/Logo';
 import { Loader2, AlertCircle } from 'lucide-react';
 
 export const Route = createFileRoute('/admin/login')({
+  validateSearch: (search: Record<string, unknown>) => ({
+    redirect: (search.redirect as string) || undefined,
+    error: (search.error as string) || undefined,
+  }),
   component: AdminLogin,
 });
 
