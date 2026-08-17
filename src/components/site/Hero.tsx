@@ -58,10 +58,10 @@ export function Hero() {
         <img
           src={heroBackgroundAsset.url}
           alt=""
-          className="h-full w-full object-cover opacity-60"
+          className="h-full w-full object-cover opacity-50"
         />
         {/* Overlay for readability */}
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-black/60" />
       </div>
 
       {/* Background elements */}
