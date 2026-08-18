@@ -3,18 +3,43 @@ import { TESTIMONIALS } from "@/lib/site-data";
 import { Reveal } from "./Reveal";
 import { useTestimonials } from "@/hooks/use-site-content";
 
+// Explicit imports for local assets to ensure they are handled by Vite
+import leoLogo from "@/assets/leo-madeiras.png?url";
+import maxvinilLogo from "@/assets/tintas-maxvinil.png?url";
+import tabladoLogo from "@/assets/tablado-madeireira.png?url";
+
+
 
 export function Testimonials() {
   const { data: dbTestimonials } = useTestimonials();
+  
+  // Use a local mapping for assets that exist in src/assets
+  // These are imported via .asset.json in site-data.ts but here we use the resolved paths
   const testimonials = dbTestimonials && dbTestimonials.length > 0
-    ? dbTestimonials.map(t => ({
-        name: t.name,
-        role: t.role || '',
-        quote: t.quote,
-        logo: t.logo_url || '/lovable-uploads/Logo-Leo.png', // Fallback to a valid asset
-        logoAlt: t.company_name || t.name
-      }))
+    ? dbTestimonials.map(t => {
+        let logo = t.logo_url;
+        
+        // Fix for broken external URLs by using confirmed local assets
+        if (t.company_name?.toLowerCase().includes('leo madeiras')) {
+          logo = leoLogo;
+        } else if (t.company_name?.toLowerCase().includes('maxvinil')) {
+          logo = maxvinilLogo;
+        } else if (t.company_name?.toLowerCase().includes('megasom')) {
+          logo = tabladoLogo;
+        }
+        
+        return {
+          name: t.name,
+
+          role: t.role || '',
+          quote: t.quote,
+          logo: logo || TESTIMONIALS[0].logo,
+          logoAlt: t.company_name || t.name
+        };
+      })
     : TESTIMONIALS;
+
+
 
   return (
     <section className="relative overflow-hidden bg-white">
