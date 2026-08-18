@@ -68,7 +68,7 @@ export const requireSupabaseAuth = createMiddleware({ type: 'function' }).server
     }
 
     if (token.split('.').length !== 3) {
-      throw new Error('Unauthorized: Invalid token');
+      throw new Error('Unauthorized');
     }
 
     const supabase = createClient<Database>(
