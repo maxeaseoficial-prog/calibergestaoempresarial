@@ -6,25 +6,32 @@ import { useTestimonials } from "@/hooks/use-site-content";
 
 export function Testimonials() {
   const { data: dbTestimonials } = useTestimonials();
+  
+  // Use a local mapping for assets that exist in src/assets
+  // These are imported via .asset.json in site-data.ts but here we use the resolved paths
   const testimonials = dbTestimonials && dbTestimonials.length > 0
     ? dbTestimonials.map(t => {
         let logo = t.logo_url;
-        // Map old/broken URLs to local assets if found
+        
+        // Fix for broken external URLs by using confirmed local assets
         if (t.company_name?.toLowerCase().includes('leo madeiras')) {
           logo = '/src/assets/leo-madeiras.png';
         } else if (t.company_name?.toLowerCase().includes('maxvinil')) {
           logo = '/src/assets/tintas-maxvinil.png';
+        } else if (t.company_name?.toLowerCase().includes('megasom')) {
+          logo = '/src/assets/tablado-madeireira.png'; // Map correctly if needed
         }
         
         return {
           name: t.name,
           role: t.role || '',
           quote: t.quote,
-          logo: logo || '/src/assets/leo-madeiras.png',
+          logo: logo || TESTIMONIALS[0].logo,
           logoAlt: t.company_name || t.name
         };
       })
     : TESTIMONIALS;
+
 
 
   return (
