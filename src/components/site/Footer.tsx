@@ -51,13 +51,13 @@ export function Footer() {
                   <Link
                     to={item.to as any}
                     {...("hash" in item ? { hash: item.hash } : {})}
-                    {...(item.target ? { target: item.target } : {})}
                     className="transition-colors hover:text-white"
                   >
                     {item.label}
                   </Link>
                 </li>
               ))}
+
             </ul>
           </nav>
 
