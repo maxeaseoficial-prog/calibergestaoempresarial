@@ -70,13 +70,15 @@ export function Header() {
             ))}
             <li>
               <Link
-                to="/contato"
+                to="/"
+                hash="contato-footer"
                 className="inline-flex min-h-10 items-center rounded-[10px] px-3.5 text-sm font-semibold text-white/80 transition-colors duration-300 hover:text-purple-light"
                 activeProps={{ className: "text-purple-light" }}
               >
                 Contato
               </Link>
             </li>
+
           </ul>
         </nav>
 
@@ -128,7 +130,7 @@ function MobileNavigation({ open, onClose }: { open: boolean; onClose: () => voi
 
       <nav aria-label="Mobile" className="container-cal flex-1 overflow-y-auto pt-6 pb-10">
         <ul className="space-y-1">
-          {[...NAV, { label: "Contato", to: "/contato" as const }].map((item) => (
+          {[...NAV, { label: "Contato", to: "/" as const, hash: "contato-footer" }].map((item) => (
             <li key={item.label}>
               <Link
                 to={item.to}

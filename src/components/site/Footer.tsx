@@ -21,7 +21,7 @@ export function Footer() {
   const phonePR = getSetting('contact_phone_pr', CONTACT.phonePR);
 
   return (
-    <footer className="relative overflow-hidden bg-night text-white">
+    <footer id="contato-footer" className="relative overflow-hidden bg-night text-white">
 
       <div className="container-cal relative py-20">
         <div className="grid gap-14 lg:grid-cols-[1.3fr_1fr_1fr]">
@@ -45,19 +45,19 @@ export function Footer() {
                 { label: "Sobre", to: "/", hash: "diferenciais" },
                 { label: "Serviços", to: "/", hash: "metodologia" },
                 { label: "Clientes", to: "/", hash: "clientes" },
-                { label: "Contato", to: "/contato", target: "_blank" },
+                { label: "Contato", to: "/", hash: "contato-footer" },
               ].map((item) => (
                 <li key={item.label}>
                   <Link
                     to={item.to as any}
                     {...("hash" in item ? { hash: item.hash } : {})}
-                    {...(item.target ? { target: item.target } : {})}
                     className="transition-colors hover:text-white"
                   >
                     {item.label}
                   </Link>
                 </li>
               ))}
+
             </ul>
           </nav>
 
