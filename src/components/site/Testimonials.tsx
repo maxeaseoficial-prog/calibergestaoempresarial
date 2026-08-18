@@ -4,9 +4,9 @@ import { Reveal } from "./Reveal";
 import { useTestimonials } from "@/hooks/use-site-content";
 
 // Explicit imports for local assets to ensure they are handled by Vite
-import leoLogo from "@/assets/leo-madeiras.png?url";
-import maxvinilLogo from "@/assets/tintas-maxvinil.png?url";
-import tabladoLogo from "@/assets/tablado-madeireira.png?url";
+import leoLogo from "@/assets/leo-madeiras.png.asset.json";
+import maxvinilLogo from "@/assets/tintas-maxvinil.png.asset.json";
+import tabladoLogo from "@/assets/tablado-madeireira.png.asset.json";
 
 
 
@@ -21,11 +21,11 @@ export function Testimonials() {
         
         // Fix for broken external URLs by using confirmed local assets
         if (t.company_name?.toLowerCase().includes('leo madeiras')) {
-          logo = leoLogo;
+          logo = leoLogo.url;
         } else if (t.company_name?.toLowerCase().includes('maxvinil')) {
-          logo = maxvinilLogo;
+          logo = maxvinilLogo.url;
         } else if (t.company_name?.toLowerCase().includes('megasom')) {
-          logo = tabladoLogo;
+          logo = tabladoLogo.url;
         }
         
         return {
