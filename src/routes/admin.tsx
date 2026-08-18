@@ -4,7 +4,7 @@ export const Route = createFileRoute('/admin')({
   beforeLoad: ({ location }) => {
     // Basic redirect for direct /admin access to login or sub-routes
     if (location.pathname === '/admin' || location.pathname === '/admin/') {
-      throw redirect({ to: '/admin/login' });
+      throw redirect({ to: '/admin/login', search: { redirect: location.pathname } });
     }
   },
   component: () => <Outlet />,
