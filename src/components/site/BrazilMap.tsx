@@ -77,9 +77,10 @@ export function BrazilMap({ onHoverState, activeId }: BrazilMapProps) {
       <div className="absolute inset-0 bg-purple/5 blur-[100px] rounded-full" />
 
       <svg
-        viewBox="0 0 800 650"
+        viewBox="0 0 800 730"
         className="relative w-full h-auto drop-shadow-2xl"
-        style={{ filter: "drop-shadow(0 10px 20px rgba(95, 85, 135, 0.1))", maxHeight: "400px" }}
+        style={{ filter: "drop-shadow(0 10px 20px rgba(95, 85, 135, 0.1))", maxHeight: "450px" }}
+
       >
         {ALL_STATE_IDS.map((id) => {
           const isActive = activeStatesSet.has(id);
@@ -96,7 +97,7 @@ export function BrazilMap({ onHoverState, activeId }: BrazilMapProps) {
                   "transition-all duration-300 ease-out stroke-[0.5]",
                   isActive
                     ? "fill-purple/80 hover:fill-purple cursor-pointer stroke-white/40"
-                    : "fill-slate-200 hover:fill-slate-300 stroke-slate-300",
+                    : "fill-[#CBD0D8] hover:fill-[#BCC2CB] stroke-[#AAB1BC]",
                   isHighlighted && isActive && "fill-purple -translate-y-[2px] drop-shadow-lg scale-[1.01] stroke-white/60"
                 )}
                 onMouseEnter={() => handleMouseEnter(id)}
