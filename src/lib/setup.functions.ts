@@ -30,7 +30,8 @@ export const setupAdmin = createServerFn({ method: "POST" })
     // 1. Create or update the user
     const { data: userData, error: listError } = await supabaseAdmin.auth.admin.listUsers();
     if (listError) {
-      console.error("Auth Error:", listError);
+      // Sanitized log for production
+      console.error("Auth Error occurred during user list");
       throw new Error("Erro ao acessar serviço de autenticação.");
     }
 
@@ -49,7 +50,8 @@ export const setupAdmin = createServerFn({ method: "POST" })
         }
       );
       if (updateError) {
-        console.error("Update Error:", updateError);
+        // Sanitized log
+        console.error("Update Error occurred during password reset");
         throw updateError;
       }
     } else {
@@ -60,7 +62,8 @@ export const setupAdmin = createServerFn({ method: "POST" })
         email_confirm: true,
       });
       if (authError) {
-        console.error("Create Error:", authError);
+        // Sanitized log
+        console.error("Create Error occurred during user creation");
         throw authError;
       }
       if (!authData.user) throw new Error("Falha ao criar usuário.");

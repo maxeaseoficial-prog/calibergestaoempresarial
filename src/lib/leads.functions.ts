@@ -9,7 +9,7 @@ const MAX_REQUESTS = 5;
 const LeadSchema = z.object({
   name: z.string().min(2, "Informe seu nome."),
   email: z.string().email("Informe um e-mail válido."),
-  whatsapp: z.string().min(10, "Informe seu WhatsApp."),
+  whatsapp: z.string().transform(v => v.replace(/\D/g, '')).pipe(z.string().min(10, "Informe seu WhatsApp.")),
   role: z.string().min(1, "Selecione um cargo."),
   company: z.string().min(2, "Informe o nome da empresa."),
   revenue: z.string().min(1, "Selecione uma faixa de faturamento."),
@@ -118,7 +118,8 @@ export const submitLead = createServerFn({ method: "POST" })
         return { success: false, error: "SEND_FAILED" };
       }
 
-      console.log("Email sent successfully:", resendData?.id);
+      // Sanitized log for production
+      console.log("Email status: sent");
       return { success: true };
     } catch (err) {
       console.error("Unexpected error submitting lead:", err);

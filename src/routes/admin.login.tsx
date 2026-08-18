@@ -36,12 +36,12 @@ function AdminLogin() {
       });
 
       if (error) {
-        setError('E-mail ou senha inválidos.');
+        setError('Usuário ou senha inválidos.');
         setLoading(false);
         return;
       }
 
-      console.log("[AdminLogin] Login successful, user ID:", data.user?.id);
+      // Removed console.log for production security
 
       // Force session persistence check
       const { data: { session } } = await supabase.auth.getSession();
