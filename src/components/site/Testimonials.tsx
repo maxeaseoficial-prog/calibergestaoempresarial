@@ -7,14 +7,25 @@ import { useTestimonials } from "@/hooks/use-site-content";
 export function Testimonials() {
   const { data: dbTestimonials } = useTestimonials();
   const testimonials = dbTestimonials && dbTestimonials.length > 0
-    ? dbTestimonials.map(t => ({
-        name: t.name,
-        role: t.role || '',
-        quote: t.quote,
-        logo: t.logo_url || '/lovable-uploads/Logo-Leo.png', // Fallback to a valid asset
-        logoAlt: t.company_name || t.name
-      }))
+    ? dbTestimonials.map(t => {
+        let logo = t.logo_url;
+        // Map old/broken URLs to local assets if found
+        if (t.company_name?.toLowerCase().includes('leo madeiras')) {
+          logo = '/src/assets/leo-madeiras.png';
+        } else if (t.company_name?.toLowerCase().includes('maxvinil')) {
+          logo = '/src/assets/tintas-maxvinil.png';
+        }
+        
+        return {
+          name: t.name,
+          role: t.role || '',
+          quote: t.quote,
+          logo: logo || '/src/assets/leo-madeiras.png',
+          logoAlt: t.company_name || t.name
+        };
+      })
     : TESTIMONIALS;
+
 
   return (
     <section className="relative overflow-hidden bg-white">
