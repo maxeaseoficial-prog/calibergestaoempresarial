@@ -21,15 +21,16 @@ export function Testimonials() {
         
         // Fix for broken external URLs by using confirmed local assets
         if (t.company_name?.toLowerCase().includes('leo madeiras')) {
-          logo = '/src/assets/leo-madeiras.png';
+          logo = leoLogo;
         } else if (t.company_name?.toLowerCase().includes('maxvinil')) {
-          logo = '/src/assets/tintas-maxvinil.png';
+          logo = maxvinilLogo;
         } else if (t.company_name?.toLowerCase().includes('megasom')) {
-          logo = '/src/assets/tablado-madeireira.png'; // Map correctly if needed
+          logo = tabladoLogo;
         }
         
         return {
           name: t.name,
+
           role: t.role || '',
           quote: t.quote,
           logo: logo || TESTIMONIALS[0].logo,
