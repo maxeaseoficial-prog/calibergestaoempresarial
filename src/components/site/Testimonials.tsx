@@ -3,6 +3,12 @@ import { TESTIMONIALS } from "@/lib/site-data";
 import { Reveal } from "./Reveal";
 import { useTestimonials } from "@/hooks/use-site-content";
 
+// Explicit imports for local assets to ensure they are handled by Vite
+import leoLogo from "@/assets/leo-madeiras.png?url";
+import maxvinilLogo from "@/assets/tintas-maxvinil.png?url";
+import tabladoLogo from "@/assets/tablado-madeireira.png?url";
+
+
 
 export function Testimonials() {
   const { data: dbTestimonials } = useTestimonials();
