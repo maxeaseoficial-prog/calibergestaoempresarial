@@ -1,10 +1,10 @@
-import { createFileRoute, Outlet } from '@tanstack/react-router';
+import { createFileRoute, Outlet, redirect } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/admin')({
   beforeLoad: ({ location }) => {
-    // Avoid redirect loop if already on login or setup
-    if (location.pathname === '/admin/login' || location.pathname === '/admin/setup') {
-      return;
+    // Basic redirect for direct /admin access to login or sub-routes
+    if (location.pathname === '/admin' || location.pathname === '/admin/') {
+      throw redirect({ to: '/admin/login' });
     }
   },
   component: () => <Outlet />,

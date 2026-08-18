@@ -24,7 +24,7 @@ function AdminLayout() {
         
         if (!session) {
           setLoading(false);
-          setAuthError('Sessão não encontrada no cliente.');
+          setAuthError('Acesso não autorizado.');
           return;
         }
 
@@ -38,14 +38,14 @@ function AdminLayout() {
 
         if (roleError || !hasAdminRole) {
           setLoading(false);
-          setAuthError(`Permissão negada. Papel 'admin' não encontrado para este usuário.`);
+          setAuthError(`Acesso restrito a administradores.`);
           return;
         }
 
         setLoading(false);
       } catch (err: any) {
         setLoading(false);
-        setAuthError(`Erro inesperado: ${err.message}`);
+        setAuthError(`Ocorreu um erro ao verificar o acesso.`);
       }
     };
 
