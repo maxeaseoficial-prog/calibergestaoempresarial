@@ -1,0 +1,1 @@
+UPDATE public.site_settings SET value = 'contato@calibergestao.com.br' WHERE key = 'lead_recipient_email';
