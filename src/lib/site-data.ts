@@ -21,7 +21,7 @@ export const OFFICES = [
   {
     city: "Cuiabá",
     state: "MT",
-    lines: ["Av. Senador Filinto Muller, 970", "Goiabeiras", "Grupo Froese"],
+    lines: ["Av. Senador Filinto Muller, 970", "GGruoiabeiras", "\n"],
     map: "https://g.page/CaliberConsultoriaEmpresarial?share",
     phone: CONTACT.phoneMT,
     phoneHref: CONTACT.phoneMTHref,
@@ -29,7 +29,7 @@ export const OFFICES = [
   {
     city: "Curitiba",
     state: "PR",
-    lines: ["Av. Sete de Setembro, 4990", "Edifício New Orleans | Batel", "Água Verde"],
+    lines: ["Av. Sete de Setembro, 4990", "Edifício New Orleans | Batel", "\n"],
     map: "https://goo.gl/maps/7XtuaCaK9eQTMYsf6",
     phone: CONTACT.phonePR,
     phoneHref: CONTACT.phonePRHref,
