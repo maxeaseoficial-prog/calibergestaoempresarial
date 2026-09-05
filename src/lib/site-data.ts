@@ -21,7 +21,7 @@ export const OFFICES = [
   {
     city: "Cuiabá",
     state: "MT",
-    lines: ["Av. Senador Filinto Muller, 970", "GGruoiabeiras", "\n"],
+    lines: ["Av. Senador Filinto Muller, 970", "Grupo Froese | Goiabeiras", "\n"],
     map: "https://g.page/CaliberConsultoriaEmpresarial?share",
     phone: CONTACT.phoneMT,
     phoneHref: CONTACT.phoneMTHref,
